@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="../../../">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ltsm.utils.timefeatures &#8212; LTSM-Package  documentation</title>
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=5ecbeea2" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/basic.css?v=686e5160" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/alabaster.css?v=27fed22d" />
+    <script src="../../../_static/documentation_options.js?v=5929fcd5"></script>
+    <script src="../../../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+   
+  <link rel="stylesheet" href="../../../_static/custom.css" type="text/css" />
+  
+
+  
+  
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <h1>Source code for ltsm.utils.timefeatures</h1><div class="highlight"><pre>
+<span></span><span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">List</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pandas.tseries</span><span class="w"> </span><span class="kn">import</span> <span class="n">offsets</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pandas.tseries.frequencies</span><span class="w"> </span><span class="kn">import</span> <span class="n">to_offset</span>
+
+
+<div class="viewcode-block" id="TimeFeature">
+<a class="viewcode-back" href="../../../ltsm.utils.html#ltsm.utils.timefeatures.TimeFeature">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">TimeFeature</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">pass</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">index</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DatetimeIndex</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
+        <span class="k">pass</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span> <span class="o">+</span> <span class="s2">&quot;()&quot;</span></div>
+
+
+
+<div class="viewcode-block" id="SecondOfMinute">
+<a class="viewcode-back" href="../../../ltsm.utils.html#ltsm.utils.timefeatures.SecondOfMinute">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">SecondOfMinute</span><span class="p">(</span><span class="n">TimeFeature</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Minute of hour encoded as value between [-0.5, 0.5]&quot;&quot;&quot;</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">index</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DatetimeIndex</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">index</span><span class="o">.</span><span class="n">second</span> <span class="o">/</span> <span class="mf">59.0</span> <span class="o">-</span> <span class="mf">0.5</span></div>
+
+
+
+<div class="viewcode-block" id="MinuteOfHour">
+<a class="viewcode-back" href="../../../ltsm.utils.html#ltsm.utils.timefeatures.MinuteOfHour">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">MinuteOfHour</span><span class="p">(</span><span class="n">TimeFeature</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Minute of hour encoded as value between [-0.5, 0.5]&quot;&quot;&quot;</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">index</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DatetimeIndex</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">index</span><span class="o">.</span><span class="n">minute</span> <span class="o">/</span> <span class="mf">59.0</span> <span class="o">-</span> <span class="mf">0.5</span></div>
+
+
+
+<div class="viewcode-block" id="HourOfDay">
+<a class="viewcode-back" href="../../../ltsm.utils.html#ltsm.utils.timefeatures.HourOfDay">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">HourOfDay</span><span class="p">(</span><span class="n">TimeFeature</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Hour of day encoded as value between [-0.5, 0.5]&quot;&quot;&quot;</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">index</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DatetimeIndex</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">index</span><span class="o">.</span><span class="n">hour</span> <span class="o">/</span> <span class="mf">23.0</span> <span class="o">-</span> <span class="mf">0.5</span></div>
+
+
+
+<div class="viewcode-block" id="DayOfWeek">
+<a class="viewcode-back" href="../../../ltsm.utils.html#ltsm.utils.timefeatures.DayOfWeek">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">DayOfWeek</span><span class="p">(</span><span class="n">TimeFeature</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Hour of day encoded as value between [-0.5, 0.5]&quot;&quot;&quot;</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">index</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DatetimeIndex</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">index</span><span class="o">.</span><span class="n">dayofweek</span> <span class="o">/</span> <span class="mf">6.0</span> <span class="o">-</span> <span class="mf">0.5</span></div>
+
+
+
+<div class="viewcode-block" id="DayOfMonth">
+<a class="viewcode-back" href="../../../ltsm.utils.html#ltsm.utils.timefeatures.DayOfMonth">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">DayOfMonth</span><span class="p">(</span><span class="n">TimeFeature</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Day of month encoded as value between [-0.5, 0.5]&quot;&quot;&quot;</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">index</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DatetimeIndex</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
+        <span class="k">return</span> <span class="p">(</span><span class="n">index</span><span class="o">.</span><span class="n">day</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">/</span> <span class="mf">30.0</span> <span class="o">-</span> <span class="mf">0.5</span></div>
+
+
+
+<div class="viewcode-block" id="DayOfYear">
+<a class="viewcode-back" href="../../../ltsm.utils.html#ltsm.utils.timefeatures.DayOfYear">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">DayOfYear</span><span class="p">(</span><span class="n">TimeFeature</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Day of year encoded as value between [-0.5, 0.5]&quot;&quot;&quot;</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">index</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DatetimeIndex</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
+        <span class="k">return</span> <span class="p">(</span><span class="n">index</span><span class="o">.</span><span class="n">dayofyear</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">/</span> <span class="mf">365.0</span> <span class="o">-</span> <span class="mf">0.5</span></div>
+
+
+
+<div class="viewcode-block" id="MonthOfYear">
+<a class="viewcode-back" href="../../../ltsm.utils.html#ltsm.utils.timefeatures.MonthOfYear">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">MonthOfYear</span><span class="p">(</span><span class="n">TimeFeature</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Month of year encoded as value between [-0.5, 0.5]&quot;&quot;&quot;</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">index</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DatetimeIndex</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
+        <span class="k">return</span> <span class="p">(</span><span class="n">index</span><span class="o">.</span><span class="n">month</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">/</span> <span class="mf">11.0</span> <span class="o">-</span> <span class="mf">0.5</span></div>
+
+
+
+<div class="viewcode-block" id="WeekOfYear">
+<a class="viewcode-back" href="../../../ltsm.utils.html#ltsm.utils.timefeatures.WeekOfYear">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">WeekOfYear</span><span class="p">(</span><span class="n">TimeFeature</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Week of year encoded as value between [-0.5, 0.5]&quot;&quot;&quot;</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">index</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DatetimeIndex</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
+        <span class="k">return</span> <span class="p">(</span><span class="n">index</span><span class="o">.</span><span class="n">isocalendar</span><span class="p">()</span><span class="o">.</span><span class="n">week</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">/</span> <span class="mf">52.0</span> <span class="o">-</span> <span class="mf">0.5</span></div>
+
+
+
+<div class="viewcode-block" id="time_features_from_frequency_str">
+<a class="viewcode-back" href="../../../ltsm.utils.html#ltsm.utils.timefeatures.time_features_from_frequency_str">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">time_features_from_frequency_str</span><span class="p">(</span><span class="n">freq_str</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">TimeFeature</span><span class="p">]:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Returns a list of time features that will be appropriate for the given frequency string.</span>
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    freq_str</span>
+<span class="sd">        Frequency string of the form [multiple][granularity] such as &quot;12H&quot;, &quot;5min&quot;, &quot;1D&quot; etc.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">features_by_offsets</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="n">offsets</span><span class="o">.</span><span class="n">YearEnd</span><span class="p">:</span> <span class="p">[],</span>
+        <span class="n">offsets</span><span class="o">.</span><span class="n">QuarterEnd</span><span class="p">:</span> <span class="p">[</span><span class="n">MonthOfYear</span><span class="p">],</span>
+        <span class="n">offsets</span><span class="o">.</span><span class="n">MonthEnd</span><span class="p">:</span> <span class="p">[</span><span class="n">MonthOfYear</span><span class="p">],</span>
+        <span class="n">offsets</span><span class="o">.</span><span class="n">Week</span><span class="p">:</span> <span class="p">[</span><span class="n">DayOfMonth</span><span class="p">,</span> <span class="n">WeekOfYear</span><span class="p">],</span>
+        <span class="n">offsets</span><span class="o">.</span><span class="n">Day</span><span class="p">:</span> <span class="p">[</span><span class="n">DayOfWeek</span><span class="p">,</span> <span class="n">DayOfMonth</span><span class="p">,</span> <span class="n">DayOfYear</span><span class="p">],</span>
+        <span class="n">offsets</span><span class="o">.</span><span class="n">BusinessDay</span><span class="p">:</span> <span class="p">[</span><span class="n">DayOfWeek</span><span class="p">,</span> <span class="n">DayOfMonth</span><span class="p">,</span> <span class="n">DayOfYear</span><span class="p">],</span>
+        <span class="n">offsets</span><span class="o">.</span><span class="n">Hour</span><span class="p">:</span> <span class="p">[</span><span class="n">HourOfDay</span><span class="p">,</span> <span class="n">DayOfWeek</span><span class="p">,</span> <span class="n">DayOfMonth</span><span class="p">,</span> <span class="n">DayOfYear</span><span class="p">],</span>
+        <span class="n">offsets</span><span class="o">.</span><span class="n">Minute</span><span class="p">:</span> <span class="p">[</span>
+            <span class="n">MinuteOfHour</span><span class="p">,</span>
+            <span class="n">HourOfDay</span><span class="p">,</span>
+            <span class="n">DayOfWeek</span><span class="p">,</span>
+            <span class="n">DayOfMonth</span><span class="p">,</span>
+            <span class="n">DayOfYear</span><span class="p">,</span>
+        <span class="p">],</span>
+        <span class="n">offsets</span><span class="o">.</span><span class="n">Second</span><span class="p">:</span> <span class="p">[</span>
+            <span class="n">SecondOfMinute</span><span class="p">,</span>
+            <span class="n">MinuteOfHour</span><span class="p">,</span>
+            <span class="n">HourOfDay</span><span class="p">,</span>
+            <span class="n">DayOfWeek</span><span class="p">,</span>
+            <span class="n">DayOfMonth</span><span class="p">,</span>
+            <span class="n">DayOfYear</span><span class="p">,</span>
+        <span class="p">],</span>
+    <span class="p">}</span>
+
+    <span class="n">offset</span> <span class="o">=</span> <span class="n">to_offset</span><span class="p">(</span><span class="n">freq_str</span><span class="p">)</span>
+
+    <span class="k">for</span> <span class="n">offset_type</span><span class="p">,</span> <span class="n">feature_classes</span> <span class="ow">in</span> <span class="n">features_by_offsets</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">offset</span><span class="p">,</span> <span class="n">offset_type</span><span class="p">):</span>
+            <span class="k">return</span> <span class="p">[</span><span class="bp">cls</span><span class="p">()</span> <span class="k">for</span> <span class="bp">cls</span> <span class="ow">in</span> <span class="n">feature_classes</span><span class="p">]</span>
+
+    <span class="n">supported_freq_msg</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">    Unsupported frequency </span><span class="si">{</span><span class="n">freq_str</span><span class="si">}</span>
+<span class="s2">    The following frequencies are supported:</span>
+<span class="s2">        Y   - yearly</span>
+<span class="s2">            alias: A</span>
+<span class="s2">        M   - monthly</span>
+<span class="s2">        W   - weekly</span>
+<span class="s2">        D   - daily</span>
+<span class="s2">        B   - business days</span>
+<span class="s2">        H   - hourly</span>
+<span class="s2">        T   - minutely</span>
+<span class="s2">            alias: min</span>
+<span class="s2">        S   - secondly</span>
+<span class="s2">    &quot;&quot;&quot;</span>
+    <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="n">supported_freq_msg</span><span class="p">)</span></div>
+
+
+
+<div class="viewcode-block" id="time_features">
+<a class="viewcode-back" href="../../../ltsm.utils.html#ltsm.utils.timefeatures.time_features">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">time_features</span><span class="p">(</span><span class="n">dates</span><span class="p">,</span> <span class="n">freq</span><span class="o">=</span><span class="s1">&#39;h&#39;</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">vstack</span><span class="p">([</span><span class="n">feat</span><span class="p">(</span><span class="n">dates</span><span class="p">)</span> <span class="k">for</span> <span class="n">feat</span> <span class="ow">in</span> <span class="n">time_features_from_frequency_str</span><span class="p">(</span><span class="n">freq</span><span class="p">)])</span></div>
+
+</pre></div>
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../../../index.html">LTSM-Package</a></h1>
+
+
+
+
+
+
+
+
+
+<search id="searchbox" style="display: none" role="search">
+    <div class="searchformwrapper">
+    <form class="search" action="../../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" placeholder="Search"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script><h3>Navigation</h3>
+<p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules.html">ltsm</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../../index.html">Documentation overview</a><ul>
+  <li><a href="../../index.html">Module code</a><ul>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &#169;2025, DATA Lab@Rice University.
+      
+      |
+      Powered by <a href="https://www.sphinx-doc.org/">Sphinx 8.1.3</a>
+      &amp; <a href="https://alabaster.readthedocs.io">Alabaster 1.0.0</a>
+      
+    </div>
+
+    
+
+    
+  </body>
+</html>

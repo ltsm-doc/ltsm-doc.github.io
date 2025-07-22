@@ -1,0 +1,521 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ltsm.data_pipeline package &mdash; LTSM-Package  documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="_static/documentation_options.js?v=5929fcd5"></script>
+      <script src="_static/doctools.js?v=9bcbadda"></script>
+      <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="ltsm.data_provider package" href="ltsm.data_provider.html" />
+    <link rel="prev" title="ltsm package" href="ltsm.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            LTSM-Package
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="modules.html">ltsm</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="ltsm.html">ltsm package</a><ul class="current">
+<li class="toctree-l3 current"><a class="reference internal" href="ltsm.html#subpackages">Subpackages</a><ul class="current">
+<li class="toctree-l4 current"><a class="current reference internal" href="#">ltsm.data_pipeline package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="ltsm.data_provider.html">ltsm.data_provider package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="ltsm.data_reader.html">ltsm.data_reader package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="ltsm.models.html">ltsm.models package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="ltsm.prompt_reader.html">ltsm.prompt_reader package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="ltsm.sk_interface.html">ltsm.sk_interface package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="ltsm.utils.html">ltsm.utils package</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="ltsm.html#module-ltsm">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">LTSM-Package</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="modules.html">ltsm</a></li>
+          <li class="breadcrumb-item"><a href="ltsm.html">ltsm package</a></li>
+      <li class="breadcrumb-item active">ltsm.data_pipeline package</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/ltsm.data_pipeline.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="ltsm-data-pipeline-package">
+<h1>ltsm.data_pipeline package<a class="headerlink" href="#ltsm-data-pipeline-package" title="Link to this heading"></a></h1>
+<section id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Link to this heading"></a></h2>
+</section>
+<section id="module-ltsm.data_pipeline.anormly_pipeline">
+<span id="ltsm-data-pipeline-anormly-pipeline-module"></span><h2>ltsm.data_pipeline.anormly_pipeline module<a class="headerlink" href="#module-ltsm.data_pipeline.anormly_pipeline" title="Link to this heading"></a></h2>
+<p>Pipeline for Anormly Data Detection
+Main Difference from the LTSM :</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>pred_len == seq_len</p></li>
+<li><p>label is the anomaly label of input seq_len</p></li>
+<li><p>loss is CE/BCE</p></li>
+</ul>
+</div></blockquote>
+<dl class="py class">
+<dt class="sig sig-object py" id="ltsm.data_pipeline.anormly_pipeline.AnomalyTrainingPipeline">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">ltsm.data_pipeline.anormly_pipeline.</span></span><span class="sig-name descname"><span class="pre">AnomalyTrainingPipeline</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">config</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ltsm/data_pipeline/anormly_pipeline.html#AnomalyTrainingPipeline"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ltsm.data_pipeline.anormly_pipeline.AnomalyTrainingPipeline" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">BaseTrainingPipeline</span></code></p>
+<p>A pipeline for managing the training and evaluation process of a machine learning model.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="ltsm.data_pipeline.anormly_pipeline.AnomalyTrainingPipeline.args">
+<span class="sig-name descname"><span class="pre">args</span></span><a class="headerlink" href="#ltsm.data_pipeline.anormly_pipeline.AnomalyTrainingPipeline.args" title="Link to this definition"></a></dt>
+<dd><p>Arguments containing training configuration and hyperparameters.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>argparse.Namespace</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="ltsm.data_pipeline.anormly_pipeline.AnomalyTrainingPipeline.model_manager">
+<span class="sig-name descname"><span class="pre">model_manager</span></span><a class="headerlink" href="#ltsm.data_pipeline.anormly_pipeline.AnomalyTrainingPipeline.model_manager" title="Link to this definition"></a></dt>
+<dd><p>An instance responsible for creating, managing, and optimizing the model.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#ltsm.data_pipeline.model_manager.ModelManager" title="ltsm.data_pipeline.model_manager.ModelManager">ModelManager</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ltsm.data_pipeline.anormly_pipeline.AnomalyTrainingPipeline.run">
+<span class="sig-name descname"><span class="pre">run</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/ltsm/data_pipeline/anormly_pipeline.html#AnomalyTrainingPipeline.run"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ltsm.data_pipeline.anormly_pipeline.AnomalyTrainingPipeline.run" title="Link to this definition"></a></dt>
+<dd><p>Runs the training and evaluation process for the model.</p>
+<dl class="simple">
+<dt>The process includes:</dt><dd><ul class="simple">
+<li><p>Logging configuration and training arguments.</p></li>
+<li><p>Creating a model with the model manager.</p></li>
+<li><p>Setting up training and evaluation parameters.</p></li>
+<li><p>Loading and formatting training and evaluation datasets.</p></li>
+<li><p>Training the model and saving metrics and state.</p></li>
+<li><p>Evaluating the model on test datasets and logging metrics.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="ltsm.data_pipeline.anormly_pipeline.anomaly_get_args">
+<span class="sig-prename descclassname"><span class="pre">ltsm.data_pipeline.anormly_pipeline.</span></span><span class="sig-name descname"><span class="pre">anomaly_get_args</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/ltsm/data_pipeline/anormly_pipeline.html#anomaly_get_args"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ltsm.data_pipeline.anormly_pipeline.anomaly_get_args" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="ltsm.data_pipeline.anormly_pipeline.anomaly_seed_all">
+<span class="sig-prename descclassname"><span class="pre">ltsm.data_pipeline.anormly_pipeline.</span></span><span class="sig-name descname"><span class="pre">anomaly_seed_all</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fixed_seed</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ltsm/data_pipeline/anormly_pipeline.html#anomaly_seed_all"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ltsm.data_pipeline.anormly_pipeline.anomaly_seed_all" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="ltsm.data_pipeline.anormly_pipeline.compute_loss">
+<span class="sig-prename descclassname"><span class="pre">ltsm.data_pipeline.anormly_pipeline.</span></span><span class="sig-name descname"><span class="pre">compute_loss</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">inputs</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">return_outputs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ltsm/data_pipeline/anormly_pipeline.html#compute_loss"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ltsm.data_pipeline.anormly_pipeline.compute_loss" title="Link to this definition"></a></dt>
+<dd><p>Computes the loss for model training.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>model</strong> (<em>torch.nn.Module</em>) – The model used for predictions.</p></li>
+<li><p><strong>inputs</strong> (<em>dict</em>) – Input data and labels.</p></li>
+<li><p><strong>return_outputs</strong> (<em>bool</em>) – If True, returns both loss and model outputs.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The computed loss, and optionally the outputs.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>torch.Tensor or tuple</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="ltsm.data_pipeline.anormly_pipeline.compute_metrics">
+<span class="sig-prename descclassname"><span class="pre">ltsm.data_pipeline.anormly_pipeline.</span></span><span class="sig-name descname"><span class="pre">compute_metrics</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">p</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ltsm/data_pipeline/anormly_pipeline.html#compute_metrics"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ltsm.data_pipeline.anormly_pipeline.compute_metrics" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</section>
+<section id="module-ltsm.data_pipeline.model_manager">
+<span id="ltsm-data-pipeline-model-manager-module"></span><h2>ltsm.data_pipeline.model_manager module<a class="headerlink" href="#module-ltsm.data_pipeline.model_manager" title="Link to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="ltsm.data_pipeline.model_manager.ModelManager">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">ltsm.data_pipeline.model_manager.</span></span><span class="sig-name descname"><span class="pre">ModelManager</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">config</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ltsm/data_pipeline/model_manager.html#ModelManager"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ltsm.data_pipeline.model_manager.ModelManager" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Manages model creation, parameter settings, optimizer, and evaluation metrics for training.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="ltsm.data_pipeline.model_manager.ModelManager.args">
+<span class="sig-name descname"><span class="pre">args</span></span><a class="headerlink" href="#ltsm.data_pipeline.model_manager.ModelManager.args" title="Link to this definition"></a></dt>
+<dd><p>Configuration and hyperparameters for model training.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>argparse.Namespace</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="ltsm.data_pipeline.model_manager.ModelManager.model">
+<span class="sig-name descname"><span class="pre">model</span></span><a class="headerlink" href="#ltsm.data_pipeline.model_manager.ModelManager.model" title="Link to this definition"></a></dt>
+<dd><p>The model to be trained, created based on configuration.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>torch.nn.Module</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="ltsm.data_pipeline.model_manager.ModelManager.optimizer">
+<span class="sig-name descname"><span class="pre">optimizer</span></span><a class="headerlink" href="#ltsm.data_pipeline.model_manager.ModelManager.optimizer" title="Link to this definition"></a></dt>
+<dd><p>Optimizer for model parameter updates.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>torch.optim.Optimizer</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="ltsm.data_pipeline.model_manager.ModelManager.scheduler">
+<span class="sig-name descname"><span class="pre">scheduler</span></span><a class="headerlink" href="#ltsm.data_pipeline.model_manager.ModelManager.scheduler" title="Link to this definition"></a></dt>
+<dd><p>Learning rate scheduler.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>torch.optim.lr_scheduler._LRScheduler</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ltsm.data_pipeline.model_manager.ModelManager.collate_fn">
+<span class="sig-name descname"><span class="pre">collate_fn</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">batch</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ltsm/data_pipeline/model_manager.html#ModelManager.collate_fn"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ltsm.data_pipeline.model_manager.ModelManager.collate_fn" title="Link to this definition"></a></dt>
+<dd><p>Collates a batch of data into tensors for model training.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>batch</strong> (<em>list</em>) – List of data samples with ‘input_data’ and ‘labels’ keys.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Collated batch with ‘input_data’ and ‘labels’ tensors.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ltsm.data_pipeline.model_manager.ModelManager.compute_loss">
+<span class="sig-name descname"><span class="pre">compute_loss</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">inputs</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">return_outputs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ltsm/data_pipeline/model_manager.html#ModelManager.compute_loss"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ltsm.data_pipeline.model_manager.ModelManager.compute_loss" title="Link to this definition"></a></dt>
+<dd><p>Computes the loss for model training.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>model</strong> (<em>torch.nn.Module</em>) – The model used for predictions.</p></li>
+<li><p><strong>inputs</strong> (<em>dict</em>) – Input data and labels.</p></li>
+<li><p><strong>return_outputs</strong> (<em>bool</em>) – If True, returns both loss and model outputs.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The computed loss, and optionally the outputs.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>torch.Tensor or tuple</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ltsm.data_pipeline.model_manager.ModelManager.compute_metrics">
+<span class="sig-name descname"><span class="pre">compute_metrics</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">p</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ltsm/data_pipeline/model_manager.html#ModelManager.compute_metrics"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ltsm.data_pipeline.model_manager.ModelManager.compute_metrics" title="Link to this definition"></a></dt>
+<dd><p>Computes evaluation metrics for model predictions.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>p</strong> (<em>EvalPrediction</em>) – Contains predictions and label IDs.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Dictionary containing Mean Squared Error (MSE) and Mean Absolute Error (MAE).</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ltsm.data_pipeline.model_manager.ModelManager.create_model">
+<span class="sig-name descname"><span class="pre">create_model</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/ltsm/data_pipeline/model_manager.html#ModelManager.create_model"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ltsm.data_pipeline.model_manager.ModelManager.create_model" title="Link to this definition"></a></dt>
+<dd><p>Initializes and configures the model based on specified arguments, including options for
+freezing parameters or applying LoRA (Low-Rank Adaptation).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The configured model ready for training.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>torch.nn.Module</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ltsm.data_pipeline.model_manager.ModelManager.prediction_step">
+<span class="sig-name descname"><span class="pre">prediction_step</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">inputs</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">prediction_loss_only</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ignore_keys</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ltsm/data_pipeline/model_manager.html#ModelManager.prediction_step"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ltsm.data_pipeline.model_manager.ModelManager.prediction_step" title="Link to this definition"></a></dt>
+<dd><p>Makes a prediction step, computing loss and returning model outputs without gradients.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>model</strong> (<em>torch.nn.Module</em>) – The model used for predictions.</p></li>
+<li><p><strong>inputs</strong> (<em>dict</em>) – Input data and labels.</p></li>
+<li><p><strong>prediction_loss_only</strong> (<em>bool</em>) – If True, returns only the loss.</p></li>
+<li><p><strong>ignore_keys</strong> (<em>list</em>) – Keys to ignore in inputs.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The loss, outputs, and labels.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>tuple</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ltsm.data_pipeline.model_manager.ModelManager.print_trainable_parameters">
+<span class="sig-name descname"><span class="pre">print_trainable_parameters</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/ltsm/data_pipeline/model_manager.html#ModelManager.print_trainable_parameters"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ltsm.data_pipeline.model_manager.ModelManager.print_trainable_parameters" title="Link to this definition"></a></dt>
+<dd><p>Prints the names of parameters in the model that are trainable.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ltsm.data_pipeline.model_manager.ModelManager.set_optimizer">
+<span class="sig-name descname"><span class="pre">set_optimizer</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/ltsm/data_pipeline/model_manager.html#ModelManager.set_optimizer"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ltsm.data_pipeline.model_manager.ModelManager.set_optimizer" title="Link to this definition"></a></dt>
+<dd><p>Configures the optimizer and learning rate scheduler for the model training.</p>
+<p>Uses Adam optimizer and cosine annealing learning rate scheduler.</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-ltsm.data_pipeline.stat_pipeline">
+<span id="ltsm-data-pipeline-stat-pipeline-module"></span><h2>ltsm.data_pipeline.stat_pipeline module<a class="headerlink" href="#module-ltsm.data_pipeline.stat_pipeline" title="Link to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="ltsm.data_pipeline.stat_pipeline.StatisticalTrainingPipeline">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">ltsm.data_pipeline.stat_pipeline.</span></span><span class="sig-name descname"><span class="pre">StatisticalTrainingPipeline</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">config</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ltsm/data_pipeline/stat_pipeline.html#StatisticalTrainingPipeline"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ltsm.data_pipeline.stat_pipeline.StatisticalTrainingPipeline" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">BaseTrainingPipeline</span></code></p>
+<p>A pipeline for managing the training and evaluation process of a machine learning model.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="ltsm.data_pipeline.stat_pipeline.StatisticalTrainingPipeline.args">
+<span class="sig-name descname"><span class="pre">args</span></span><a class="headerlink" href="#ltsm.data_pipeline.stat_pipeline.StatisticalTrainingPipeline.args" title="Link to this definition"></a></dt>
+<dd><p>Arguments containing training configuration and hyperparameters.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>argparse.Namespace</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="ltsm.data_pipeline.stat_pipeline.StatisticalTrainingPipeline.model_manager">
+<span class="sig-name descname"><span class="pre">model_manager</span></span><a class="headerlink" href="#ltsm.data_pipeline.stat_pipeline.StatisticalTrainingPipeline.model_manager" title="Link to this definition"></a></dt>
+<dd><p>An instance responsible for creating, managing, and optimizing the model.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#ltsm.data_pipeline.model_manager.ModelManager" title="ltsm.data_pipeline.model_manager.ModelManager">ModelManager</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ltsm.data_pipeline.stat_pipeline.StatisticalTrainingPipeline.run">
+<span class="sig-name descname"><span class="pre">run</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/ltsm/data_pipeline/stat_pipeline.html#StatisticalTrainingPipeline.run"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ltsm.data_pipeline.stat_pipeline.StatisticalTrainingPipeline.run" title="Link to this definition"></a></dt>
+<dd><p>Runs the training and evaluation process for the model.</p>
+<dl class="simple">
+<dt>The process includes:</dt><dd><ul class="simple">
+<li><p>Logging config.train_params[“ration and training arguments.</p></li>
+<li><p>Creating a model with the model manager.</p></li>
+<li><p>Setting up training and evaluation parameters.</p></li>
+<li><p>Loading and formatting training and evaluation datasets.</p></li>
+<li><p>Training the model and saving metrics and state.</p></li>
+<li><p>Evaluating the model on test datasets and logging metrics.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="ltsm.data_pipeline.stat_pipeline.get_args">
+<span class="sig-prename descclassname"><span class="pre">ltsm.data_pipeline.stat_pipeline.</span></span><span class="sig-name descname"><span class="pre">get_args</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/ltsm/data_pipeline/stat_pipeline.html#get_args"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ltsm.data_pipeline.stat_pipeline.get_args" title="Link to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">TrainingConfig</span></code></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="ltsm.data_pipeline.stat_pipeline.seed_all">
+<span class="sig-prename descclassname"><span class="pre">ltsm.data_pipeline.stat_pipeline.</span></span><span class="sig-name descname"><span class="pre">seed_all</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fixed_seed</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ltsm/data_pipeline/stat_pipeline.html#seed_all"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ltsm.data_pipeline.stat_pipeline.seed_all" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</section>
+<section id="module-ltsm.data_pipeline.tokenizer_pipeline">
+<span id="ltsm-data-pipeline-tokenizer-pipeline-module"></span><h2>ltsm.data_pipeline.tokenizer_pipeline module<a class="headerlink" href="#module-ltsm.data_pipeline.tokenizer_pipeline" title="Link to this heading"></a></h2>
+<p>Pipeline for tokenizer-ltsm.
+Task: Time Series Forecasting.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="ltsm.data_pipeline.tokenizer_pipeline.TokenizerTrainingPipeline">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">ltsm.data_pipeline.tokenizer_pipeline.</span></span><span class="sig-name descname"><span class="pre">TokenizerTrainingPipeline</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">config</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ltsm/data_pipeline/tokenizer_pipeline.html#TokenizerTrainingPipeline"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ltsm.data_pipeline.tokenizer_pipeline.TokenizerTrainingPipeline" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">BaseTrainingPipeline</span></code></p>
+<p>A pipeline for managing the training and evaluation process of a machine learning model.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="ltsm.data_pipeline.tokenizer_pipeline.TokenizerTrainingPipeline.args">
+<span class="sig-name descname"><span class="pre">args</span></span><a class="headerlink" href="#ltsm.data_pipeline.tokenizer_pipeline.TokenizerTrainingPipeline.args" title="Link to this definition"></a></dt>
+<dd><p>Arguments containing training configuration and hyperparameters.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>argparse.Namespace</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="ltsm.data_pipeline.tokenizer_pipeline.TokenizerTrainingPipeline.model_manager">
+<span class="sig-name descname"><span class="pre">model_manager</span></span><a class="headerlink" href="#ltsm.data_pipeline.tokenizer_pipeline.TokenizerTrainingPipeline.model_manager" title="Link to this definition"></a></dt>
+<dd><p>An instance responsible for creating, managing, and optimizing the model.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#ltsm.data_pipeline.model_manager.ModelManager" title="ltsm.data_pipeline.model_manager.ModelManager">ModelManager</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ltsm.data_pipeline.tokenizer_pipeline.TokenizerTrainingPipeline.create_tokenizer">
+<span class="sig-name descname"><span class="pre">create_tokenizer</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/ltsm/data_pipeline/tokenizer_pipeline.html#TokenizerTrainingPipeline.create_tokenizer"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ltsm.data_pipeline.tokenizer_pipeline.TokenizerTrainingPipeline.create_tokenizer" title="Link to this definition"></a></dt>
+<dd><p>Creates a tokenizer for the model based on the configuration settings.
+The tokenizer is configured to handle input sequences, output sequences, and various
+parameters related to the model’s architecture and training process.
+:returns: An instance of the tokenizer configured for the model.
+:rtype: ChronosTokenizer</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ltsm.data_pipeline.tokenizer_pipeline.TokenizerTrainingPipeline.run">
+<span class="sig-name descname"><span class="pre">run</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/ltsm/data_pipeline/tokenizer_pipeline.html#TokenizerTrainingPipeline.run"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ltsm.data_pipeline.tokenizer_pipeline.TokenizerTrainingPipeline.run" title="Link to this definition"></a></dt>
+<dd><p>Runs the training and evaluation process for the model.</p>
+<dl class="simple">
+<dt>The process includes:</dt><dd><ul class="simple">
+<li><p>Logging configuration and training arguments.</p></li>
+<li><p>Creating a model with the model manager.</p></li>
+<li><p>Setting up training and evaluation parameters.</p></li>
+<li><p>Loading and formatting training and evaluation datasets.</p></li>
+<li><p>Training the model and saving metrics and state.</p></li>
+<li><p>Evaluating the model on test datasets and logging metrics.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="ltsm.data_pipeline.tokenizer_pipeline.tokenizer_get_args">
+<span class="sig-prename descclassname"><span class="pre">ltsm.data_pipeline.tokenizer_pipeline.</span></span><span class="sig-name descname"><span class="pre">tokenizer_get_args</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/ltsm/data_pipeline/tokenizer_pipeline.html#tokenizer_get_args"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ltsm.data_pipeline.tokenizer_pipeline.tokenizer_get_args" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="ltsm.data_pipeline.tokenizer_pipeline.tokenizer_seed_all">
+<span class="sig-prename descclassname"><span class="pre">ltsm.data_pipeline.tokenizer_pipeline.</span></span><span class="sig-name descname"><span class="pre">tokenizer_seed_all</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fixed_seed</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ltsm/data_pipeline/tokenizer_pipeline.html#tokenizer_seed_all"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ltsm.data_pipeline.tokenizer_pipeline.tokenizer_seed_all" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</section>
+<section id="module-ltsm.data_pipeline">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-ltsm.data_pipeline" title="Link to this heading"></a></h2>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="ltsm.html" class="btn btn-neutral float-left" title="ltsm package" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="ltsm.data_provider.html" class="btn btn-neutral float-right" title="ltsm.data_provider package" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, DATA Lab@Rice University.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,2031 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../../../../../">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.features &mdash; LTSM-Package  documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../../../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../../../../../_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="../../../../../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../../../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../../../../../_static/documentation_options.js?v=5929fcd5"></script>
+      <script src="../../../../../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../../../../index.html" class="icon icon-home">
+            LTSM-Package
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../../modules.html">ltsm</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../../../index.html">LTSM-Package</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../../../../index.html">Module code</a></li>
+      <li class="breadcrumb-item active">ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.features</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.features</h1><div class="highlight"><pre>
+<span></span><span class="kn">import</span><span class="w"> </span><span class="nn">scipy.signal</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">tsfel.feature_extraction.features_utils</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
+
+
+<span class="c1"># ############################################# TEMPORAL DOMAIN ##################################################### #</span>
+
+
+<div class="viewcode-block" id="autocorr">
+<a class="viewcode-back" href="../../../../../../ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.html#ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.features.autocorr">[docs]</a>
+<span class="nd">@set_domain</span><span class="p">(</span><span class="s2">&quot;domain&quot;</span><span class="p">,</span> <span class="s2">&quot;temporal&quot;</span><span class="p">)</span>
+<span class="nd">@set_domain</span><span class="p">(</span><span class="s2">&quot;tag&quot;</span><span class="p">,</span> <span class="s2">&quot;inertial&quot;</span><span class="p">)</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">autocorr</span><span class="p">(</span><span class="n">signal</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Computes autocorrelation of the signal.</span>
+
+<span class="sd">    Feature computational cost: 1</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    signal : nd-array</span>
+<span class="sd">        Input from which autocorrelation is computed</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    float</span>
+<span class="sd">        Cross correlation of 1-dimensional sequence</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">signal</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">signal</span><span class="p">)</span>
+    <span class="k">return</span> <span class="nb">float</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">correlate</span><span class="p">(</span><span class="n">signal</span><span class="p">,</span> <span class="n">signal</span><span class="p">))</span></div>
+
+
+
+<div class="viewcode-block" id="calc_centroid">
+<a class="viewcode-back" href="../../../../../../ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.html#ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.features.calc_centroid">[docs]</a>
+<span class="nd">@set_domain</span><span class="p">(</span><span class="s2">&quot;domain&quot;</span><span class="p">,</span> <span class="s2">&quot;temporal&quot;</span><span class="p">)</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">calc_centroid</span><span class="p">(</span><span class="n">signal</span><span class="p">,</span> <span class="n">fs</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Computes the centroid along the time axis.</span>
+
+<span class="sd">    Feature computational cost: 1</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    signal : nd-array</span>
+<span class="sd">        Input from which centroid is computed</span>
+<span class="sd">    fs: int</span>
+<span class="sd">        Signal sampling frequency</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    float</span>
+<span class="sd">        Temporal centroid</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">time</span> <span class="o">=</span> <span class="n">compute_time</span><span class="p">(</span><span class="n">signal</span><span class="p">,</span> <span class="n">fs</span><span class="p">)</span>
+
+    <span class="n">energy</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">signal</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span>
+
+    <span class="n">t_energy</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">time</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">energy</span><span class="p">))</span>
+    <span class="n">energy_sum</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">energy</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">energy_sum</span> <span class="o">==</span> <span class="mi">0</span> <span class="ow">or</span> <span class="n">t_energy</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">centroid</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">centroid</span> <span class="o">=</span> <span class="n">t_energy</span> <span class="o">/</span> <span class="n">energy_sum</span>
+
+    <span class="k">return</span> <span class="n">centroid</span></div>
+
+
+
+<div class="viewcode-block" id="negative_turning">
+<a class="viewcode-back" href="../../../../../../ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.html#ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.features.negative_turning">[docs]</a>
+<span class="nd">@set_domain</span><span class="p">(</span><span class="s2">&quot;domain&quot;</span><span class="p">,</span> <span class="s2">&quot;temporal&quot;</span><span class="p">)</span>
+<span class="nd">@set_domain</span><span class="p">(</span><span class="s2">&quot;tag&quot;</span><span class="p">,</span> <span class="s2">&quot;emg&quot;</span><span class="p">)</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">negative_turning</span><span class="p">(</span><span class="n">signal</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Computes number of negative turning points of the signal.</span>
+
+<span class="sd">    Feature computational cost: 1</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    signal : nd-array</span>
+<span class="sd">        Input from which minimum number of negative turning points are counted</span>
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    float</span>
+<span class="sd">        Number of negative turning points</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">diff_sig</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="n">signal</span><span class="p">)</span>
+    <span class="n">array_signal</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">diff_sig</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]))</span>
+    <span class="n">negative_turning_pts</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">((</span><span class="n">diff_sig</span><span class="p">[</span><span class="n">array_signal</span><span class="p">]</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">diff_sig</span><span class="p">[</span><span class="n">array_signal</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">))[</span><span class="mi">0</span><span class="p">]</span>
+
+    <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="n">negative_turning_pts</span><span class="p">)</span></div>
+
+
+
+<div class="viewcode-block" id="positive_turning">
+<a class="viewcode-back" href="../../../../../../ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.html#ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.features.positive_turning">[docs]</a>
+<span class="nd">@set_domain</span><span class="p">(</span><span class="s2">&quot;domain&quot;</span><span class="p">,</span> <span class="s2">&quot;temporal&quot;</span><span class="p">)</span>
+<span class="nd">@set_domain</span><span class="p">(</span><span class="s2">&quot;tag&quot;</span><span class="p">,</span> <span class="s2">&quot;emg&quot;</span><span class="p">)</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">positive_turning</span><span class="p">(</span><span class="n">signal</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Computes number of positive turning points of the signal.</span>
+
+<span class="sd">    Feature computational cost: 1</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    signal : nd-array</span>
+<span class="sd">        Input from which  positive turning points are counted</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    float</span>
+<span class="sd">        Number of positive turning points</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">diff_sig</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="n">signal</span><span class="p">)</span>
+
+    <span class="n">array_signal</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">diff_sig</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]))</span>
+
+    <span class="n">positive_turning_pts</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">((</span><span class="n">diff_sig</span><span class="p">[</span><span class="n">array_signal</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">diff_sig</span><span class="p">[</span><span class="n">array_signal</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">))[</span><span class="mi">0</span><span class="p">]</span>
+
+    <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="n">positive_turning_pts</span><span class="p">)</span></div>
+
+
+
+<div class="viewcode-block" id="mean_abs_diff">
+<a class="viewcode-back" href="../../../../../../ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.html#ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.features.mean_abs_diff">[docs]</a>
+<span class="nd">@set_domain</span><span class="p">(</span><span class="s2">&quot;domain&quot;</span><span class="p">,</span> <span class="s2">&quot;temporal&quot;</span><span class="p">)</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">mean_abs_diff</span><span class="p">(</span><span class="n">signal</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Computes mean absolute differences of the signal.</span>
+
+<span class="sd">   Feature computational cost: 1</span>
+
+<span class="sd">   Parameters</span>
+<span class="sd">   ----------</span>
+<span class="sd">   signal : nd-array</span>
+<span class="sd">       Input from which mean absolute deviation is computed</span>
+
+<span class="sd">   Returns</span>
+<span class="sd">   -------</span>
+<span class="sd">   float</span>
+<span class="sd">       Mean absolute difference result</span>
+
+<span class="sd">   &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="n">signal</span><span class="p">)))</span></div>
+
+
+
+<div class="viewcode-block" id="mean_diff">
+<a class="viewcode-back" href="../../../../../../ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.html#ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.features.mean_diff">[docs]</a>
+<span class="nd">@set_domain</span><span class="p">(</span><span class="s2">&quot;domain&quot;</span><span class="p">,</span> <span class="s2">&quot;temporal&quot;</span><span class="p">)</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">mean_diff</span><span class="p">(</span><span class="n">signal</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Computes mean of differences of the signal.</span>
+
+<span class="sd">   Feature computational cost: 1</span>
+
+<span class="sd">   Parameters</span>
+<span class="sd">   ----------</span>
+<span class="sd">   signal : nd-array</span>
+<span class="sd">       Input from which mean of differences is computed</span>
+
+<span class="sd">   Returns</span>
+<span class="sd">   -------</span>
+<span class="sd">   float</span>
+<span class="sd">       Mean difference result</span>
+
+<span class="sd">   &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="n">signal</span><span class="p">))</span></div>
+
+
+
+<div class="viewcode-block" id="median_abs_diff">
+<a class="viewcode-back" href="../../../../../../ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.html#ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.features.median_abs_diff">[docs]</a>
+<span class="nd">@set_domain</span><span class="p">(</span><span class="s2">&quot;domain&quot;</span><span class="p">,</span> <span class="s2">&quot;temporal&quot;</span><span class="p">)</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">median_abs_diff</span><span class="p">(</span><span class="n">signal</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Computes median absolute differences of the signal.</span>
+
+<span class="sd">   Feature computational cost: 1</span>
+
+<span class="sd">   Parameters</span>
+<span class="sd">   ----------</span>
+<span class="sd">   signal : nd-array</span>
+<span class="sd">       Input from which median absolute difference is computed</span>
+
+<span class="sd">   Returns</span>
+<span class="sd">   -------</span>
+<span class="sd">   float</span>
+<span class="sd">       Median absolute difference result</span>
+
+<span class="sd">   &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">median</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="n">signal</span><span class="p">)))</span></div>
+
+
+
+<div class="viewcode-block" id="median_diff">
+<a class="viewcode-back" href="../../../../../../ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.html#ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.features.median_diff">[docs]</a>
+<span class="nd">@set_domain</span><span class="p">(</span><span class="s2">&quot;domain&quot;</span><span class="p">,</span> <span class="s2">&quot;temporal&quot;</span><span class="p">)</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">median_diff</span><span class="p">(</span><span class="n">signal</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Computes median of differences of the signal.</span>
+
+<span class="sd">   Feature computational cost: 1</span>
+
+<span class="sd">   Parameters</span>
+<span class="sd">   ----------</span>
+<span class="sd">   signal : nd-array</span>
+<span class="sd">       Input from which median of differences is computed</span>
+
+<span class="sd">   Returns</span>
+<span class="sd">   -------</span>
+<span class="sd">   float</span>
+<span class="sd">       Median difference result</span>
+
+<span class="sd">   &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">median</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="n">signal</span><span class="p">))</span></div>
+
+
+
+<div class="viewcode-block" id="distance">
+<a class="viewcode-back" href="../../../../../../ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.html#ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.features.distance">[docs]</a>
+<span class="nd">@set_domain</span><span class="p">(</span><span class="s2">&quot;domain&quot;</span><span class="p">,</span> <span class="s2">&quot;temporal&quot;</span><span class="p">)</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">distance</span><span class="p">(</span><span class="n">signal</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Computes signal traveled distance.</span>
+
+<span class="sd">    Calculates the total distance traveled by the signal</span>
+<span class="sd">    using the hypotenuse between 2 datapoints.</span>
+
+<span class="sd">   Feature computational cost: 1</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    signal : nd-array</span>
+<span class="sd">        Input from which distance is computed</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    float</span>
+<span class="sd">        Signal distance</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">diff_sig</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="n">signal</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">float</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">([</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">diff_sig</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)])</span></div>
+
+
+
+<div class="viewcode-block" id="sum_abs_diff">
+<a class="viewcode-back" href="../../../../../../ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.html#ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.features.sum_abs_diff">[docs]</a>
+<span class="nd">@set_domain</span><span class="p">(</span><span class="s2">&quot;domain&quot;</span><span class="p">,</span> <span class="s2">&quot;temporal&quot;</span><span class="p">)</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">sum_abs_diff</span><span class="p">(</span><span class="n">signal</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Computes sum of absolute differences of the signal.</span>
+
+<span class="sd">   Feature computational cost: 1</span>
+
+<span class="sd">   Parameters</span>
+<span class="sd">   ----------</span>
+<span class="sd">   signal : nd-array</span>
+<span class="sd">       Input from which sum absolute difference is computed</span>
+
+<span class="sd">   Returns</span>
+<span class="sd">   -------</span>
+<span class="sd">   float</span>
+<span class="sd">       Sum absolute difference result</span>
+
+<span class="sd">   &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="n">signal</span><span class="p">)))</span></div>
+
+
+
+<div class="viewcode-block" id="zero_cross">
+<a class="viewcode-back" href="../../../../../../ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.html#ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.features.zero_cross">[docs]</a>
+<span class="nd">@set_domain</span><span class="p">(</span><span class="s2">&quot;domain&quot;</span><span class="p">,</span> <span class="s2">&quot;temporal&quot;</span><span class="p">)</span>
+<span class="nd">@set_domain</span><span class="p">(</span><span class="s2">&quot;tag&quot;</span><span class="p">,</span> <span class="p">[</span><span class="s2">&quot;audio&quot;</span><span class="p">,</span> <span class="s2">&quot;emg&quot;</span><span class="p">])</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">zero_cross</span><span class="p">(</span><span class="n">signal</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Computes Zero-crossing rate of the signal.</span>
+
+<span class="sd">    Corresponds to the total number of times that the signal changes from</span>
+<span class="sd">    positive to negative or vice versa.</span>
+
+<span class="sd">    Feature computational cost: 1</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    signal : nd-array</span>
+<span class="sd">        Input from which the zero-crossing rate are computed</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    int</span>
+<span class="sd">        Number of times that signal value cross the zero axis</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sign</span><span class="p">(</span><span class="n">signal</span><span class="p">)))[</span><span class="mi">0</span><span class="p">])</span></div>
+
+
+
+<div class="viewcode-block" id="slope">
+<a class="viewcode-back" href="../../../../../../ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.html#ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.features.slope">[docs]</a>
+<span class="nd">@set_domain</span><span class="p">(</span><span class="s2">&quot;domain&quot;</span><span class="p">,</span> <span class="s2">&quot;temporal&quot;</span><span class="p">)</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">slope</span><span class="p">(</span><span class="n">signal</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Computes the slope of the signal.</span>
+
+<span class="sd">    Slope is computed by fitting a linear equation to the observed data.</span>
+
+<span class="sd">    Feature computational cost: 1</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    signal : nd-array</span>
+<span class="sd">        Input from which linear equation is computed</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    float</span>
+<span class="sd">        Slope</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">signal</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">signal</span><span class="p">))</span>
+
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">polyfit</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">signal</span><span class="p">,</span> <span class="mi">1</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span></div>
+
+
+
+<div class="viewcode-block" id="auc">
+<a class="viewcode-back" href="../../../../../../ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.html#ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.features.auc">[docs]</a>
+<span class="nd">@set_domain</span><span class="p">(</span><span class="s2">&quot;domain&quot;</span><span class="p">,</span> <span class="s2">&quot;temporal&quot;</span><span class="p">)</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">auc</span><span class="p">(</span><span class="n">signal</span><span class="p">,</span> <span class="n">fs</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Computes the area under the curve of the signal computed with trapezoid rule.</span>
+
+<span class="sd">    Feature computational cost: 1</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    signal : nd-array</span>
+<span class="sd">        Input from which the area under the curve is computed</span>
+<span class="sd">    fs : float</span>
+<span class="sd">        Sampling Frequency</span>
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    float</span>
+<span class="sd">        The area under the curve value</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">t</span> <span class="o">=</span> <span class="n">compute_time</span><span class="p">(</span><span class="n">signal</span><span class="p">,</span> <span class="n">fs</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="mf">0.5</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="n">t</span><span class="p">)</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">signal</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">signal</span><span class="p">[</span><span class="mi">1</span><span class="p">:])))</span></div>
+
+
+
+<div class="viewcode-block" id="neighbourhood_peaks">
+<a class="viewcode-back" href="../../../../../../ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.html#ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.features.neighbourhood_peaks">[docs]</a>
+<span class="nd">@set_domain</span><span class="p">(</span><span class="s2">&quot;domain&quot;</span><span class="p">,</span> <span class="s2">&quot;temporal&quot;</span><span class="p">)</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">neighbourhood_peaks</span><span class="p">(</span><span class="n">signal</span><span class="p">,</span> <span class="n">n</span><span class="o">=</span><span class="mi">10</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Computes the number of peaks from a defined neighbourhood of the signal.</span>
+
+<span class="sd">    Reference: Christ, M., Braun, N., Neuffer, J. and Kempa-Liehr A.W. (2018). Time Series FeatuRe Extraction on basis</span>
+<span class="sd">     of Scalable Hypothesis tests (tsfresh -- A Python package). Neurocomputing 307 (2018) 72-77</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    signal : nd-array</span>
+<span class="sd">         Input from which the number of neighbourhood peaks is computed</span>
+<span class="sd">    n :  int</span>
+<span class="sd">        Number of peak&#39;s neighbours to the left and to the right</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    int</span>
+<span class="sd">        The number of peaks from a defined neighbourhood of the signal</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">signal</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">signal</span><span class="p">)</span>
+    <span class="n">subsequence</span> <span class="o">=</span> <span class="n">signal</span><span class="p">[</span><span class="n">n</span><span class="p">:</span><span class="o">-</span><span class="n">n</span><span class="p">]</span>
+    <span class="c1"># initial iteration</span>
+    <span class="n">peaks</span> <span class="o">=</span> <span class="p">((</span><span class="n">subsequence</span> <span class="o">&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">roll</span><span class="p">(</span><span class="n">signal</span><span class="p">,</span> <span class="mi">1</span><span class="p">)[</span><span class="n">n</span><span class="p">:</span><span class="o">-</span><span class="n">n</span><span class="p">])</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">subsequence</span> <span class="o">&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">roll</span><span class="p">(</span><span class="n">signal</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">)[</span><span class="n">n</span><span class="p">:</span><span class="o">-</span><span class="n">n</span><span class="p">]))</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">n</span> <span class="o">+</span> <span class="mi">1</span><span class="p">):</span>
+        <span class="n">peaks</span> <span class="o">&amp;=</span> <span class="p">(</span><span class="n">subsequence</span> <span class="o">&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">roll</span><span class="p">(</span><span class="n">signal</span><span class="p">,</span> <span class="n">i</span><span class="p">)[</span><span class="n">n</span><span class="p">:</span><span class="o">-</span><span class="n">n</span><span class="p">])</span>
+        <span class="n">peaks</span> <span class="o">&amp;=</span> <span class="p">(</span><span class="n">subsequence</span> <span class="o">&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">roll</span><span class="p">(</span><span class="n">signal</span><span class="p">,</span> <span class="o">-</span><span class="n">i</span><span class="p">)[</span><span class="n">n</span><span class="p">:</span><span class="o">-</span><span class="n">n</span><span class="p">])</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">peaks</span><span class="p">)</span></div>
+
+
+
+<span class="c1"># ############################################ STATISTICAL DOMAIN #################################################### #</span>
+<div class="viewcode-block" id="abs_energy">
+<a class="viewcode-back" href="../../../../../../ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.html#ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.features.abs_energy">[docs]</a>
+<span class="nd">@set_domain</span><span class="p">(</span><span class="s2">&quot;domain&quot;</span><span class="p">,</span> <span class="s2">&quot;statistical&quot;</span><span class="p">)</span>
+<span class="nd">@set_domain</span><span class="p">(</span><span class="s2">&quot;tag&quot;</span><span class="p">,</span> <span class="s2">&quot;audio&quot;</span><span class="p">)</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">abs_energy</span><span class="p">(</span><span class="n">signal</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Computes the absolute energy of the signal.</span>
+
+<span class="sd">    Feature computational cost: 1</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    signal : nd-array</span>
+<span class="sd">        Input from which the area under the curve is computed</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    float</span>
+<span class="sd">        Absolute energy</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">signal</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span></div>
+
+
+
+<div class="viewcode-block" id="average_power">
+<a class="viewcode-back" href="../../../../../../ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.html#ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.features.average_power">[docs]</a>
+<span class="nd">@set_domain</span><span class="p">(</span><span class="s2">&quot;domain&quot;</span><span class="p">,</span> <span class="s2">&quot;statistical&quot;</span><span class="p">)</span>
+<span class="nd">@set_domain</span><span class="p">(</span><span class="s2">&quot;tag&quot;</span><span class="p">,</span> <span class="s2">&quot;audio&quot;</span><span class="p">)</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">average_power</span><span class="p">(</span><span class="n">signal</span><span class="p">,</span> <span class="n">fs</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Computes the average power of the signal.</span>
+
+<span class="sd">    Feature computational cost: 1</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    signal : nd-array</span>
+<span class="sd">        Signal from which average power is computed</span>
+<span class="sd">    fs : float</span>
+<span class="sd">        Sampling frequency</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    float</span>
+<span class="sd">        Average power</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">time</span> <span class="o">=</span> <span class="n">compute_time</span><span class="p">(</span><span class="n">signal</span><span class="p">,</span> <span class="n">fs</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">signal</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">time</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">time</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span></div>
+
+
+
+<div class="viewcode-block" id="entropy">
+<a class="viewcode-back" href="../../../../../../ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.html#ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.features.entropy">[docs]</a>
+<span class="nd">@set_domain</span><span class="p">(</span><span class="s2">&quot;domain&quot;</span><span class="p">,</span> <span class="s2">&quot;statistical&quot;</span><span class="p">)</span>
+<span class="nd">@set_domain</span><span class="p">(</span><span class="s2">&quot;tag&quot;</span><span class="p">,</span> <span class="s2">&quot;eeg&quot;</span><span class="p">)</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">entropy</span><span class="p">(</span><span class="n">signal</span><span class="p">,</span> <span class="n">prob</span><span class="o">=</span><span class="s2">&quot;standard&quot;</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Computes the entropy of the signal using the Shannon Entropy.</span>
+
+<span class="sd">    Description in Article:</span>
+<span class="sd">    Regularities Unseen, Randomness Observed: Levels of Entropy Convergence</span>
+<span class="sd">    Authors: Crutchfield J. Feldman David</span>
+
+<span class="sd">    Feature computational cost: 1</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    signal : nd-array</span>
+<span class="sd">        Input from which entropy is computed</span>
+<span class="sd">    prob : string</span>
+<span class="sd">        Probability function (kde or gaussian functions are available)</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    float</span>
+<span class="sd">        The normalized entropy value</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">if</span> <span class="n">prob</span> <span class="o">==</span> <span class="s2">&quot;standard&quot;</span><span class="p">:</span>
+        <span class="n">value</span><span class="p">,</span> <span class="n">counts</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">signal</span><span class="p">,</span> <span class="n">return_counts</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="n">p</span> <span class="o">=</span> <span class="n">counts</span> <span class="o">/</span> <span class="n">counts</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+    <span class="k">elif</span> <span class="n">prob</span> <span class="o">==</span> <span class="s2">&quot;kde&quot;</span><span class="p">:</span>
+        <span class="n">p</span> <span class="o">=</span> <span class="n">kde</span><span class="p">(</span><span class="n">signal</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="n">prob</span> <span class="o">==</span> <span class="s2">&quot;gauss&quot;</span><span class="p">:</span>
+        <span class="n">p</span> <span class="o">=</span> <span class="n">gaussian</span><span class="p">(</span><span class="n">signal</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">p</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="k">return</span> <span class="mf">0.0</span>
+
+    <span class="c1"># Handling zero probability values</span>
+    <span class="n">p</span> <span class="o">=</span> <span class="n">p</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">p</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">)]</span>
+
+    <span class="c1"># If probability all in one value, there is no entropy</span>
+    <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">log2</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">signal</span><span class="p">))</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="k">return</span> <span class="mf">0.0</span>
+    <span class="k">elif</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">p</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">log2</span><span class="p">(</span><span class="n">p</span><span class="p">))</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">log2</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">signal</span><span class="p">))</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="k">return</span> <span class="mf">0.0</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">p</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">log2</span><span class="p">(</span><span class="n">p</span><span class="p">))</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">log2</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">signal</span><span class="p">))</span></div>
+
+
+
+<div class="viewcode-block" id="hist">
+<a class="viewcode-back" href="../../../../../../ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.html#ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.features.hist">[docs]</a>
+<span class="nd">@set_domain</span><span class="p">(</span><span class="s2">&quot;domain&quot;</span><span class="p">,</span> <span class="s2">&quot;statistical&quot;</span><span class="p">)</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">hist</span><span class="p">(</span><span class="n">signal</span><span class="p">,</span> <span class="n">nbins</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">r</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Computes histogram of the signal.</span>
+
+<span class="sd">    Feature computational cost: 1</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    signal : nd-array</span>
+<span class="sd">        Input from histogram is computed</span>
+<span class="sd">    nbins : int</span>
+<span class="sd">        The number of equal-width bins in the given range</span>
+<span class="sd">    r : float</span>
+<span class="sd">        The lower(-r) and upper(r) range of the bins</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    nd-array</span>
+<span class="sd">        The values of the histogram</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">histsig</span><span class="p">,</span> <span class="n">bin_edges</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">histogram</span><span class="p">(</span><span class="n">signal</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="n">nbins</span><span class="p">,</span> <span class="nb">range</span><span class="o">=</span><span class="p">[</span><span class="o">-</span><span class="n">r</span><span class="p">,</span> <span class="n">r</span><span class="p">])</span>  <span class="c1"># TODO:subsampling parameter</span>
+
+    <span class="k">return</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">histsig</span><span class="p">)</span></div>
+
+
+
+<div class="viewcode-block" id="interq_range">
+<a class="viewcode-back" href="../../../../../../ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.html#ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.features.interq_range">[docs]</a>
+<span class="nd">@set_domain</span><span class="p">(</span><span class="s2">&quot;domain&quot;</span><span class="p">,</span> <span class="s2">&quot;statistical&quot;</span><span class="p">)</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">interq_range</span><span class="p">(</span><span class="n">signal</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Computes interquartile range of the signal.</span>
+
+<span class="sd">    Feature computational cost: 1</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    signal : nd-array</span>
+<span class="sd">        Input from which interquartile range is computed</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    float</span>
+<span class="sd">        Interquartile range result</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">percentile</span><span class="p">(</span><span class="n">signal</span><span class="p">,</span> <span class="mi">75</span><span class="p">)</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">percentile</span><span class="p">(</span><span class="n">signal</span><span class="p">,</span> <span class="mi">25</span><span class="p">)</span></div>
+
+
+
+<div class="viewcode-block" id="kurtosis">
+<a class="viewcode-back" href="../../../../../../ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.html#ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.features.kurtosis">[docs]</a>
+<span class="nd">@set_domain</span><span class="p">(</span><span class="s2">&quot;domain&quot;</span><span class="p">,</span> <span class="s2">&quot;statistical&quot;</span><span class="p">)</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">kurtosis</span><span class="p">(</span><span class="n">signal</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Computes kurtosis of the signal.</span>
+
+<span class="sd">    Feature computational cost: 1</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    signal : nd-array</span>
+<span class="sd">        Input from which kurtosis is computed</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    float</span>
+<span class="sd">        Kurtosis result</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">scipy</span><span class="o">.</span><span class="n">stats</span><span class="o">.</span><span class="n">kurtosis</span><span class="p">(</span><span class="n">signal</span><span class="p">)</span></div>
+
+
+
+<div class="viewcode-block" id="skewness">
+<a class="viewcode-back" href="../../../../../../ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.html#ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.features.skewness">[docs]</a>
+<span class="nd">@set_domain</span><span class="p">(</span><span class="s2">&quot;domain&quot;</span><span class="p">,</span> <span class="s2">&quot;statistical&quot;</span><span class="p">)</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">skewness</span><span class="p">(</span><span class="n">signal</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Computes skewness of the signal.</span>
+
+<span class="sd">    Feature computational cost: 1</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    signal : nd-array</span>
+<span class="sd">        Input from which skewness is computed</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    int</span>
+<span class="sd">        Skewness result</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">scipy</span><span class="o">.</span><span class="n">stats</span><span class="o">.</span><span class="n">skew</span><span class="p">(</span><span class="n">signal</span><span class="p">)</span></div>
+
+
+
+<div class="viewcode-block" id="calc_max">
+<a class="viewcode-back" href="../../../../../../ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.html#ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.features.calc_max">[docs]</a>
+<span class="nd">@set_domain</span><span class="p">(</span><span class="s2">&quot;domain&quot;</span><span class="p">,</span> <span class="s2">&quot;statistical&quot;</span><span class="p">)</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">calc_max</span><span class="p">(</span><span class="n">signal</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Computes the maximum value of the signal.</span>
+
+<span class="sd">    Feature computational cost: 1</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    signal : nd-array</span>
+<span class="sd">       Input from which max is computed</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    float</span>
+<span class="sd">        Maximum result</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">signal</span><span class="p">)</span></div>
+
+
+
+<div class="viewcode-block" id="calc_min">
+<a class="viewcode-back" href="../../../../../../ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.html#ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.features.calc_min">[docs]</a>
+<span class="nd">@set_domain</span><span class="p">(</span><span class="s2">&quot;domain&quot;</span><span class="p">,</span> <span class="s2">&quot;statistical&quot;</span><span class="p">)</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">calc_min</span><span class="p">(</span><span class="n">signal</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Computes the minimum value of the signal.</span>
+
+<span class="sd">    Feature computational cost: 1</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    signal : nd-array</span>
+<span class="sd">        Input from which min is computed</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    float</span>
+<span class="sd">        Minimum result</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">signal</span><span class="p">)</span></div>
+
+
+
+<div class="viewcode-block" id="calc_mean">
+<a class="viewcode-back" href="../../../../../../ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.html#ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.features.calc_mean">[docs]</a>
+<span class="nd">@set_domain</span><span class="p">(</span><span class="s2">&quot;domain&quot;</span><span class="p">,</span> <span class="s2">&quot;statistical&quot;</span><span class="p">)</span>
+<span class="nd">@set_domain</span><span class="p">(</span><span class="s2">&quot;tag&quot;</span><span class="p">,</span> <span class="s2">&quot;inertial&quot;</span><span class="p">)</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">calc_mean</span><span class="p">(</span><span class="n">signal</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Computes mean value of the signal.</span>
+
+<span class="sd">    Feature computational cost: 1</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    signal : nd-array</span>
+<span class="sd">        Input from which mean is computed.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    float</span>
+<span class="sd">        Mean result</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">signal</span><span class="p">)</span></div>
+
+
+
+<div class="viewcode-block" id="calc_median">
+<a class="viewcode-back" href="../../../../../../ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.html#ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.features.calc_median">[docs]</a>
+<span class="nd">@set_domain</span><span class="p">(</span><span class="s2">&quot;domain&quot;</span><span class="p">,</span> <span class="s2">&quot;statistical&quot;</span><span class="p">)</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">calc_median</span><span class="p">(</span><span class="n">signal</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Computes median of the signal.</span>
+
+<span class="sd">    Feature computational cost: 1</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    signal : nd-array</span>
+<span class="sd">        Input from which median is computed</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    float</span>
+<span class="sd">        Median result</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">median</span><span class="p">(</span><span class="n">signal</span><span class="p">)</span></div>
+
+
+
+<div class="viewcode-block" id="mean_abs_deviation">
+<a class="viewcode-back" href="../../../../../../ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.html#ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.features.mean_abs_deviation">[docs]</a>
+<span class="nd">@set_domain</span><span class="p">(</span><span class="s2">&quot;domain&quot;</span><span class="p">,</span> <span class="s2">&quot;statistical&quot;</span><span class="p">)</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">mean_abs_deviation</span><span class="p">(</span><span class="n">signal</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Computes mean absolute deviation of the signal.</span>
+
+<span class="sd">    Feature computational cost: 1</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    signal : nd-array</span>
+<span class="sd">        Input from which mean absolute deviation is computed</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    float</span>
+<span class="sd">        Mean absolute deviation result</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">signal</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">signal</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span></div>
+
+
+
+<div class="viewcode-block" id="median_abs_deviation">
+<a class="viewcode-back" href="../../../../../../ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.html#ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.features.median_abs_deviation">[docs]</a>
+<span class="nd">@set_domain</span><span class="p">(</span><span class="s2">&quot;domain&quot;</span><span class="p">,</span> <span class="s2">&quot;statistical&quot;</span><span class="p">)</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">median_abs_deviation</span><span class="p">(</span><span class="n">signal</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Computes median absolute deviation of the signal.</span>
+
+<span class="sd">    Feature computational cost: 1</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    signal : nd-array</span>
+<span class="sd">        Input from which median absolute deviation is computed</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    float</span>
+<span class="sd">        Mean absolute deviation result</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">scipy</span><span class="o">.</span><span class="n">stats</span><span class="o">.</span><span class="n">median_abs_deviation</span><span class="p">(</span><span class="n">signal</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span></div>
+
+
+
+<div class="viewcode-block" id="rms">
+<a class="viewcode-back" href="../../../../../../ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.html#ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.features.rms">[docs]</a>
+<span class="nd">@set_domain</span><span class="p">(</span><span class="s2">&quot;domain&quot;</span><span class="p">,</span> <span class="s2">&quot;statistical&quot;</span><span class="p">)</span>
+<span class="nd">@set_domain</span><span class="p">(</span><span class="s2">&quot;tag&quot;</span><span class="p">,</span> <span class="p">[</span><span class="s2">&quot;inertial&quot;</span><span class="p">,</span> <span class="s2">&quot;emg&quot;</span><span class="p">])</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">rms</span><span class="p">(</span><span class="n">signal</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Computes root mean square of the signal.</span>
+
+<span class="sd">    Square root of the arithmetic mean (average) of the squares of the original values.</span>
+
+<span class="sd">    Feature computational cost: 1</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    signal : nd-array</span>
+<span class="sd">        Input from which root mean square is computed</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    float</span>
+<span class="sd">        Root mean square</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">signal</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">signal</span><span class="p">))</span></div>
+
+
+
+<div class="viewcode-block" id="calc_std">
+<a class="viewcode-back" href="../../../../../../ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.html#ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.features.calc_std">[docs]</a>
+<span class="nd">@set_domain</span><span class="p">(</span><span class="s2">&quot;domain&quot;</span><span class="p">,</span> <span class="s2">&quot;statistical&quot;</span><span class="p">)</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">calc_std</span><span class="p">(</span><span class="n">signal</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Computes standard deviation (std) of the signal.</span>
+
+<span class="sd">    Feature computational cost: 1</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    signal : nd-array</span>
+<span class="sd">        Input from which std is computed</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    float</span>
+<span class="sd">        Standard deviation result</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">signal</span><span class="p">)</span></div>
+
+
+
+<div class="viewcode-block" id="calc_var">
+<a class="viewcode-back" href="../../../../../../ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.html#ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.features.calc_var">[docs]</a>
+<span class="nd">@set_domain</span><span class="p">(</span><span class="s2">&quot;domain&quot;</span><span class="p">,</span> <span class="s2">&quot;statistical&quot;</span><span class="p">)</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">calc_var</span><span class="p">(</span><span class="n">signal</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Computes variance of the signal.</span>
+
+<span class="sd">    Feature computational cost: 1</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    signal : nd-array</span>
+<span class="sd">       Input from which var is computed</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    float</span>
+<span class="sd">        Variance result</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">var</span><span class="p">(</span><span class="n">signal</span><span class="p">)</span></div>
+
+
+
+<div class="viewcode-block" id="pk_pk_distance">
+<a class="viewcode-back" href="../../../../../../ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.html#ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.features.pk_pk_distance">[docs]</a>
+<span class="nd">@set_domain</span><span class="p">(</span><span class="s2">&quot;domain&quot;</span><span class="p">,</span> <span class="s2">&quot;statistical&quot;</span><span class="p">)</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">pk_pk_distance</span><span class="p">(</span><span class="n">signal</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Computes the peak to peak distance.</span>
+
+<span class="sd">    Feature computational cost: 1</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    signal : nd-array</span>
+<span class="sd">        Input from which peak to peak is computed</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    float</span>
+<span class="sd">        peak to peak distance</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">signal</span><span class="p">)</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">signal</span><span class="p">))</span></div>
+
+
+
+<div class="viewcode-block" id="ecdf">
+<a class="viewcode-back" href="../../../../../../ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.html#ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.features.ecdf">[docs]</a>
+<span class="nd">@set_domain</span><span class="p">(</span><span class="s2">&quot;domain&quot;</span><span class="p">,</span> <span class="s2">&quot;statistical&quot;</span><span class="p">)</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">ecdf</span><span class="p">(</span><span class="n">signal</span><span class="p">,</span> <span class="n">d</span><span class="o">=</span><span class="mi">10</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Computes the values of ECDF (empirical cumulative distribution function) along the time axis.</span>
+
+<span class="sd">    Feature computational cost: 1</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    signal : nd-array</span>
+<span class="sd">        Input from which ECDF is computed</span>
+<span class="sd">    d: integer</span>
+<span class="sd">        Number of ECDF values to return</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    float</span>
+<span class="sd">        The values of the ECDF along the time axis</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">_</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">calc_ecdf</span><span class="p">(</span><span class="n">signal</span><span class="p">)</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">signal</span><span class="p">)</span> <span class="o">&lt;=</span> <span class="n">d</span><span class="p">:</span>
+        <span class="k">return</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">y</span><span class="p">[:</span><span class="n">d</span><span class="p">])</span></div>
+
+
+
+<div class="viewcode-block" id="ecdf_slope">
+<a class="viewcode-back" href="../../../../../../ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.html#ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.features.ecdf_slope">[docs]</a>
+<span class="nd">@set_domain</span><span class="p">(</span><span class="s2">&quot;domain&quot;</span><span class="p">,</span> <span class="s2">&quot;statistical&quot;</span><span class="p">)</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">ecdf_slope</span><span class="p">(</span><span class="n">signal</span><span class="p">,</span> <span class="n">p_init</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">p_end</span><span class="o">=</span><span class="mf">0.75</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Computes the slope of the ECDF between two percentiles.</span>
+<span class="sd">    Possibility to return infinity values.</span>
+
+<span class="sd">    Feature computational cost: 1</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    signal : nd-array</span>
+<span class="sd">        Input from which ECDF is computed</span>
+<span class="sd">    p_init : float</span>
+<span class="sd">        Initial percentile</span>
+<span class="sd">    p_end : float</span>
+<span class="sd">        End percentile</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    float</span>
+<span class="sd">        The slope of the ECDF between two percentiles</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">signal</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">signal</span><span class="p">)</span>
+    <span class="c1"># check if signal is constant</span>
+    <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="n">signal</span><span class="p">))</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">inf</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">x_init</span><span class="p">,</span> <span class="n">x_end</span> <span class="o">=</span> <span class="n">ecdf_percentile</span><span class="p">(</span><span class="n">signal</span><span class="p">,</span> <span class="n">percentile</span><span class="o">=</span><span class="p">[</span><span class="n">p_init</span><span class="p">,</span> <span class="n">p_end</span><span class="p">])</span>
+        <span class="k">return</span> <span class="p">(</span><span class="n">p_end</span> <span class="o">-</span> <span class="n">p_init</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">x_end</span> <span class="o">-</span> <span class="n">x_init</span><span class="p">)</span></div>
+
+
+
+<div class="viewcode-block" id="ecdf_percentile">
+<a class="viewcode-back" href="../../../../../../ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.html#ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.features.ecdf_percentile">[docs]</a>
+<span class="nd">@set_domain</span><span class="p">(</span><span class="s2">&quot;domain&quot;</span><span class="p">,</span> <span class="s2">&quot;statistical&quot;</span><span class="p">)</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">ecdf_percentile</span><span class="p">(</span><span class="n">signal</span><span class="p">,</span> <span class="n">percentile</span><span class="o">=</span><span class="p">[</span><span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.8</span><span class="p">]):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Computes the percentile value of the ECDF.</span>
+
+<span class="sd">    Feature computational cost: 1</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    signal : nd-array</span>
+<span class="sd">        Input from which ECDF is computed</span>
+<span class="sd">    percentile: list</span>
+<span class="sd">        Percentile value to be computed</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    float</span>
+<span class="sd">        The input value(s) of the ECDF</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">signal</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">signal</span><span class="p">)</span>
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">percentile</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+        <span class="n">percentile</span> <span class="o">=</span> <span class="nb">eval</span><span class="p">(</span><span class="n">percentile</span><span class="p">)</span>
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">percentile</span><span class="p">,</span> <span class="p">(</span><span class="nb">float</span><span class="p">,</span> <span class="nb">int</span><span class="p">)):</span>
+        <span class="n">percentile</span> <span class="o">=</span> <span class="p">[</span><span class="n">percentile</span><span class="p">]</span>
+
+    <span class="c1"># calculate ecdf</span>
+    <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">calc_ecdf</span><span class="p">(</span><span class="n">signal</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">percentile</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="c1"># check if signal is constant</span>
+        <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="n">signal</span><span class="p">))</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">return</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">repeat</span><span class="p">(</span><span class="n">signal</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="nb">len</span><span class="p">(</span><span class="n">percentile</span><span class="p">)))</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="nb">tuple</span><span class="p">([</span><span class="n">x</span><span class="p">[</span><span class="n">y</span> <span class="o">&lt;=</span> <span class="n">p</span><span class="p">]</span><span class="o">.</span><span class="n">max</span><span class="p">()</span> <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">percentile</span><span class="p">])</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="c1"># check if signal is constant</span>
+        <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="n">signal</span><span class="p">))</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">signal</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">x</span><span class="p">[</span><span class="n">y</span> <span class="o">&lt;=</span> <span class="n">percentile</span><span class="p">]</span><span class="o">.</span><span class="n">max</span><span class="p">()</span></div>
+
+
+
+<div class="viewcode-block" id="ecdf_percentile_count">
+<a class="viewcode-back" href="../../../../../../ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.html#ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.features.ecdf_percentile_count">[docs]</a>
+<span class="nd">@set_domain</span><span class="p">(</span><span class="s2">&quot;domain&quot;</span><span class="p">,</span> <span class="s2">&quot;statistical&quot;</span><span class="p">)</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">ecdf_percentile_count</span><span class="p">(</span><span class="n">signal</span><span class="p">,</span> <span class="n">percentile</span><span class="o">=</span><span class="p">[</span><span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.8</span><span class="p">]):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Computes the cumulative sum of samples that are less than the percentile.</span>
+
+<span class="sd">    Feature computational cost: 1</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    signal : nd-array</span>
+<span class="sd">        Input from which ECDF is computed</span>
+<span class="sd">    percentile: list</span>
+<span class="sd">        Percentile threshold</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    float</span>
+<span class="sd">        The cumulative sum of samples</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">signal</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">signal</span><span class="p">)</span>
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">percentile</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+        <span class="n">percentile</span> <span class="o">=</span> <span class="nb">eval</span><span class="p">(</span><span class="n">percentile</span><span class="p">)</span>
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">percentile</span><span class="p">,</span> <span class="p">(</span><span class="nb">float</span><span class="p">,</span> <span class="nb">int</span><span class="p">)):</span>
+        <span class="n">percentile</span> <span class="o">=</span> <span class="p">[</span><span class="n">percentile</span><span class="p">]</span>
+
+    <span class="c1"># calculate ecdf</span>
+    <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">calc_ecdf</span><span class="p">(</span><span class="n">signal</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">percentile</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="c1"># check if signal is constant</span>
+        <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="n">signal</span><span class="p">))</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">return</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">repeat</span><span class="p">(</span><span class="n">signal</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="nb">len</span><span class="p">(</span><span class="n">percentile</span><span class="p">)))</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="nb">tuple</span><span class="p">([</span><span class="n">x</span><span class="p">[</span><span class="n">y</span> <span class="o">&lt;=</span> <span class="n">p</span><span class="p">]</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">percentile</span><span class="p">])</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="c1"># check if signal is constant</span>
+        <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="n">signal</span><span class="p">))</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">signal</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">x</span><span class="p">[</span><span class="n">y</span> <span class="o">&lt;=</span> <span class="n">percentile</span><span class="p">]</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span></div>
+
+
+
+<span class="c1"># ############################################## SPECTRAL DOMAIN ##################################################### #</span>
+
+<div class="viewcode-block" id="spectral_distance">
+<a class="viewcode-back" href="../../../../../../ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.html#ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.features.spectral_distance">[docs]</a>
+<span class="nd">@set_domain</span><span class="p">(</span><span class="s2">&quot;domain&quot;</span><span class="p">,</span> <span class="s2">&quot;spectral&quot;</span><span class="p">)</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">spectral_distance</span><span class="p">(</span><span class="n">signal</span><span class="p">,</span> <span class="n">fs</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Computes the signal spectral distance.</span>
+
+<span class="sd">    Distance of the signal&#39;s cumulative sum of the FFT elements to</span>
+<span class="sd">    the respective linear regression.</span>
+
+<span class="sd">    Feature computational cost: 1</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    signal : nd-array</span>
+<span class="sd">        Signal from which spectral distance is computed</span>
+<span class="sd">    fs : float</span>
+<span class="sd">        Sampling frequency</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    float</span>
+<span class="sd">        spectral distance</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">f</span><span class="p">,</span> <span class="n">fmag</span> <span class="o">=</span> <span class="n">calc_fft</span><span class="p">(</span><span class="n">signal</span><span class="p">,</span> <span class="n">fs</span><span class="p">)</span>
+
+    <span class="n">cum_fmag</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">cumsum</span><span class="p">(</span><span class="n">fmag</span><span class="p">)</span>
+
+    <span class="c1"># Computing the linear regression</span>
+    <span class="n">points_y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">cum_fmag</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="nb">len</span><span class="p">(</span><span class="n">cum_fmag</span><span class="p">))</span>
+
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">points_y</span> <span class="o">-</span> <span class="n">cum_fmag</span><span class="p">)</span></div>
+
+
+
+<div class="viewcode-block" id="fundamental_frequency">
+<a class="viewcode-back" href="../../../../../../ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.html#ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.features.fundamental_frequency">[docs]</a>
+<span class="nd">@set_domain</span><span class="p">(</span><span class="s2">&quot;domain&quot;</span><span class="p">,</span> <span class="s2">&quot;spectral&quot;</span><span class="p">)</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">fundamental_frequency</span><span class="p">(</span><span class="n">signal</span><span class="p">,</span> <span class="n">fs</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Computes fundamental frequency of the signal.</span>
+
+<span class="sd">    The fundamental frequency integer multiple best explain</span>
+<span class="sd">    the content of the signal spectrum.</span>
+
+<span class="sd">    Feature computational cost: 1</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    signal : nd-array</span>
+<span class="sd">        Input from which fundamental frequency is computed</span>
+<span class="sd">    fs : float</span>
+<span class="sd">        Sampling frequency</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    f0: float</span>
+<span class="sd">       Predominant frequency of the signal</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">signal</span> <span class="o">=</span> <span class="n">signal</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">signal</span><span class="p">)</span>
+    <span class="n">f</span><span class="p">,</span> <span class="n">fmag</span> <span class="o">=</span> <span class="n">calc_fft</span><span class="p">(</span><span class="n">signal</span><span class="p">,</span> <span class="n">fs</span><span class="p">)</span>
+
+    <span class="c1"># Finding big peaks, not considering noise peaks with low amplitude</span>
+
+    <span class="n">bp</span> <span class="o">=</span> <span class="n">scipy</span><span class="o">.</span><span class="n">signal</span><span class="o">.</span><span class="n">find_peaks</span><span class="p">(</span><span class="n">fmag</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="nb">max</span><span class="p">(</span><span class="n">fmag</span><span class="p">)</span> <span class="o">*</span> <span class="mf">0.3</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+
+    <span class="c1"># # Condition for offset removal, since the offset generates a peak at frequency zero</span>
+    <span class="n">bp</span> <span class="o">=</span> <span class="n">bp</span><span class="p">[</span><span class="n">bp</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">]</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="nb">list</span><span class="p">(</span><span class="n">bp</span><span class="p">):</span>
+        <span class="n">f0</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="c1"># f0 is the minimum big peak frequency</span>
+        <span class="n">f0</span> <span class="o">=</span> <span class="n">f</span><span class="p">[</span><span class="nb">min</span><span class="p">(</span><span class="n">bp</span><span class="p">)]</span>
+
+    <span class="k">return</span> <span class="n">f0</span></div>
+
+
+
+<div class="viewcode-block" id="max_power_spectrum">
+<a class="viewcode-back" href="../../../../../../ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.html#ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.features.max_power_spectrum">[docs]</a>
+<span class="nd">@set_domain</span><span class="p">(</span><span class="s2">&quot;domain&quot;</span><span class="p">,</span> <span class="s2">&quot;spectral&quot;</span><span class="p">)</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">max_power_spectrum</span><span class="p">(</span><span class="n">signal</span><span class="p">,</span> <span class="n">fs</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Computes maximum power spectrum density of the signal.</span>
+
+<span class="sd">    Feature computational cost: 1</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    signal : nd-array</span>
+<span class="sd">        Input from which maximum power spectrum is computed</span>
+<span class="sd">    fs : float</span>
+<span class="sd">        Sampling frequency</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    nd-array</span>
+<span class="sd">        Max value of the power spectrum density</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">signal</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="k">return</span> <span class="nb">float</span><span class="p">(</span><span class="nb">max</span><span class="p">(</span><span class="n">scipy</span><span class="o">.</span><span class="n">signal</span><span class="o">.</span><span class="n">welch</span><span class="p">(</span><span class="n">signal</span><span class="p">,</span> <span class="n">fs</span><span class="p">,</span> <span class="n">nperseg</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">signal</span><span class="p">))[</span><span class="mi">1</span><span class="p">]))</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="nb">float</span><span class="p">(</span><span class="nb">max</span><span class="p">(</span><span class="n">scipy</span><span class="o">.</span><span class="n">signal</span><span class="o">.</span><span class="n">welch</span><span class="p">(</span><span class="n">signal</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">signal</span><span class="p">),</span> <span class="n">fs</span><span class="p">,</span> <span class="n">nperseg</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">signal</span><span class="p">))[</span><span class="mi">1</span><span class="p">]))</span></div>
+
+
+
+<div class="viewcode-block" id="max_frequency">
+<a class="viewcode-back" href="../../../../../../ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.html#ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.features.max_frequency">[docs]</a>
+<span class="nd">@set_domain</span><span class="p">(</span><span class="s2">&quot;domain&quot;</span><span class="p">,</span> <span class="s2">&quot;spectral&quot;</span><span class="p">)</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">max_frequency</span><span class="p">(</span><span class="n">signal</span><span class="p">,</span> <span class="n">fs</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Computes maximum frequency of the signal.</span>
+
+<span class="sd">    Feature computational cost: 2</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    signal : nd-array</span>
+<span class="sd">        Input from which maximum frequency is computed</span>
+<span class="sd">    fs : float</span>
+<span class="sd">        Sampling frequency</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    float</span>
+<span class="sd">        0.95 of maximum frequency using cumsum</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">f</span><span class="p">,</span> <span class="n">fmag</span> <span class="o">=</span> <span class="n">calc_fft</span><span class="p">(</span><span class="n">signal</span><span class="p">,</span> <span class="n">fs</span><span class="p">)</span>
+    <span class="n">cum_fmag</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">cumsum</span><span class="p">(</span><span class="n">fmag</span><span class="p">)</span>
+
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">ind_mag</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">cum_fmag</span> <span class="o">&gt;</span> <span class="n">cum_fmag</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">*</span> <span class="mf">0.95</span><span class="p">)[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+    <span class="k">except</span> <span class="ne">IndexError</span><span class="p">:</span>
+        <span class="n">ind_mag</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">cum_fmag</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">f</span><span class="p">[</span><span class="n">ind_mag</span><span class="p">]</span></div>
+
+
+
+<div class="viewcode-block" id="median_frequency">
+<a class="viewcode-back" href="../../../../../../ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.html#ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.features.median_frequency">[docs]</a>
+<span class="nd">@set_domain</span><span class="p">(</span><span class="s2">&quot;domain&quot;</span><span class="p">,</span> <span class="s2">&quot;spectral&quot;</span><span class="p">)</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">median_frequency</span><span class="p">(</span><span class="n">signal</span><span class="p">,</span> <span class="n">fs</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Computes median frequency of the signal.</span>
+
+<span class="sd">    Feature computational cost: 1</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    signal : nd-array</span>
+<span class="sd">        Input from which median frequency is computed</span>
+<span class="sd">    fs: int</span>
+<span class="sd">        Sampling frequency</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    f_median : int</span>
+<span class="sd">       0.50 of maximum frequency using cumsum.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">f</span><span class="p">,</span> <span class="n">fmag</span> <span class="o">=</span> <span class="n">calc_fft</span><span class="p">(</span><span class="n">signal</span><span class="p">,</span> <span class="n">fs</span><span class="p">)</span>
+    <span class="n">cum_fmag</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">cumsum</span><span class="p">(</span><span class="n">fmag</span><span class="p">)</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">ind_mag</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">cum_fmag</span> <span class="o">&gt;</span> <span class="n">cum_fmag</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">*</span> <span class="mf">0.50</span><span class="p">)[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+    <span class="k">except</span> <span class="ne">IndexError</span><span class="p">:</span>
+        <span class="n">ind_mag</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">cum_fmag</span><span class="p">)</span>
+    <span class="n">f_median</span> <span class="o">=</span> <span class="n">f</span><span class="p">[</span><span class="n">ind_mag</span><span class="p">]</span>
+
+    <span class="k">return</span> <span class="n">f_median</span></div>
+
+
+
+<div class="viewcode-block" id="spectral_centroid">
+<a class="viewcode-back" href="../../../../../../ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.html#ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.features.spectral_centroid">[docs]</a>
+<span class="nd">@set_domain</span><span class="p">(</span><span class="s2">&quot;domain&quot;</span><span class="p">,</span> <span class="s2">&quot;spectral&quot;</span><span class="p">)</span>
+<span class="nd">@set_domain</span><span class="p">(</span><span class="s2">&quot;tag&quot;</span><span class="p">,</span> <span class="s2">&quot;audio&quot;</span><span class="p">)</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">spectral_centroid</span><span class="p">(</span><span class="n">signal</span><span class="p">,</span> <span class="n">fs</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Barycenter of the spectrum.</span>
+
+<span class="sd">    Description and formula in Article:</span>
+<span class="sd">    The Timbre Toolbox: Extracting audio descriptors from musicalsignals</span>
+<span class="sd">    Authors Peeters G., Giordano B., Misdariis P., McAdams S.</span>
+
+<span class="sd">    Feature computational cost: 2</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    signal : nd-array</span>
+<span class="sd">        Signal from which spectral centroid is computed</span>
+<span class="sd">    fs: int</span>
+<span class="sd">        Sampling frequency</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    float</span>
+<span class="sd">        Centroid</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">f</span><span class="p">,</span> <span class="n">fmag</span> <span class="o">=</span> <span class="n">calc_fft</span><span class="p">(</span><span class="n">signal</span><span class="p">,</span> <span class="n">fs</span><span class="p">)</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">fmag</span><span class="p">):</span>
+        <span class="k">return</span> <span class="mi">0</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">fmag</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">fmag</span><span class="p">))</span></div>
+
+
+
+<div class="viewcode-block" id="spectral_decrease">
+<a class="viewcode-back" href="../../../../../../ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.html#ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.features.spectral_decrease">[docs]</a>
+<span class="nd">@set_domain</span><span class="p">(</span><span class="s2">&quot;domain&quot;</span><span class="p">,</span> <span class="s2">&quot;spectral&quot;</span><span class="p">)</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">spectral_decrease</span><span class="p">(</span><span class="n">signal</span><span class="p">,</span> <span class="n">fs</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Represents the amount of decreasing of the spectra amplitude.</span>
+
+<span class="sd">    Description and formula in Article:</span>
+<span class="sd">    The Timbre Toolbox: Extracting audio descriptors from musicalsignals</span>
+<span class="sd">    Authors Peeters G., Giordano B., Misdariis P., McAdams S.</span>
+
+<span class="sd">    Feature computational cost: 1</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    signal : nd-array</span>
+<span class="sd">        Signal from which spectral decrease is computed</span>
+<span class="sd">    fs : float</span>
+<span class="sd">        Sampling frequency</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    float</span>
+<span class="sd">        Spectral decrease</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">f</span><span class="p">,</span> <span class="n">fmag</span> <span class="o">=</span> <span class="n">calc_fft</span><span class="p">(</span><span class="n">signal</span><span class="p">,</span> <span class="n">fs</span><span class="p">)</span>
+
+    <span class="n">fmag_band</span> <span class="o">=</span> <span class="n">fmag</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span>
+    <span class="n">len_fmag_band</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">fmag</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+
+    <span class="c1"># Sum of numerator</span>
+    <span class="n">soma_num</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">((</span><span class="n">fmag_band</span> <span class="o">-</span> <span class="n">fmag</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="o">/</span> <span class="p">(</span><span class="n">len_fmag_band</span> <span class="o">-</span> <span class="mi">1</span><span class="p">),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">fmag_band</span><span class="p">):</span>
+        <span class="k">return</span> <span class="mi">0</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="c1"># Sum of denominator</span>
+        <span class="n">soma_den</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">fmag_band</span><span class="p">)</span>
+
+        <span class="c1"># Spectral decrease computing</span>
+        <span class="k">return</span> <span class="n">soma_den</span> <span class="o">*</span> <span class="n">soma_num</span></div>
+
+
+
+<div class="viewcode-block" id="spectral_kurtosis">
+<a class="viewcode-back" href="../../../../../../ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.html#ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.features.spectral_kurtosis">[docs]</a>
+<span class="nd">@set_domain</span><span class="p">(</span><span class="s2">&quot;domain&quot;</span><span class="p">,</span> <span class="s2">&quot;spectral&quot;</span><span class="p">)</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">spectral_kurtosis</span><span class="p">(</span><span class="n">signal</span><span class="p">,</span> <span class="n">fs</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Measures the flatness of a distribution around its mean value.</span>
+
+<span class="sd">    Description and formula in Article:</span>
+<span class="sd">    The Timbre Toolbox: Extracting audio descriptors from musicalsignals</span>
+<span class="sd">    Authors Peeters G., Giordano B., Misdariis P., McAdams S.</span>
+
+<span class="sd">    Feature computational cost: 2</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    signal : nd-array</span>
+<span class="sd">        Signal from which spectral kurtosis is computed</span>
+<span class="sd">    fs : float</span>
+<span class="sd">        Sampling frequency</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    float</span>
+<span class="sd">        Spectral Kurtosis</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">f</span><span class="p">,</span> <span class="n">fmag</span> <span class="o">=</span> <span class="n">calc_fft</span><span class="p">(</span><span class="n">signal</span><span class="p">,</span> <span class="n">fs</span><span class="p">)</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">spectral_spread</span><span class="p">(</span><span class="n">signal</span><span class="p">,</span> <span class="n">fs</span><span class="p">):</span>
+        <span class="k">return</span> <span class="mi">0</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">spect_kurt</span> <span class="o">=</span> <span class="p">((</span><span class="n">f</span> <span class="o">-</span> <span class="n">spectral_centroid</span><span class="p">(</span><span class="n">signal</span><span class="p">,</span> <span class="n">fs</span><span class="p">))</span> <span class="o">**</span> <span class="mi">4</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="n">fmag</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">fmag</span><span class="p">))</span>
+        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">spect_kurt</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">spectral_spread</span><span class="p">(</span><span class="n">signal</span><span class="p">,</span> <span class="n">fs</span><span class="p">)</span> <span class="o">**</span> <span class="mi">4</span><span class="p">)</span></div>
+
+
+
+<div class="viewcode-block" id="spectral_skewness">
+<a class="viewcode-back" href="../../../../../../ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.html#ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.features.spectral_skewness">[docs]</a>
+<span class="nd">@set_domain</span><span class="p">(</span><span class="s2">&quot;domain&quot;</span><span class="p">,</span> <span class="s2">&quot;spectral&quot;</span><span class="p">)</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">spectral_skewness</span><span class="p">(</span><span class="n">signal</span><span class="p">,</span> <span class="n">fs</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Measures the asymmetry of a distribution around its mean value.</span>
+
+<span class="sd">    Description and formula in Article:</span>
+<span class="sd">    The Timbre Toolbox: Extracting audio descriptors from musicalsignals</span>
+<span class="sd">    Authors Peeters G., Giordano B., Misdariis P., McAdams S.</span>
+
+<span class="sd">    Feature computational cost: 2</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    signal : nd-array</span>
+<span class="sd">        Signal from which spectral skewness is computed</span>
+<span class="sd">    fs : float</span>
+<span class="sd">        Sampling frequency</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    float</span>
+<span class="sd">        Spectral Skewness</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">f</span><span class="p">,</span> <span class="n">fmag</span> <span class="o">=</span> <span class="n">calc_fft</span><span class="p">(</span><span class="n">signal</span><span class="p">,</span> <span class="n">fs</span><span class="p">)</span>
+    <span class="n">spect_centr</span> <span class="o">=</span> <span class="n">spectral_centroid</span><span class="p">(</span><span class="n">signal</span><span class="p">,</span> <span class="n">fs</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">spectral_spread</span><span class="p">(</span><span class="n">signal</span><span class="p">,</span> <span class="n">fs</span><span class="p">):</span>
+        <span class="k">return</span> <span class="mi">0</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">skew</span> <span class="o">=</span> <span class="p">((</span><span class="n">f</span> <span class="o">-</span> <span class="n">spect_centr</span><span class="p">)</span> <span class="o">**</span> <span class="mi">3</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="n">fmag</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">fmag</span><span class="p">))</span>
+        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">skew</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">spectral_spread</span><span class="p">(</span><span class="n">signal</span><span class="p">,</span> <span class="n">fs</span><span class="p">)</span> <span class="o">**</span> <span class="mi">3</span><span class="p">)</span></div>
+
+
+
+<div class="viewcode-block" id="spectral_spread">
+<a class="viewcode-back" href="../../../../../../ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.html#ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.features.spectral_spread">[docs]</a>
+<span class="nd">@set_domain</span><span class="p">(</span><span class="s2">&quot;domain&quot;</span><span class="p">,</span> <span class="s2">&quot;spectral&quot;</span><span class="p">)</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">spectral_spread</span><span class="p">(</span><span class="n">signal</span><span class="p">,</span> <span class="n">fs</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Measures the spread of the spectrum around its mean value.</span>
+
+<span class="sd">    Description and formula in Article:</span>
+<span class="sd">    The Timbre Toolbox: Extracting audio descriptors from musicalsignals</span>
+<span class="sd">    Authors Peeters G., Giordano B., Misdariis P., McAdams S.</span>
+
+<span class="sd">    Feature computational cost: 2</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    signal : nd-array</span>
+<span class="sd">        Signal from which spectral spread is computed.</span>
+<span class="sd">    fs : float</span>
+<span class="sd">        Sampling frequency</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    float</span>
+<span class="sd">        Spectral Spread</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">f</span><span class="p">,</span> <span class="n">fmag</span> <span class="o">=</span> <span class="n">calc_fft</span><span class="p">(</span><span class="n">signal</span><span class="p">,</span> <span class="n">fs</span><span class="p">)</span>
+    <span class="n">spect_centroid</span> <span class="o">=</span> <span class="n">spectral_centroid</span><span class="p">(</span><span class="n">signal</span><span class="p">,</span> <span class="n">fs</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">fmag</span><span class="p">):</span>
+        <span class="k">return</span> <span class="mi">0</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(((</span><span class="n">f</span> <span class="o">-</span> <span class="n">spect_centroid</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span><span class="p">),</span> <span class="p">(</span><span class="n">fmag</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">fmag</span><span class="p">)))</span> <span class="o">**</span> <span class="mf">0.5</span></div>
+
+
+
+<div class="viewcode-block" id="spectral_slope">
+<a class="viewcode-back" href="../../../../../../ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.html#ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.features.spectral_slope">[docs]</a>
+<span class="nd">@set_domain</span><span class="p">(</span><span class="s2">&quot;domain&quot;</span><span class="p">,</span> <span class="s2">&quot;spectral&quot;</span><span class="p">)</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">spectral_slope</span><span class="p">(</span><span class="n">signal</span><span class="p">,</span> <span class="n">fs</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Computes the spectral slope.</span>
+
+<span class="sd">    Spectral slope is computed by finding constants m and b of the function aFFT = mf + b, obtained by linear regression</span>
+<span class="sd">    of the spectral amplitude.</span>
+
+<span class="sd">    Description and formula in Article:</span>
+<span class="sd">    The Timbre Toolbox: Extracting audio descriptors from musicalsignals</span>
+<span class="sd">    Authors Peeters G., Giordano B., Misdariis P., McAdams S.</span>
+
+<span class="sd">    Feature computational cost: 1</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    signal : nd-array</span>
+<span class="sd">        Signal from which spectral slope is computed</span>
+<span class="sd">    fs : float</span>
+<span class="sd">        Sampling frequency</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    float</span>
+<span class="sd">        Spectral Slope</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">f</span><span class="p">,</span> <span class="n">fmag</span> <span class="o">=</span> <span class="n">calc_fft</span><span class="p">(</span><span class="n">signal</span><span class="p">,</span> <span class="n">fs</span><span class="p">)</span>
+    <span class="n">sum_fmag</span> <span class="o">=</span> <span class="n">fmag</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+    <span class="n">dot_ff</span> <span class="o">=</span> <span class="p">(</span><span class="n">f</span> <span class="o">*</span> <span class="n">f</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+    <span class="n">sum_f</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+    <span class="n">len_f</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="ow">not</span> <span class="p">([</span><span class="n">f</span><span class="p">])</span> <span class="ow">or</span> <span class="p">(</span><span class="n">sum_fmag</span> <span class="o">==</span> <span class="mi">0</span><span class="p">):</span>
+        <span class="k">return</span> <span class="mi">0</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="p">(</span><span class="n">len_f</span> <span class="o">*</span> <span class="n">dot_ff</span> <span class="o">-</span> <span class="n">sum_f</span> <span class="o">**</span> <span class="mi">2</span><span class="p">):</span>
+            <span class="k">return</span> <span class="mi">0</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">num_</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span> <span class="o">/</span> <span class="n">sum_fmag</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="n">len_f</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">f</span> <span class="o">*</span> <span class="n">fmag</span><span class="p">)</span> <span class="o">-</span> <span class="n">sum_f</span> <span class="o">*</span> <span class="n">sum_fmag</span><span class="p">)</span>
+            <span class="n">denom_</span> <span class="o">=</span> <span class="p">(</span><span class="n">len_f</span> <span class="o">*</span> <span class="n">dot_ff</span> <span class="o">-</span> <span class="n">sum_f</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">num_</span> <span class="o">/</span> <span class="n">denom_</span></div>
+
+
+
+<div class="viewcode-block" id="spectral_variation">
+<a class="viewcode-back" href="../../../../../../ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.html#ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.features.spectral_variation">[docs]</a>
+<span class="nd">@set_domain</span><span class="p">(</span><span class="s2">&quot;domain&quot;</span><span class="p">,</span> <span class="s2">&quot;spectral&quot;</span><span class="p">)</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">spectral_variation</span><span class="p">(</span><span class="n">signal</span><span class="p">,</span> <span class="n">fs</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Computes the amount of variation of the spectrum along time.</span>
+
+<span class="sd">    Spectral variation is computed from the normalized cross-correlation between two consecutive amplitude spectra.</span>
+
+<span class="sd">    Description and formula in Article:</span>
+<span class="sd">    The Timbre Toolbox: Extracting audio descriptors from musicalsignals</span>
+<span class="sd">    Authors Peeters G., Giordano B., Misdariis P., McAdams S.</span>
+
+<span class="sd">    Feature computational cost: 1</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    signal : nd-array</span>
+<span class="sd">        Signal from which spectral variation is computed.</span>
+<span class="sd">    fs : float</span>
+<span class="sd">        Sampling frequency</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    float</span>
+<span class="sd">        Spectral Variation</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">f</span><span class="p">,</span> <span class="n">fmag</span> <span class="o">=</span> <span class="n">calc_fft</span><span class="p">(</span><span class="n">signal</span><span class="p">,</span> <span class="n">fs</span><span class="p">)</span>
+
+    <span class="n">sum1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">fmag</span><span class="p">)[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">fmag</span><span class="p">)[</span><span class="mi">1</span><span class="p">:])</span>
+    <span class="n">sum2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">fmag</span><span class="p">)[</span><span class="mi">1</span><span class="p">:]</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span>
+    <span class="n">sum3</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">fmag</span><span class="p">)[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">sum2</span> <span class="ow">or</span> <span class="ow">not</span> <span class="n">sum3</span><span class="p">:</span>
+        <span class="n">variation</span> <span class="o">=</span> <span class="mi">1</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">variation</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">-</span> <span class="p">(</span><span class="n">sum1</span> <span class="o">/</span> <span class="p">((</span><span class="n">sum2</span> <span class="o">**</span> <span class="mf">0.5</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="n">sum3</span> <span class="o">**</span> <span class="mf">0.5</span><span class="p">)))</span>
+
+    <span class="k">return</span> <span class="n">variation</span></div>
+
+
+
+<div class="viewcode-block" id="spectral_positive_turning">
+<a class="viewcode-back" href="../../../../../../ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.html#ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.features.spectral_positive_turning">[docs]</a>
+<span class="nd">@set_domain</span><span class="p">(</span><span class="s2">&quot;domain&quot;</span><span class="p">,</span> <span class="s2">&quot;spectral&quot;</span><span class="p">)</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">spectral_positive_turning</span><span class="p">(</span><span class="n">signal</span><span class="p">,</span> <span class="n">fs</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Computes number of positive turning points of the fft magnitude signal.</span>
+
+<span class="sd">    Feature computational cost: 1</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    signal : nd-array</span>
+<span class="sd">        Input from which the number of positive turning points of the fft magnitude are computed</span>
+<span class="sd">    fs : float</span>
+<span class="sd">        Sampling frequency</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    float</span>
+<span class="sd">        Number of positive turning points</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">f</span><span class="p">,</span> <span class="n">fmag</span> <span class="o">=</span> <span class="n">calc_fft</span><span class="p">(</span><span class="n">signal</span><span class="p">,</span> <span class="n">fs</span><span class="p">)</span>
+    <span class="n">diff_sig</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="n">fmag</span><span class="p">)</span>
+
+    <span class="n">array_signal</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">diff_sig</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]))</span>
+
+    <span class="n">positive_turning_pts</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">((</span><span class="n">diff_sig</span><span class="p">[</span><span class="n">array_signal</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">diff_sig</span><span class="p">[</span><span class="n">array_signal</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">))[</span><span class="mi">0</span><span class="p">]</span>
+
+    <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="n">positive_turning_pts</span><span class="p">)</span></div>
+
+
+
+<div class="viewcode-block" id="spectral_roll_off">
+<a class="viewcode-back" href="../../../../../../ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.html#ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.features.spectral_roll_off">[docs]</a>
+<span class="nd">@set_domain</span><span class="p">(</span><span class="s2">&quot;domain&quot;</span><span class="p">,</span> <span class="s2">&quot;spectral&quot;</span><span class="p">)</span>
+<span class="nd">@set_domain</span><span class="p">(</span><span class="s2">&quot;tag&quot;</span><span class="p">,</span> <span class="s2">&quot;audio&quot;</span><span class="p">)</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">spectral_roll_off</span><span class="p">(</span><span class="n">signal</span><span class="p">,</span> <span class="n">fs</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Computes the spectral roll-off of the signal.</span>
+
+<span class="sd">    The spectral roll-off corresponds to the frequency where 95% of the signal magnitude is contained</span>
+<span class="sd">    below of this value.</span>
+
+<span class="sd">    Feature computational cost: 1</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    signal : nd-array</span>
+<span class="sd">        Signal from which spectral roll-off is computed</span>
+<span class="sd">    fs : float</span>
+<span class="sd">        Sampling frequency</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    float</span>
+<span class="sd">        Spectral roll-off</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">f</span><span class="p">,</span> <span class="n">fmag</span> <span class="o">=</span> <span class="n">calc_fft</span><span class="p">(</span><span class="n">signal</span><span class="p">,</span> <span class="n">fs</span><span class="p">)</span>
+    <span class="n">cum_ff</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">cumsum</span><span class="p">(</span><span class="n">fmag</span><span class="p">)</span>
+    <span class="n">value</span> <span class="o">=</span> <span class="mf">0.95</span> <span class="o">*</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">fmag</span><span class="p">))</span>
+
+    <span class="k">return</span> <span class="n">f</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">cum_ff</span> <span class="o">&gt;=</span> <span class="n">value</span><span class="p">)[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]]</span></div>
+
+
+
+<div class="viewcode-block" id="spectral_roll_on">
+<a class="viewcode-back" href="../../../../../../ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.html#ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.features.spectral_roll_on">[docs]</a>
+<span class="nd">@set_domain</span><span class="p">(</span><span class="s2">&quot;domain&quot;</span><span class="p">,</span> <span class="s2">&quot;spectral&quot;</span><span class="p">)</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">spectral_roll_on</span><span class="p">(</span><span class="n">signal</span><span class="p">,</span> <span class="n">fs</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Computes the spectral roll-on of the signal.</span>
+
+<span class="sd">    The spectral roll-on corresponds to the frequency where 5% of the signal magnitude is contained</span>
+<span class="sd">    below of this value.</span>
+
+<span class="sd">    Feature computational cost: 1</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    signal : nd-array</span>
+<span class="sd">        Signal from which spectral roll-on is computed</span>
+<span class="sd">    fs : float</span>
+<span class="sd">        Sampling frequency</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    float</span>
+<span class="sd">        Spectral roll-on</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">f</span><span class="p">,</span> <span class="n">fmag</span> <span class="o">=</span> <span class="n">calc_fft</span><span class="p">(</span><span class="n">signal</span><span class="p">,</span> <span class="n">fs</span><span class="p">)</span>
+    <span class="n">cum_ff</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">cumsum</span><span class="p">(</span><span class="n">fmag</span><span class="p">)</span>
+    <span class="n">value</span> <span class="o">=</span> <span class="mf">0.05</span> <span class="o">*</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">fmag</span><span class="p">))</span>
+
+    <span class="k">return</span> <span class="n">f</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">cum_ff</span> <span class="o">&gt;=</span> <span class="n">value</span><span class="p">)[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]]</span></div>
+
+
+
+<div class="viewcode-block" id="human_range_energy">
+<a class="viewcode-back" href="../../../../../../ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.html#ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.features.human_range_energy">[docs]</a>
+<span class="nd">@set_domain</span><span class="p">(</span><span class="s2">&quot;domain&quot;</span><span class="p">,</span> <span class="s2">&quot;spectral&quot;</span><span class="p">)</span>
+<span class="nd">@set_domain</span><span class="p">(</span><span class="s2">&quot;tag&quot;</span><span class="p">,</span> <span class="s2">&quot;inertial&quot;</span><span class="p">)</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">human_range_energy</span><span class="p">(</span><span class="n">signal</span><span class="p">,</span> <span class="n">fs</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Computes the human range energy ratio.</span>
+
+<span class="sd">    The human range energy ratio is given by the ratio between the energy</span>
+<span class="sd">    in frequency 0.6-2.5Hz and the whole energy band.</span>
+
+<span class="sd">    Feature computational cost: 2</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    signal : nd-array</span>
+<span class="sd">        Signal from which human range energy ratio is computed</span>
+<span class="sd">    fs : float</span>
+<span class="sd">        Sampling frequency</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    float</span>
+<span class="sd">        Human range energy ratio</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">f</span><span class="p">,</span> <span class="n">fmag</span> <span class="o">=</span> <span class="n">calc_fft</span><span class="p">(</span><span class="n">signal</span><span class="p">,</span> <span class="n">fs</span><span class="p">)</span>
+
+    <span class="n">allenergy</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">fmag</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">allenergy</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="c1"># For handling the occurrence of Nan values</span>
+        <span class="k">return</span> <span class="mf">0.0</span>
+
+    <span class="n">hr_energy</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">fmag</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">argmin</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="mf">0.6</span> <span class="o">-</span> <span class="n">f</span><span class="p">)):</span><span class="n">np</span><span class="o">.</span><span class="n">argmin</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="mf">2.5</span> <span class="o">-</span> <span class="n">f</span><span class="p">))]</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span>
+
+    <span class="n">ratio</span> <span class="o">=</span> <span class="n">hr_energy</span> <span class="o">/</span> <span class="n">allenergy</span>
+
+    <span class="k">return</span> <span class="n">ratio</span></div>
+
+
+
+<div class="viewcode-block" id="mfcc">
+<a class="viewcode-back" href="../../../../../../ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.html#ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.features.mfcc">[docs]</a>
+<span class="nd">@set_domain</span><span class="p">(</span><span class="s2">&quot;domain&quot;</span><span class="p">,</span> <span class="s2">&quot;spectral&quot;</span><span class="p">)</span>
+<span class="nd">@set_domain</span><span class="p">(</span><span class="s2">&quot;tag&quot;</span><span class="p">,</span> <span class="p">[</span><span class="s2">&quot;audio&quot;</span><span class="p">,</span> <span class="s2">&quot;emg&quot;</span><span class="p">])</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">mfcc</span><span class="p">(</span><span class="n">signal</span><span class="p">,</span> <span class="n">fs</span><span class="p">,</span> <span class="n">pre_emphasis</span><span class="o">=</span><span class="mf">0.97</span><span class="p">,</span> <span class="n">nfft</span><span class="o">=</span><span class="mi">512</span><span class="p">,</span> <span class="n">nfilt</span><span class="o">=</span><span class="mi">40</span><span class="p">,</span> <span class="n">num_ceps</span><span class="o">=</span><span class="mi">12</span><span class="p">,</span> <span class="n">cep_lifter</span><span class="o">=</span><span class="mi">22</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Computes the MEL cepstral coefficients.</span>
+
+<span class="sd">    It provides the information about the power in each frequency band.</span>
+
+<span class="sd">    Implementation details and description on:</span>
+<span class="sd">    https://www.kaggle.com/ilyamich/mfcc-implementation-and-tutorial</span>
+<span class="sd">    https://haythamfayek.com/2016/04/21/speech-processing-for-machine-learning.html#fnref:1</span>
+
+<span class="sd">    Feature computational cost: 1</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    signal : nd-array</span>
+<span class="sd">        Input from which MEL coefficients is computed</span>
+<span class="sd">    fs : float</span>
+<span class="sd">        Sampling frequency</span>
+<span class="sd">    pre_emphasis : float</span>
+<span class="sd">        Pre-emphasis coefficient for pre-emphasis filter application</span>
+<span class="sd">    nfft : int</span>
+<span class="sd">        Number of points of fft</span>
+<span class="sd">    nfilt : int</span>
+<span class="sd">        Number of filters</span>
+<span class="sd">    num_ceps: int</span>
+<span class="sd">        Number of cepstral coefficients</span>
+<span class="sd">    cep_lifter: int</span>
+<span class="sd">        Filter length</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    nd-array</span>
+<span class="sd">        MEL cepstral coefficients</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">filter_banks</span> <span class="o">=</span> <span class="n">filterbank</span><span class="p">(</span><span class="n">signal</span><span class="p">,</span> <span class="n">fs</span><span class="p">,</span> <span class="n">pre_emphasis</span><span class="p">,</span> <span class="n">nfft</span><span class="p">,</span> <span class="n">nfilt</span><span class="p">)</span>
+
+    <span class="n">mel_coeff</span> <span class="o">=</span> <span class="n">scipy</span><span class="o">.</span><span class="n">fft</span><span class="o">.</span><span class="n">dct</span><span class="p">(</span><span class="n">filter_banks</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">norm</span><span class="o">=</span><span class="s2">&quot;ortho&quot;</span><span class="p">)[</span><span class="mi">1</span> <span class="p">:</span> <span class="p">(</span><span class="n">num_ceps</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)]</span>  <span class="c1"># Keep 2-13</span>
+
+    <span class="n">mel_coeff</span> <span class="o">-=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">mel_coeff</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span> <span class="o">+</span> <span class="mf">1e-8</span>
+
+    <span class="c1"># liftering</span>
+    <span class="n">ncoeff</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">mel_coeff</span><span class="p">)</span>
+    <span class="n">n</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">ncoeff</span><span class="p">)</span>
+    <span class="n">lift</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">+</span> <span class="p">(</span><span class="n">cep_lifter</span> <span class="o">/</span> <span class="mi">2</span><span class="p">)</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">*</span> <span class="n">n</span> <span class="o">/</span> <span class="n">cep_lifter</span><span class="p">)</span>  <span class="c1"># cep_lifter = 22 from python_speech_features library</span>
+
+    <span class="n">mel_coeff</span> <span class="o">*=</span> <span class="n">lift</span>
+
+    <span class="k">return</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">mel_coeff</span><span class="p">)</span></div>
+
+
+
+<div class="viewcode-block" id="power_bandwidth">
+<a class="viewcode-back" href="../../../../../../ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.html#ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.features.power_bandwidth">[docs]</a>
+<span class="nd">@set_domain</span><span class="p">(</span><span class="s2">&quot;domain&quot;</span><span class="p">,</span> <span class="s2">&quot;spectral&quot;</span><span class="p">)</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">power_bandwidth</span><span class="p">(</span><span class="n">signal</span><span class="p">,</span> <span class="n">fs</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Computes power spectrum density bandwidth of the signal.</span>
+
+<span class="sd">    It corresponds to the width of the frequency band in which 95% of its power is located.</span>
+
+<span class="sd">    Description in article:</span>
+<span class="sd">    Power Spectrum and Bandwidth Ulf Henriksson, 2003 Translated by Mikael Olofsson, 2005</span>
+
+<span class="sd">    Feature computational cost: 1</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    signal : nd-array</span>
+<span class="sd">        Input from which the power bandwidth computed</span>
+<span class="sd">    fs : float</span>
+<span class="sd">        Sampling frequency</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    float</span>
+<span class="sd">        Occupied power in bandwidth</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># Computing the power spectrum density</span>
+    <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">signal</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">freq</span><span class="p">,</span> <span class="n">power</span> <span class="o">=</span> <span class="n">scipy</span><span class="o">.</span><span class="n">signal</span><span class="o">.</span><span class="n">welch</span><span class="p">(</span><span class="n">signal</span><span class="p">,</span> <span class="n">fs</span><span class="p">,</span> <span class="n">nperseg</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">signal</span><span class="p">))</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">freq</span><span class="p">,</span> <span class="n">power</span> <span class="o">=</span> <span class="n">scipy</span><span class="o">.</span><span class="n">signal</span><span class="o">.</span><span class="n">welch</span><span class="p">(</span><span class="n">signal</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">signal</span><span class="p">),</span> <span class="n">fs</span><span class="p">,</span> <span class="n">nperseg</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">signal</span><span class="p">))</span>
+
+    <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">power</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="k">return</span> <span class="mf">0.0</span>
+
+    <span class="c1"># Computing the lower and upper limits of power bandwidth</span>
+    <span class="n">cum_power</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">cumsum</span><span class="p">(</span><span class="n">power</span><span class="p">)</span>
+    <span class="n">f_lower</span> <span class="o">=</span> <span class="n">freq</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">cum_power</span> <span class="o">&gt;=</span> <span class="n">cum_power</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">*</span> <span class="mf">0.95</span><span class="p">)[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]]</span>
+
+    <span class="n">cum_power_inv</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">cumsum</span><span class="p">(</span><span class="n">power</span><span class="p">[::</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+    <span class="n">f_upper</span> <span class="o">=</span> <span class="n">freq</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">cum_power_inv</span> <span class="o">&gt;=</span> <span class="n">cum_power</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">*</span> <span class="mf">0.95</span><span class="p">)[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="nb">len</span><span class="p">(</span><span class="n">power</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)]</span>
+
+    <span class="c1"># Returning the bandwidth in terms of frequency</span>
+
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">f_upper</span> <span class="o">-</span> <span class="n">f_lower</span><span class="p">)</span></div>
+
+
+
+<div class="viewcode-block" id="fft_mean_coeff">
+<a class="viewcode-back" href="../../../../../../ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.html#ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.features.fft_mean_coeff">[docs]</a>
+<span class="nd">@set_domain</span><span class="p">(</span><span class="s2">&quot;domain&quot;</span><span class="p">,</span> <span class="s2">&quot;spectral&quot;</span><span class="p">)</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">fft_mean_coeff</span><span class="p">(</span><span class="n">signal</span><span class="p">,</span> <span class="n">fs</span><span class="p">,</span> <span class="n">nfreq</span><span class="o">=</span><span class="mi">256</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Computes the mean value of each spectrogram frequency.</span>
+
+<span class="sd">    nfreq can not be higher than half signal length plus one.</span>
+<span class="sd">    When it does, it is automatically set to half signal length plus one.</span>
+
+<span class="sd">    Feature computational cost: 1</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    signal : nd-array</span>
+<span class="sd">        Input from which fft mean coefficients are computed</span>
+<span class="sd">    fs : float</span>
+<span class="sd">        Sampling frequency</span>
+<span class="sd">    nfreq : int</span>
+<span class="sd">        The number of frequencies</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    nd-array</span>
+<span class="sd">        The mean value of each spectrogram frequency</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">nfreq</span> <span class="o">&gt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">signal</span><span class="p">)</span> <span class="o">//</span> <span class="mi">2</span> <span class="o">+</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="n">nfreq</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">signal</span><span class="p">)</span> <span class="o">//</span> <span class="mi">2</span> <span class="o">+</span> <span class="mi">1</span>
+
+    <span class="n">fmag_mean</span> <span class="o">=</span> <span class="n">scipy</span><span class="o">.</span><span class="n">signal</span><span class="o">.</span><span class="n">spectrogram</span><span class="p">(</span><span class="n">signal</span><span class="p">,</span> <span class="n">fs</span><span class="p">,</span> <span class="n">nperseg</span><span class="o">=</span><span class="n">nfreq</span> <span class="o">*</span> <span class="mi">2</span> <span class="o">-</span> <span class="mi">2</span><span class="p">)[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">fmag_mean</span><span class="p">)</span></div>
+
+
+
+<div class="viewcode-block" id="lpcc">
+<a class="viewcode-back" href="../../../../../../ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.html#ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.features.lpcc">[docs]</a>
+<span class="nd">@set_domain</span><span class="p">(</span><span class="s2">&quot;domain&quot;</span><span class="p">,</span> <span class="s2">&quot;spectral&quot;</span><span class="p">)</span>
+<span class="nd">@set_domain</span><span class="p">(</span><span class="s2">&quot;tag&quot;</span><span class="p">,</span> <span class="s2">&quot;audio&quot;</span><span class="p">)</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">lpcc</span><span class="p">(</span><span class="n">signal</span><span class="p">,</span> <span class="n">n_coeff</span><span class="o">=</span><span class="mi">12</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Computes the linear prediction cepstral coefficients.</span>
+
+<span class="sd">    Implementation details and description in:</span>
+<span class="sd">    http://www.practicalcryptography.com/miscellaneous/machine-learning/tutorial-cepstrum-and-lpccs/</span>
+
+<span class="sd">    Feature computational cost: 1</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    signal : nd-array</span>
+<span class="sd">        Input from linear prediction cepstral coefficients are computed</span>
+<span class="sd">    n_coeff : int</span>
+<span class="sd">        Number of coefficients</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    nd-array</span>
+<span class="sd">        Linear prediction cepstral coefficients</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># 12-20 cepstral coefficients are sufficient for speech recognition</span>
+    <span class="n">lpc_coeffs</span> <span class="o">=</span> <span class="n">lpc</span><span class="p">(</span><span class="n">signal</span><span class="p">,</span> <span class="n">n_coeff</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">lpc_coeffs</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="k">return</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">lpc_coeffs</span><span class="p">)))</span>
+
+    <span class="c1"># Power spectrum</span>
+    <span class="n">powerspectrum</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">fft</span><span class="o">.</span><span class="n">fft</span><span class="p">(</span><span class="n">lpc_coeffs</span><span class="p">))</span> <span class="o">**</span> <span class="mi">2</span>
+    <span class="n">lpcc_coeff</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">fft</span><span class="o">.</span><span class="n">ifft</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">powerspectrum</span><span class="p">))</span>
+
+    <span class="k">return</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">lpcc_coeff</span><span class="p">))</span></div>
+
+
+
+<div class="viewcode-block" id="spectral_entropy">
+<a class="viewcode-back" href="../../../../../../ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.html#ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.features.spectral_entropy">[docs]</a>
+<span class="nd">@set_domain</span><span class="p">(</span><span class="s2">&quot;domain&quot;</span><span class="p">,</span> <span class="s2">&quot;spectral&quot;</span><span class="p">)</span>
+<span class="nd">@set_domain</span><span class="p">(</span><span class="s2">&quot;tag&quot;</span><span class="p">,</span> <span class="s2">&quot;eeg&quot;</span><span class="p">)</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">spectral_entropy</span><span class="p">(</span><span class="n">signal</span><span class="p">,</span> <span class="n">fs</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Computes the spectral entropy of the signal based on Fourier transform.</span>
+
+<span class="sd">    Feature computational cost: 1</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    signal : nd-array</span>
+<span class="sd">        Input from which spectral entropy is computed</span>
+<span class="sd">    fs : float</span>
+<span class="sd">        Sampling frequency</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    float</span>
+<span class="sd">        The normalized spectral entropy value</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># Removing DC component</span>
+    <span class="n">sig</span> <span class="o">=</span> <span class="n">signal</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">signal</span><span class="p">)</span>
+
+    <span class="n">f</span><span class="p">,</span> <span class="n">fmag</span> <span class="o">=</span> <span class="n">calc_fft</span><span class="p">(</span><span class="n">sig</span><span class="p">,</span> <span class="n">fs</span><span class="p">)</span>
+
+    <span class="n">power</span> <span class="o">=</span> <span class="n">fmag</span> <span class="o">**</span> <span class="mi">2</span>
+
+    <span class="k">if</span> <span class="n">power</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="k">return</span> <span class="mf">0.0</span>
+
+    <span class="n">prob</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">divide</span><span class="p">(</span><span class="n">power</span><span class="p">,</span> <span class="n">power</span><span class="o">.</span><span class="n">sum</span><span class="p">())</span>
+
+    <span class="n">prob</span> <span class="o">=</span> <span class="n">prob</span><span class="p">[</span><span class="n">prob</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">]</span>
+
+    <span class="c1"># If probability all in one value, there is no entropy</span>
+    <span class="k">if</span> <span class="n">prob</span><span class="o">.</span><span class="n">size</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="k">return</span> <span class="mf">0.0</span>
+
+    <span class="k">return</span> <span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">multiply</span><span class="p">(</span><span class="n">prob</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">log2</span><span class="p">(</span><span class="n">prob</span><span class="p">))</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">log2</span><span class="p">(</span><span class="n">prob</span><span class="o">.</span><span class="n">size</span><span class="p">)</span></div>
+
+
+
+<div class="viewcode-block" id="wavelet_entropy">
+<a class="viewcode-back" href="../../../../../../ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.html#ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.features.wavelet_entropy">[docs]</a>
+<span class="nd">@set_domain</span><span class="p">(</span><span class="s2">&quot;domain&quot;</span><span class="p">,</span> <span class="s2">&quot;spectral&quot;</span><span class="p">)</span>
+<span class="nd">@set_domain</span><span class="p">(</span><span class="s2">&quot;tag&quot;</span><span class="p">,</span> <span class="s2">&quot;eeg&quot;</span><span class="p">)</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">wavelet_entropy</span><span class="p">(</span><span class="n">signal</span><span class="p">,</span> <span class="n">function</span><span class="o">=</span><span class="n">scipy</span><span class="o">.</span><span class="n">signal</span><span class="o">.</span><span class="n">ricker</span><span class="p">,</span> <span class="n">widths</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">10</span><span class="p">)):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Computes CWT entropy of the signal.</span>
+
+<span class="sd">    Implementation details in:</span>
+<span class="sd">    https://dsp.stackexchange.com/questions/13055/how-to-calculate-cwt-shannon-entropy</span>
+<span class="sd">    B.F. Yan, A. Miyamoto, E. Bruhwiler, Wavelet transform-based modal parameter identification considering uncertainty</span>
+
+<span class="sd">    Feature computational cost: 2</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    signal : nd-array</span>
+<span class="sd">        Input from which CWT is computed</span>
+<span class="sd">    function :  wavelet function</span>
+<span class="sd">        Default: scipy.signal.ricker</span>
+<span class="sd">    widths :  nd-array</span>
+<span class="sd">        Widths to use for transformation</span>
+<span class="sd">        Default: np.arange(1,10)</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    float</span>
+<span class="sd">        wavelet entropy</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">signal</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="k">return</span> <span class="mf">0.0</span>
+
+    <span class="n">cwt</span> <span class="o">=</span> <span class="n">wavelet</span><span class="p">(</span><span class="n">signal</span><span class="p">,</span> <span class="n">function</span><span class="p">,</span> <span class="n">widths</span><span class="p">)</span>
+    <span class="n">energy_scale</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">cwt</span><span class="p">),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">t_energy</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">energy_scale</span><span class="p">)</span>
+    <span class="n">prob</span> <span class="o">=</span> <span class="n">energy_scale</span> <span class="o">/</span> <span class="n">t_energy</span>
+    <span class="n">w_entropy</span> <span class="o">=</span> <span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">prob</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">prob</span><span class="p">))</span>
+
+    <span class="k">return</span> <span class="n">w_entropy</span></div>
+
+
+
+<div class="viewcode-block" id="wavelet_abs_mean">
+<a class="viewcode-back" href="../../../../../../ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.html#ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.features.wavelet_abs_mean">[docs]</a>
+<span class="nd">@set_domain</span><span class="p">(</span><span class="s2">&quot;domain&quot;</span><span class="p">,</span> <span class="s2">&quot;spectral&quot;</span><span class="p">)</span>
+<span class="nd">@set_domain</span><span class="p">(</span><span class="s2">&quot;tag&quot;</span><span class="p">,</span> <span class="p">[</span><span class="s2">&quot;eeg&quot;</span><span class="p">,</span> <span class="s2">&quot;ecg&quot;</span><span class="p">])</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">wavelet_abs_mean</span><span class="p">(</span><span class="n">signal</span><span class="p">,</span> <span class="n">function</span><span class="o">=</span><span class="n">scipy</span><span class="o">.</span><span class="n">signal</span><span class="o">.</span><span class="n">ricker</span><span class="p">,</span> <span class="n">widths</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">10</span><span class="p">)):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Computes CWT absolute mean value of each wavelet scale.</span>
+
+<span class="sd">    Feature computational cost: 2</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    signal : nd-array</span>
+<span class="sd">        Input from which CWT is computed</span>
+<span class="sd">    function :  wavelet function</span>
+<span class="sd">        Default: scipy.signal.ricker</span>
+<span class="sd">    widths :  nd-array</span>
+<span class="sd">        Widths to use for transformation</span>
+<span class="sd">        Default: np.arange(1,10)</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    tuple</span>
+<span class="sd">        CWT absolute mean value</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">wavelet</span><span class="p">(</span><span class="n">signal</span><span class="p">,</span> <span class="n">function</span><span class="p">,</span> <span class="n">widths</span><span class="p">),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)))</span></div>
+
+
+
+<div class="viewcode-block" id="wavelet_std">
+<a class="viewcode-back" href="../../../../../../ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.html#ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.features.wavelet_std">[docs]</a>
+<span class="nd">@set_domain</span><span class="p">(</span><span class="s2">&quot;domain&quot;</span><span class="p">,</span> <span class="s2">&quot;spectral&quot;</span><span class="p">)</span>
+<span class="nd">@set_domain</span><span class="p">(</span><span class="s2">&quot;domain&quot;</span><span class="p">,</span> <span class="s2">&quot;eeg&quot;</span><span class="p">)</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">wavelet_std</span><span class="p">(</span><span class="n">signal</span><span class="p">,</span> <span class="n">function</span><span class="o">=</span><span class="n">scipy</span><span class="o">.</span><span class="n">signal</span><span class="o">.</span><span class="n">ricker</span><span class="p">,</span> <span class="n">widths</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">10</span><span class="p">)):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Computes CWT std value of each wavelet scale.</span>
+
+<span class="sd">    Feature computational cost: 2</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    signal : nd-array</span>
+<span class="sd">        Input from which CWT is computed</span>
+<span class="sd">    function :  wavelet function</span>
+<span class="sd">        Default: scipy.signal.ricker</span>
+<span class="sd">    widths :  nd-array</span>
+<span class="sd">        Widths to use for transformation</span>
+<span class="sd">        Default: np.arange(1,10)</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    tuple</span>
+<span class="sd">        CWT std</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="nb">tuple</span><span class="p">((</span><span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">wavelet</span><span class="p">(</span><span class="n">signal</span><span class="p">,</span> <span class="n">function</span><span class="p">,</span> <span class="n">widths</span><span class="p">),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)))</span></div>
+
+
+
+<div class="viewcode-block" id="wavelet_var">
+<a class="viewcode-back" href="../../../../../../ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.html#ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.features.wavelet_var">[docs]</a>
+<span class="nd">@set_domain</span><span class="p">(</span><span class="s2">&quot;domain&quot;</span><span class="p">,</span> <span class="s2">&quot;spectral&quot;</span><span class="p">)</span>
+<span class="nd">@set_domain</span><span class="p">(</span><span class="s2">&quot;tag&quot;</span><span class="p">,</span> <span class="s2">&quot;eeg&quot;</span><span class="p">)</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">wavelet_var</span><span class="p">(</span><span class="n">signal</span><span class="p">,</span> <span class="n">function</span><span class="o">=</span><span class="n">scipy</span><span class="o">.</span><span class="n">signal</span><span class="o">.</span><span class="n">ricker</span><span class="p">,</span> <span class="n">widths</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">10</span><span class="p">)):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Computes CWT variance value of each wavelet scale.</span>
+
+<span class="sd">    Feature computational cost: 2</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    signal : nd-array</span>
+<span class="sd">        Input from which CWT is computed</span>
+<span class="sd">    function :  wavelet function</span>
+<span class="sd">        Default: scipy.signal.ricker</span>
+<span class="sd">    widths :  nd-array</span>
+<span class="sd">        Widths to use for transformation</span>
+<span class="sd">        Default: np.arange(1,10)</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    tuple</span>
+<span class="sd">        CWT variance</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="nb">tuple</span><span class="p">((</span><span class="n">np</span><span class="o">.</span><span class="n">var</span><span class="p">(</span><span class="n">wavelet</span><span class="p">(</span><span class="n">signal</span><span class="p">,</span> <span class="n">function</span><span class="p">,</span> <span class="n">widths</span><span class="p">),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)))</span></div>
+
+
+
+<div class="viewcode-block" id="wavelet_energy">
+<a class="viewcode-back" href="../../../../../../ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.html#ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.features.wavelet_energy">[docs]</a>
+<span class="nd">@set_domain</span><span class="p">(</span><span class="s2">&quot;domain&quot;</span><span class="p">,</span> <span class="s2">&quot;spectral&quot;</span><span class="p">)</span>
+<span class="nd">@set_domain</span><span class="p">(</span><span class="s2">&quot;tag&quot;</span><span class="p">,</span> <span class="s2">&quot;eeg&quot;</span><span class="p">)</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">wavelet_energy</span><span class="p">(</span><span class="n">signal</span><span class="p">,</span> <span class="n">function</span><span class="o">=</span><span class="n">scipy</span><span class="o">.</span><span class="n">signal</span><span class="o">.</span><span class="n">ricker</span><span class="p">,</span> <span class="n">widths</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">10</span><span class="p">)):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Computes CWT energy of each wavelet scale.</span>
+
+<span class="sd">    Implementation details:</span>
+<span class="sd">    https://stackoverflow.com/questions/37659422/energy-for-1-d-wavelet-in-python</span>
+
+<span class="sd">    Feature computational cost: 2</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    signal : nd-array</span>
+<span class="sd">        Input from which CWT is computed</span>
+<span class="sd">    function :  wavelet function</span>
+<span class="sd">        Default: scipy.signal.ricker</span>
+<span class="sd">    widths :  nd-array</span>
+<span class="sd">        Widths to use for transformation</span>
+<span class="sd">        Default: np.arange(1,10)</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    tuple</span>
+<span class="sd">        CWT energy</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">cwt</span> <span class="o">=</span> <span class="n">wavelet</span><span class="p">(</span><span class="n">signal</span><span class="p">,</span> <span class="n">function</span><span class="p">,</span> <span class="n">widths</span><span class="p">)</span>
+    <span class="n">energy</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">cwt</span> <span class="o">**</span> <span class="mi">2</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">shape</span><span class="p">(</span><span class="n">cwt</span><span class="p">)[</span><span class="mi">1</span><span class="p">])</span>
+
+    <span class="k">return</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">energy</span><span class="p">)</span></div>
+
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, DATA Lab@Rice University.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

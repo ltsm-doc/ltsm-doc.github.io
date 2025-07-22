@@ -1,0 +1,1957 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction package &mdash; LTSM-Package  documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="_static/documentation_options.js?v=5929fcd5"></script>
+      <script src="_static/doctools.js?v=9bcbadda"></script>
+      <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="ltsm.prompt_reader.stat_prompt.tsfel.utils package" href="ltsm.prompt_reader.stat_prompt.tsfel.utils.html" />
+    <link rel="prev" title="ltsm.prompt_reader.stat_prompt.tsfel package" href="ltsm.prompt_reader.stat_prompt.tsfel.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            LTSM-Package
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="modules.html">ltsm</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="ltsm.html">ltsm package</a><ul class="current">
+<li class="toctree-l3 current"><a class="reference internal" href="ltsm.html#subpackages">Subpackages</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="ltsm.data_pipeline.html">ltsm.data_pipeline package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="ltsm.data_provider.html">ltsm.data_provider package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="ltsm.data_reader.html">ltsm.data_reader package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="ltsm.models.html">ltsm.models package</a></li>
+<li class="toctree-l4 current"><a class="reference internal" href="ltsm.prompt_reader.html">ltsm.prompt_reader package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="ltsm.sk_interface.html">ltsm.sk_interface package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="ltsm.utils.html">ltsm.utils package</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="ltsm.html#module-ltsm">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">LTSM-Package</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="modules.html">ltsm</a></li>
+          <li class="breadcrumb-item"><a href="ltsm.html">ltsm package</a></li>
+          <li class="breadcrumb-item"><a href="ltsm.prompt_reader.html">ltsm.prompt_reader package</a></li>
+          <li class="breadcrumb-item"><a href="ltsm.prompt_reader.stat_prompt.html">ltsm.prompt_reader.stat_prompt package</a></li>
+          <li class="breadcrumb-item"><a href="ltsm.prompt_reader.stat_prompt.tsfel.html">ltsm.prompt_reader.stat_prompt.tsfel package</a></li>
+      <li class="breadcrumb-item active">ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction package</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="ltsm-prompt-reader-stat-prompt-tsfel-feature-extraction-package">
+<h1>ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction package<a class="headerlink" href="#ltsm-prompt-reader-stat-prompt-tsfel-feature-extraction-package" title="Link to this heading"></a></h1>
+<section id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Link to this heading"></a></h2>
+</section>
+<section id="module-ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.calc_features">
+<span id="ltsm-prompt-reader-stat-prompt-tsfel-feature-extraction-calc-features-module"></span><h2>ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.calc_features module<a class="headerlink" href="#module-ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.calc_features" title="Link to this heading"></a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.calc_features.calc_features">
+<span class="sig-prename descclassname"><span class="pre">ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.calc_features.</span></span><span class="sig-name descname"><span class="pre">calc_features</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">wind_sig</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dict_features</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fs</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ltsm/prompt_reader/stat_prompt/tsfel/feature_extraction/calc_features.html#calc_features"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.calc_features.calc_features" title="Link to this definition"></a></dt>
+<dd><p>Extraction of time series features.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>wind_sig</strong> (<em>list</em>) – Input from which features are computed, window</p></li>
+<li><p><strong>dict_features</strong> (<em>dict</em>) – Dictionary with features</p></li>
+<li><p><strong>fs</strong> (<em>float</em><em> or </em><em>None</em>) – Sampling frequency</p></li>
+<li><p><strong>**kwargs</strong> – <ul>
+<li><dl class="simple">
+<dt><em>features_path</em> (<code class="docutils literal notranslate"><span class="pre">string</span></code>) –</dt><dd><p>Directory of script with personal features</p>
+</dd>
+</dl>
+</li>
+</ul>
+<blockquote>
+<div><ul>
+<li><dl class="simple">
+<dt><em>header_names</em> (<code class="docutils literal notranslate"><span class="pre">list</span> <span class="pre">or</span> <span class="pre">array</span></code>) –</dt><dd><p>Names of each column window</p>
+</dd>
+</dl>
+</li>
+</ul>
+</div></blockquote>
+</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Extracted features</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>DataFrame</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.calc_features.calc_window_features">
+<span class="sig-prename descclassname"><span class="pre">ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.calc_features.</span></span><span class="sig-name descname"><span class="pre">calc_window_features</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dict_features</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">signal_window</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fs</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">verbose</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">single_window</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ltsm/prompt_reader/stat_prompt/tsfel/feature_extraction/calc_features.html#calc_window_features"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.calc_features.calc_window_features" title="Link to this definition"></a></dt>
+<dd><p>This function computes features matrix for one window.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>dict_features</strong> (<em>dict</em>) – Dictionary with features</p></li>
+<li><p><strong>signal_window</strong> (<em>pandas DataFrame</em>) – Input from which features are computed, window</p></li>
+<li><p><strong>fs</strong> (<em>float</em>) – Sampling frequency</p></li>
+<li><p><strong>verbose</strong> (<em>int</em>) – Level of function communication
+(0 or 1 (Default))</p></li>
+<li><p><strong>single_window</strong> (<em>Bool</em>) – Boolean value for printing the progress bar for only one window feature extraction</p></li>
+<li><p><strong>**kwargs</strong></p></li>
+<li><p><strong>below</strong> (<em>See</em>) – <ul>
+<li><dl class="simple">
+<dt><em>features_path</em> (<code class="docutils literal notranslate"><span class="pre">string</span></code>) –</dt><dd><p>Directory of script with personal features</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><em>header_names</em> (<code class="docutils literal notranslate"><span class="pre">list</span> <span class="pre">or</span> <span class="pre">array</span></code>) –</dt><dd><p>Names of each column window</p>
+</dd>
+</dl>
+</li>
+</ul>
+</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>(columns) names of the features
+(data) values of each features for signal</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>pandas DataFrame</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.calc_features.dataset_features_extractor">
+<span class="sig-prename descclassname"><span class="pre">ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.calc_features.</span></span><span class="sig-name descname"><span class="pre">dataset_features_extractor</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">main_directory</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">feat_dict</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">verbose</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ltsm/prompt_reader/stat_prompt/tsfel/feature_extraction/calc_features.html#dataset_features_extractor"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.calc_features.dataset_features_extractor" title="Link to this definition"></a></dt>
+<dd><p>Extracts features from a dataset.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>main_directory</strong> (<em>String</em>) – Input directory</p></li>
+<li><p><strong>feat_dict</strong> (<em>dict</em>) – Dictionary with features</p></li>
+<li><p><strong>verbose</strong> (<em>int</em>) – Verbosity mode. 0 = silent, 1 = progress bar.
+(0 or 1 (Default))</p></li>
+<li><p><strong>**kwargs</strong></p></li>
+<li><p><strong>below</strong> (<em>See</em>) – <ul>
+<li><dl class="simple">
+<dt><em>search_criteria</em> (<code class="docutils literal notranslate"><span class="pre">list</span></code>) –</dt><dd><p>List of file names to compute features. (Example: ‘Accelerometer.txt’)
+(default: <code class="docutils literal notranslate"><span class="pre">None</span></code>)</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><em>time_unit</em> (<code class="docutils literal notranslate"><span class="pre">float</span></code>) –</dt><dd><p>Time unit
+(default: <code class="docutils literal notranslate"><span class="pre">1e9</span></code>)</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><em>resampling_rate</em> (<code class="docutils literal notranslate"><span class="pre">int</span></code>) –</dt><dd><p>Resampling rate
+(default: <code class="docutils literal notranslate"><span class="pre">100</span></code>)</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><em>window_size</em> (<code class="docutils literal notranslate"><span class="pre">int</span></code>) –</dt><dd><p>Window size in number of samples
+(default: <code class="docutils literal notranslate"><span class="pre">100</span></code>)</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><em>overlap</em> (<code class="docutils literal notranslate"><span class="pre">float</span></code>) –</dt><dd><p>Overlap between 0 and 1
+(default: <code class="docutils literal notranslate"><span class="pre">0</span></code>)</p>
+</dd>
+</dl>
+</li>
+<li><dl>
+<dt><em>pre_process</em> (<code class="docutils literal notranslate"><span class="pre">function</span></code>) –</dt><dd><p>Function with pre processing code</p>
+<p>(default: <code class="docutils literal notranslate"><span class="pre">None</span></code>)</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><em>output_directory</em> (<code class="docutils literal notranslate"><span class="pre">String</span></code>) –</dt><dd><p>Output directory
+(default: <code class="docutils literal notranslate"><span class="pre">'output_directory',</span> <span class="pre">str(Path.home())</span> <span class="pre">+</span> <span class="pre">'/tsfel_output'</span></code>)</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><em>features_path</em> (<code class="docutils literal notranslate"><span class="pre">string</span></code>) –</dt><dd><p>Directory of script with personal features</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><em>header_names</em> (<code class="docutils literal notranslate"><span class="pre">list</span> <span class="pre">or</span> <span class="pre">array</span></code>) –</dt><dd><p>Names of each column window</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><em>n_jobs</em> (<code class="docutils literal notranslate"><span class="pre">int</span></code>) –</dt><dd><p>The number of jobs to run in parallel. <code class="docutils literal notranslate"><span class="pre">None</span></code> means 1 unless in a <code class="xref py py-obj docutils literal notranslate"><span class="pre">joblib.parallel_backend</span></code> context.
+<code class="docutils literal notranslate"><span class="pre">-1</span></code> means using all processors.
+(default: <code class="docutils literal notranslate"><span class="pre">None</span></code> in Windows and <code class="docutils literal notranslate"><span class="pre">-1</span></code> for other systems)</p>
+</dd>
+</dl>
+</li>
+</ul>
+</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>csv file with the extracted features</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>file</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.calc_features.time_series_features_extractor">
+<span class="sig-prename descclassname"><span class="pre">ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.calc_features.</span></span><span class="sig-name descname"><span class="pre">time_series_features_extractor</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dict_features</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">signal_windows</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">verbose</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ltsm/prompt_reader/stat_prompt/tsfel/feature_extraction/calc_features.html#time_series_features_extractor"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.calc_features.time_series_features_extractor" title="Link to this definition"></a></dt>
+<dd><p>Extraction of time series features.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>dict_features</strong> (<em>dict</em>) – Dictionary with features</p></li>
+<li><p><strong>signal_windows</strong> (<em>list</em>) – Input from which features are computed, window</p></li>
+<li><p><strong>fs</strong> (<em>int</em><em> or </em><em>None</em>) – Sampling frequency</p></li>
+<li><p><strong>verbose</strong> (<em>int</em>) – Verbosity mode. 0 = silent, 1 = progress bar.
+(0 or 1 (Default))</p></li>
+<li><p><strong>**kwargs</strong></p></li>
+<li><p><strong>below</strong> (<em>See</em>) – <ul>
+<li><dl class="simple">
+<dt><em>window_size</em> (<code class="docutils literal notranslate"><span class="pre">int</span></code>) –</dt><dd><p>Window size in number of samples
+(default: <code class="docutils literal notranslate"><span class="pre">100</span></code>)</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><em>overlap</em> (<code class="docutils literal notranslate"><span class="pre">float</span></code>) –</dt><dd><p>Overlap between 0 and 1
+(default: <code class="docutils literal notranslate"><span class="pre">0</span></code>)</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><em>features_path</em> (<code class="docutils literal notranslate"><span class="pre">string</span></code>) –</dt><dd><p>Directory of script with personal features</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><em>header_names</em> (<code class="docutils literal notranslate"><span class="pre">list</span> <span class="pre">or</span> <span class="pre">array</span></code>) –</dt><dd><p>Names of each column window</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><em>n_jobs</em> (<code class="docutils literal notranslate"><span class="pre">int</span></code>) –</dt><dd><p>The number of jobs to run in parallel. <code class="docutils literal notranslate"><span class="pre">None</span></code> means 1 unless in a <code class="xref py py-obj docutils literal notranslate"><span class="pre">joblib.parallel_backend</span></code> context.
+<code class="docutils literal notranslate"><span class="pre">-1</span></code> means using all processors.
+(default: <code class="docutils literal notranslate"><span class="pre">None</span></code> in Windows and <code class="docutils literal notranslate"><span class="pre">-1</span></code> for other systems)</p>
+</dd>
+</dl>
+</li>
+</ul>
+</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Extracted features</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>DataFrame</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="module-ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.features">
+<span id="ltsm-prompt-reader-stat-prompt-tsfel-feature-extraction-features-module"></span><h2>ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.features module<a class="headerlink" href="#module-ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.features" title="Link to this heading"></a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.features.abs_energy">
+<span class="sig-prename descclassname"><span class="pre">ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.features.</span></span><span class="sig-name descname"><span class="pre">abs_energy</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">signal</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ltsm/prompt_reader/stat_prompt/tsfel/feature_extraction/features.html#abs_energy"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.features.abs_energy" title="Link to this definition"></a></dt>
+<dd><p>Computes the absolute energy of the signal.</p>
+<p>Feature computational cost: 1</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>signal</strong> (<em>nd-array</em>) – Input from which the area under the curve is computed</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Absolute energy</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.features.auc">
+<span class="sig-prename descclassname"><span class="pre">ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.features.</span></span><span class="sig-name descname"><span class="pre">auc</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">signal</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ltsm/prompt_reader/stat_prompt/tsfel/feature_extraction/features.html#auc"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.features.auc" title="Link to this definition"></a></dt>
+<dd><p>Computes the area under the curve of the signal computed with trapezoid rule.</p>
+<p>Feature computational cost: 1</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>signal</strong> (<em>nd-array</em>) – Input from which the area under the curve is computed</p></li>
+<li><p><strong>fs</strong> (<em>float</em>) – Sampling Frequency</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The area under the curve value</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.features.autocorr">
+<span class="sig-prename descclassname"><span class="pre">ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.features.</span></span><span class="sig-name descname"><span class="pre">autocorr</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">signal</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ltsm/prompt_reader/stat_prompt/tsfel/feature_extraction/features.html#autocorr"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.features.autocorr" title="Link to this definition"></a></dt>
+<dd><p>Computes autocorrelation of the signal.</p>
+<p>Feature computational cost: 1</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>signal</strong> (<em>nd-array</em>) – Input from which autocorrelation is computed</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Cross correlation of 1-dimensional sequence</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.features.average_power">
+<span class="sig-prename descclassname"><span class="pre">ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.features.</span></span><span class="sig-name descname"><span class="pre">average_power</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">signal</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ltsm/prompt_reader/stat_prompt/tsfel/feature_extraction/features.html#average_power"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.features.average_power" title="Link to this definition"></a></dt>
+<dd><p>Computes the average power of the signal.</p>
+<p>Feature computational cost: 1</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>signal</strong> (<em>nd-array</em>) – Signal from which average power is computed</p></li>
+<li><p><strong>fs</strong> (<em>float</em>) – Sampling frequency</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Average power</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.features.calc_centroid">
+<span class="sig-prename descclassname"><span class="pre">ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.features.</span></span><span class="sig-name descname"><span class="pre">calc_centroid</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">signal</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ltsm/prompt_reader/stat_prompt/tsfel/feature_extraction/features.html#calc_centroid"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.features.calc_centroid" title="Link to this definition"></a></dt>
+<dd><p>Computes the centroid along the time axis.</p>
+<p>Feature computational cost: 1</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>signal</strong> (<em>nd-array</em>) – Input from which centroid is computed</p></li>
+<li><p><strong>fs</strong> (<em>int</em>) – Signal sampling frequency</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Temporal centroid</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.features.calc_max">
+<span class="sig-prename descclassname"><span class="pre">ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.features.</span></span><span class="sig-name descname"><span class="pre">calc_max</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">signal</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ltsm/prompt_reader/stat_prompt/tsfel/feature_extraction/features.html#calc_max"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.features.calc_max" title="Link to this definition"></a></dt>
+<dd><p>Computes the maximum value of the signal.</p>
+<p>Feature computational cost: 1</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>signal</strong> (<em>nd-array</em>) – Input from which max is computed</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Maximum result</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.features.calc_mean">
+<span class="sig-prename descclassname"><span class="pre">ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.features.</span></span><span class="sig-name descname"><span class="pre">calc_mean</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">signal</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ltsm/prompt_reader/stat_prompt/tsfel/feature_extraction/features.html#calc_mean"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.features.calc_mean" title="Link to this definition"></a></dt>
+<dd><p>Computes mean value of the signal.</p>
+<p>Feature computational cost: 1</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>signal</strong> (<em>nd-array</em>) – Input from which mean is computed.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Mean result</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.features.calc_median">
+<span class="sig-prename descclassname"><span class="pre">ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.features.</span></span><span class="sig-name descname"><span class="pre">calc_median</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">signal</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ltsm/prompt_reader/stat_prompt/tsfel/feature_extraction/features.html#calc_median"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.features.calc_median" title="Link to this definition"></a></dt>
+<dd><p>Computes median of the signal.</p>
+<p>Feature computational cost: 1</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>signal</strong> (<em>nd-array</em>) – Input from which median is computed</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Median result</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.features.calc_min">
+<span class="sig-prename descclassname"><span class="pre">ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.features.</span></span><span class="sig-name descname"><span class="pre">calc_min</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">signal</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ltsm/prompt_reader/stat_prompt/tsfel/feature_extraction/features.html#calc_min"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.features.calc_min" title="Link to this definition"></a></dt>
+<dd><p>Computes the minimum value of the signal.</p>
+<p>Feature computational cost: 1</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>signal</strong> (<em>nd-array</em>) – Input from which min is computed</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Minimum result</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.features.calc_std">
+<span class="sig-prename descclassname"><span class="pre">ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.features.</span></span><span class="sig-name descname"><span class="pre">calc_std</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">signal</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ltsm/prompt_reader/stat_prompt/tsfel/feature_extraction/features.html#calc_std"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.features.calc_std" title="Link to this definition"></a></dt>
+<dd><p>Computes standard deviation (std) of the signal.</p>
+<p>Feature computational cost: 1</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>signal</strong> (<em>nd-array</em>) – Input from which std is computed</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Standard deviation result</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.features.calc_var">
+<span class="sig-prename descclassname"><span class="pre">ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.features.</span></span><span class="sig-name descname"><span class="pre">calc_var</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">signal</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ltsm/prompt_reader/stat_prompt/tsfel/feature_extraction/features.html#calc_var"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.features.calc_var" title="Link to this definition"></a></dt>
+<dd><p>Computes variance of the signal.</p>
+<p>Feature computational cost: 1</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>signal</strong> (<em>nd-array</em>) – Input from which var is computed</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Variance result</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.features.distance">
+<span class="sig-prename descclassname"><span class="pre">ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.features.</span></span><span class="sig-name descname"><span class="pre">distance</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">signal</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ltsm/prompt_reader/stat_prompt/tsfel/feature_extraction/features.html#distance"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.features.distance" title="Link to this definition"></a></dt>
+<dd><p>Computes signal traveled distance.</p>
+<blockquote>
+<div><p>Calculates the total distance traveled by the signal
+using the hypotenuse between 2 datapoints.</p>
+</div></blockquote>
+<p>Feature computational cost: 1</p>
+<blockquote>
+<div><dl class="simple">
+<dt>signal<span class="classifier">nd-array</span></dt><dd><p>Input from which distance is computed</p>
+</dd>
+</dl>
+<dl class="simple">
+<dt>float</dt><dd><p>Signal distance</p>
+</dd>
+</dl>
+</div></blockquote>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.features.ecdf">
+<span class="sig-prename descclassname"><span class="pre">ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.features.</span></span><span class="sig-name descname"><span class="pre">ecdf</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">signal</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">d</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ltsm/prompt_reader/stat_prompt/tsfel/feature_extraction/features.html#ecdf"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.features.ecdf" title="Link to this definition"></a></dt>
+<dd><p>Computes the values of ECDF (empirical cumulative distribution function) along the time axis.</p>
+<p>Feature computational cost: 1</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>signal</strong> (<em>nd-array</em>) – Input from which ECDF is computed</p></li>
+<li><p><strong>d</strong> (<em>integer</em>) – Number of ECDF values to return</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The values of the ECDF along the time axis</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.features.ecdf_percentile">
+<span class="sig-prename descclassname"><span class="pre">ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.features.</span></span><span class="sig-name descname"><span class="pre">ecdf_percentile</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">signal</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">percentile</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[0.2,</span> <span class="pre">0.8]</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ltsm/prompt_reader/stat_prompt/tsfel/feature_extraction/features.html#ecdf_percentile"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.features.ecdf_percentile" title="Link to this definition"></a></dt>
+<dd><p>Computes the percentile value of the ECDF.</p>
+<p>Feature computational cost: 1</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>signal</strong> (<em>nd-array</em>) – Input from which ECDF is computed</p></li>
+<li><p><strong>percentile</strong> (<em>list</em>) – Percentile value to be computed</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The input value(s) of the ECDF</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.features.ecdf_percentile_count">
+<span class="sig-prename descclassname"><span class="pre">ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.features.</span></span><span class="sig-name descname"><span class="pre">ecdf_percentile_count</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">signal</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">percentile</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[0.2,</span> <span class="pre">0.8]</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ltsm/prompt_reader/stat_prompt/tsfel/feature_extraction/features.html#ecdf_percentile_count"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.features.ecdf_percentile_count" title="Link to this definition"></a></dt>
+<dd><p>Computes the cumulative sum of samples that are less than the percentile.</p>
+<p>Feature computational cost: 1</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>signal</strong> (<em>nd-array</em>) – Input from which ECDF is computed</p></li>
+<li><p><strong>percentile</strong> (<em>list</em>) – Percentile threshold</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The cumulative sum of samples</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.features.ecdf_slope">
+<span class="sig-prename descclassname"><span class="pre">ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.features.</span></span><span class="sig-name descname"><span class="pre">ecdf_slope</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">signal</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">p_init</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.5</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">p_end</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.75</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ltsm/prompt_reader/stat_prompt/tsfel/feature_extraction/features.html#ecdf_slope"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.features.ecdf_slope" title="Link to this definition"></a></dt>
+<dd><p>Computes the slope of the ECDF between two percentiles.
+Possibility to return infinity values.</p>
+<p>Feature computational cost: 1</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>signal</strong> (<em>nd-array</em>) – Input from which ECDF is computed</p></li>
+<li><p><strong>p_init</strong> (<em>float</em>) – Initial percentile</p></li>
+<li><p><strong>p_end</strong> (<em>float</em>) – End percentile</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The slope of the ECDF between two percentiles</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.features.entropy">
+<span class="sig-prename descclassname"><span class="pre">ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.features.</span></span><span class="sig-name descname"><span class="pre">entropy</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">signal</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">prob</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'standard'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ltsm/prompt_reader/stat_prompt/tsfel/feature_extraction/features.html#entropy"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.features.entropy" title="Link to this definition"></a></dt>
+<dd><p>Computes the entropy of the signal using the Shannon Entropy.</p>
+<p>Description in Article:
+Regularities Unseen, Randomness Observed: Levels of Entropy Convergence
+Authors: Crutchfield J. Feldman David</p>
+<p>Feature computational cost: 1</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>signal</strong> (<em>nd-array</em>) – Input from which entropy is computed</p></li>
+<li><p><strong>prob</strong> (<em>string</em>) – Probability function (kde or gaussian functions are available)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The normalized entropy value</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.features.fft_mean_coeff">
+<span class="sig-prename descclassname"><span class="pre">ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.features.</span></span><span class="sig-name descname"><span class="pre">fft_mean_coeff</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">signal</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fs</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nfreq</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">256</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ltsm/prompt_reader/stat_prompt/tsfel/feature_extraction/features.html#fft_mean_coeff"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.features.fft_mean_coeff" title="Link to this definition"></a></dt>
+<dd><p>Computes the mean value of each spectrogram frequency.</p>
+<p>nfreq can not be higher than half signal length plus one.
+When it does, it is automatically set to half signal length plus one.</p>
+<p>Feature computational cost: 1</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>signal</strong> (<em>nd-array</em>) – Input from which fft mean coefficients are computed</p></li>
+<li><p><strong>fs</strong> (<em>float</em>) – Sampling frequency</p></li>
+<li><p><strong>nfreq</strong> (<em>int</em>) – The number of frequencies</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The mean value of each spectrogram frequency</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>nd-array</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.features.fundamental_frequency">
+<span class="sig-prename descclassname"><span class="pre">ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.features.</span></span><span class="sig-name descname"><span class="pre">fundamental_frequency</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">signal</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ltsm/prompt_reader/stat_prompt/tsfel/feature_extraction/features.html#fundamental_frequency"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.features.fundamental_frequency" title="Link to this definition"></a></dt>
+<dd><p>Computes fundamental frequency of the signal.</p>
+<p>The fundamental frequency integer multiple best explain
+the content of the signal spectrum.</p>
+<p>Feature computational cost: 1</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>signal</strong> (<em>nd-array</em>) – Input from which fundamental frequency is computed</p></li>
+<li><p><strong>fs</strong> (<em>float</em>) – Sampling frequency</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>f0</strong> – Predominant frequency of the signal</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.features.hist">
+<span class="sig-prename descclassname"><span class="pre">ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.features.</span></span><span class="sig-name descname"><span class="pre">hist</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">signal</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nbins</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">r</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ltsm/prompt_reader/stat_prompt/tsfel/feature_extraction/features.html#hist"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.features.hist" title="Link to this definition"></a></dt>
+<dd><p>Computes histogram of the signal.</p>
+<p>Feature computational cost: 1</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>signal</strong> (<em>nd-array</em>) – Input from histogram is computed</p></li>
+<li><p><strong>nbins</strong> (<em>int</em>) – The number of equal-width bins in the given range</p></li>
+<li><p><strong>r</strong> (<em>float</em>) – The lower(-r) and upper(r) range of the bins</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The values of the histogram</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>nd-array</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.features.human_range_energy">
+<span class="sig-prename descclassname"><span class="pre">ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.features.</span></span><span class="sig-name descname"><span class="pre">human_range_energy</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">signal</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ltsm/prompt_reader/stat_prompt/tsfel/feature_extraction/features.html#human_range_energy"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.features.human_range_energy" title="Link to this definition"></a></dt>
+<dd><p>Computes the human range energy ratio.</p>
+<p>The human range energy ratio is given by the ratio between the energy
+in frequency 0.6-2.5Hz and the whole energy band.</p>
+<p>Feature computational cost: 2</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>signal</strong> (<em>nd-array</em>) – Signal from which human range energy ratio is computed</p></li>
+<li><p><strong>fs</strong> (<em>float</em>) – Sampling frequency</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Human range energy ratio</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.features.interq_range">
+<span class="sig-prename descclassname"><span class="pre">ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.features.</span></span><span class="sig-name descname"><span class="pre">interq_range</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">signal</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ltsm/prompt_reader/stat_prompt/tsfel/feature_extraction/features.html#interq_range"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.features.interq_range" title="Link to this definition"></a></dt>
+<dd><p>Computes interquartile range of the signal.</p>
+<p>Feature computational cost: 1</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>signal</strong> (<em>nd-array</em>) – Input from which interquartile range is computed</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Interquartile range result</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.features.kurtosis">
+<span class="sig-prename descclassname"><span class="pre">ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.features.</span></span><span class="sig-name descname"><span class="pre">kurtosis</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">signal</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ltsm/prompt_reader/stat_prompt/tsfel/feature_extraction/features.html#kurtosis"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.features.kurtosis" title="Link to this definition"></a></dt>
+<dd><p>Computes kurtosis of the signal.</p>
+<p>Feature computational cost: 1</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>signal</strong> (<em>nd-array</em>) – Input from which kurtosis is computed</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Kurtosis result</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.features.lpcc">
+<span class="sig-prename descclassname"><span class="pre">ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.features.</span></span><span class="sig-name descname"><span class="pre">lpcc</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">signal</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_coeff</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">12</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ltsm/prompt_reader/stat_prompt/tsfel/feature_extraction/features.html#lpcc"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.features.lpcc" title="Link to this definition"></a></dt>
+<dd><p>Computes the linear prediction cepstral coefficients.</p>
+<p>Implementation details and description in:
+<a class="reference external" href="http://www.practicalcryptography.com/miscellaneous/machine-learning/tutorial-cepstrum-and-lpccs/">http://www.practicalcryptography.com/miscellaneous/machine-learning/tutorial-cepstrum-and-lpccs/</a></p>
+<p>Feature computational cost: 1</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>signal</strong> (<em>nd-array</em>) – Input from linear prediction cepstral coefficients are computed</p></li>
+<li><p><strong>n_coeff</strong> (<em>int</em>) – Number of coefficients</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Linear prediction cepstral coefficients</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>nd-array</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.features.max_frequency">
+<span class="sig-prename descclassname"><span class="pre">ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.features.</span></span><span class="sig-name descname"><span class="pre">max_frequency</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">signal</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ltsm/prompt_reader/stat_prompt/tsfel/feature_extraction/features.html#max_frequency"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.features.max_frequency" title="Link to this definition"></a></dt>
+<dd><p>Computes maximum frequency of the signal.</p>
+<p>Feature computational cost: 2</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>signal</strong> (<em>nd-array</em>) – Input from which maximum frequency is computed</p></li>
+<li><p><strong>fs</strong> (<em>float</em>) – Sampling frequency</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>0.95 of maximum frequency using cumsum</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.features.max_power_spectrum">
+<span class="sig-prename descclassname"><span class="pre">ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.features.</span></span><span class="sig-name descname"><span class="pre">max_power_spectrum</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">signal</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ltsm/prompt_reader/stat_prompt/tsfel/feature_extraction/features.html#max_power_spectrum"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.features.max_power_spectrum" title="Link to this definition"></a></dt>
+<dd><p>Computes maximum power spectrum density of the signal.</p>
+<p>Feature computational cost: 1</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>signal</strong> (<em>nd-array</em>) – Input from which maximum power spectrum is computed</p></li>
+<li><p><strong>fs</strong> (<em>float</em>) – Sampling frequency</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Max value of the power spectrum density</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>nd-array</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.features.mean_abs_deviation">
+<span class="sig-prename descclassname"><span class="pre">ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.features.</span></span><span class="sig-name descname"><span class="pre">mean_abs_deviation</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">signal</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ltsm/prompt_reader/stat_prompt/tsfel/feature_extraction/features.html#mean_abs_deviation"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.features.mean_abs_deviation" title="Link to this definition"></a></dt>
+<dd><p>Computes mean absolute deviation of the signal.</p>
+<p>Feature computational cost: 1</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>signal</strong> (<em>nd-array</em>) – Input from which mean absolute deviation is computed</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Mean absolute deviation result</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.features.mean_abs_diff">
+<span class="sig-prename descclassname"><span class="pre">ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.features.</span></span><span class="sig-name descname"><span class="pre">mean_abs_diff</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">signal</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ltsm/prompt_reader/stat_prompt/tsfel/feature_extraction/features.html#mean_abs_diff"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.features.mean_abs_diff" title="Link to this definition"></a></dt>
+<dd><p>Computes mean absolute differences of the signal.</p>
+<p>Feature computational cost: 1</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>signal</strong> (<em>nd-array</em>) – Input from which mean absolute deviation is computed</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Mean absolute difference result</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.features.mean_diff">
+<span class="sig-prename descclassname"><span class="pre">ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.features.</span></span><span class="sig-name descname"><span class="pre">mean_diff</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">signal</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ltsm/prompt_reader/stat_prompt/tsfel/feature_extraction/features.html#mean_diff"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.features.mean_diff" title="Link to this definition"></a></dt>
+<dd><p>Computes mean of differences of the signal.</p>
+<p>Feature computational cost: 1</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>signal</strong> (<em>nd-array</em>) – Input from which mean of differences is computed</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Mean difference result</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.features.median_abs_deviation">
+<span class="sig-prename descclassname"><span class="pre">ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.features.</span></span><span class="sig-name descname"><span class="pre">median_abs_deviation</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">signal</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ltsm/prompt_reader/stat_prompt/tsfel/feature_extraction/features.html#median_abs_deviation"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.features.median_abs_deviation" title="Link to this definition"></a></dt>
+<dd><p>Computes median absolute deviation of the signal.</p>
+<p>Feature computational cost: 1</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>signal</strong> (<em>nd-array</em>) – Input from which median absolute deviation is computed</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Mean absolute deviation result</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.features.median_abs_diff">
+<span class="sig-prename descclassname"><span class="pre">ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.features.</span></span><span class="sig-name descname"><span class="pre">median_abs_diff</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">signal</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ltsm/prompt_reader/stat_prompt/tsfel/feature_extraction/features.html#median_abs_diff"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.features.median_abs_diff" title="Link to this definition"></a></dt>
+<dd><p>Computes median absolute differences of the signal.</p>
+<p>Feature computational cost: 1</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>signal</strong> (<em>nd-array</em>) – Input from which median absolute difference is computed</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Median absolute difference result</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.features.median_diff">
+<span class="sig-prename descclassname"><span class="pre">ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.features.</span></span><span class="sig-name descname"><span class="pre">median_diff</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">signal</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ltsm/prompt_reader/stat_prompt/tsfel/feature_extraction/features.html#median_diff"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.features.median_diff" title="Link to this definition"></a></dt>
+<dd><p>Computes median of differences of the signal.</p>
+<p>Feature computational cost: 1</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>signal</strong> (<em>nd-array</em>) – Input from which median of differences is computed</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Median difference result</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.features.median_frequency">
+<span class="sig-prename descclassname"><span class="pre">ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.features.</span></span><span class="sig-name descname"><span class="pre">median_frequency</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">signal</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ltsm/prompt_reader/stat_prompt/tsfel/feature_extraction/features.html#median_frequency"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.features.median_frequency" title="Link to this definition"></a></dt>
+<dd><p>Computes median frequency of the signal.</p>
+<p>Feature computational cost: 1</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>signal</strong> (<em>nd-array</em>) – Input from which median frequency is computed</p></li>
+<li><p><strong>fs</strong> (<em>int</em>) – Sampling frequency</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>f_median</strong> – 0.50 of maximum frequency using cumsum.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>int</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.features.mfcc">
+<span class="sig-prename descclassname"><span class="pre">ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.features.</span></span><span class="sig-name descname"><span class="pre">mfcc</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">signal</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fs</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pre_emphasis</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.97</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nfft</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">512</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nfilt</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">40</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">num_ceps</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">12</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cep_lifter</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">22</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ltsm/prompt_reader/stat_prompt/tsfel/feature_extraction/features.html#mfcc"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.features.mfcc" title="Link to this definition"></a></dt>
+<dd><p>Computes the MEL cepstral coefficients.</p>
+<p>It provides the information about the power in each frequency band.</p>
+<p>Implementation details and description on:
+<a class="reference external" href="https://www.kaggle.com/ilyamich/mfcc-implementation-and-tutorial">https://www.kaggle.com/ilyamich/mfcc-implementation-and-tutorial</a>
+<a class="reference external" href="https://haythamfayek.com/2016/04/21/speech-processing-for-machine-learning.html#fnref:1">https://haythamfayek.com/2016/04/21/speech-processing-for-machine-learning.html#fnref:1</a></p>
+<p>Feature computational cost: 1</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>signal</strong> (<em>nd-array</em>) – Input from which MEL coefficients is computed</p></li>
+<li><p><strong>fs</strong> (<em>float</em>) – Sampling frequency</p></li>
+<li><p><strong>pre_emphasis</strong> (<em>float</em>) – Pre-emphasis coefficient for pre-emphasis filter application</p></li>
+<li><p><strong>nfft</strong> (<em>int</em>) – Number of points of fft</p></li>
+<li><p><strong>nfilt</strong> (<em>int</em>) – Number of filters</p></li>
+<li><p><strong>num_ceps</strong> (<em>int</em>) – Number of cepstral coefficients</p></li>
+<li><p><strong>cep_lifter</strong> (<em>int</em>) – Filter length</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>MEL cepstral coefficients</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>nd-array</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.features.negative_turning">
+<span class="sig-prename descclassname"><span class="pre">ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.features.</span></span><span class="sig-name descname"><span class="pre">negative_turning</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">signal</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ltsm/prompt_reader/stat_prompt/tsfel/feature_extraction/features.html#negative_turning"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.features.negative_turning" title="Link to this definition"></a></dt>
+<dd><p>Computes number of negative turning points of the signal.</p>
+<p>Feature computational cost: 1</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>signal</strong> (<em>nd-array</em>) – Input from which minimum number of negative turning points are counted</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Number of negative turning points</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.features.neighbourhood_peaks">
+<span class="sig-prename descclassname"><span class="pre">ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.features.</span></span><span class="sig-name descname"><span class="pre">neighbourhood_peaks</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">signal</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ltsm/prompt_reader/stat_prompt/tsfel/feature_extraction/features.html#neighbourhood_peaks"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.features.neighbourhood_peaks" title="Link to this definition"></a></dt>
+<dd><p>Computes the number of peaks from a defined neighbourhood of the signal.</p>
+<dl class="simple">
+<dt>Reference: Christ, M., Braun, N., Neuffer, J. and Kempa-Liehr A.W. (2018). Time Series FeatuRe Extraction on basis</dt><dd><p>of Scalable Hypothesis tests (tsfresh – A Python package). Neurocomputing 307 (2018) 72-77</p>
+</dd>
+</dl>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>signal</strong> (<em>nd-array</em>) – Input from which the number of neighbourhood peaks is computed</p></li>
+<li><p><strong>n</strong> (<em>int</em>) – Number of peak’s neighbours to the left and to the right</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The number of peaks from a defined neighbourhood of the signal</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>int</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.features.pk_pk_distance">
+<span class="sig-prename descclassname"><span class="pre">ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.features.</span></span><span class="sig-name descname"><span class="pre">pk_pk_distance</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">signal</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ltsm/prompt_reader/stat_prompt/tsfel/feature_extraction/features.html#pk_pk_distance"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.features.pk_pk_distance" title="Link to this definition"></a></dt>
+<dd><p>Computes the peak to peak distance.</p>
+<p>Feature computational cost: 1</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>signal</strong> (<em>nd-array</em>) – Input from which peak to peak is computed</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>peak to peak distance</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.features.positive_turning">
+<span class="sig-prename descclassname"><span class="pre">ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.features.</span></span><span class="sig-name descname"><span class="pre">positive_turning</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">signal</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ltsm/prompt_reader/stat_prompt/tsfel/feature_extraction/features.html#positive_turning"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.features.positive_turning" title="Link to this definition"></a></dt>
+<dd><p>Computes number of positive turning points of the signal.</p>
+<p>Feature computational cost: 1</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>signal</strong> (<em>nd-array</em>) – Input from which  positive turning points are counted</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Number of positive turning points</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.features.power_bandwidth">
+<span class="sig-prename descclassname"><span class="pre">ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.features.</span></span><span class="sig-name descname"><span class="pre">power_bandwidth</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">signal</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ltsm/prompt_reader/stat_prompt/tsfel/feature_extraction/features.html#power_bandwidth"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.features.power_bandwidth" title="Link to this definition"></a></dt>
+<dd><p>Computes power spectrum density bandwidth of the signal.</p>
+<p>It corresponds to the width of the frequency band in which 95% of its power is located.</p>
+<p>Description in article:
+Power Spectrum and Bandwidth Ulf Henriksson, 2003 Translated by Mikael Olofsson, 2005</p>
+<p>Feature computational cost: 1</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>signal</strong> (<em>nd-array</em>) – Input from which the power bandwidth computed</p></li>
+<li><p><strong>fs</strong> (<em>float</em>) – Sampling frequency</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Occupied power in bandwidth</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.features.rms">
+<span class="sig-prename descclassname"><span class="pre">ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.features.</span></span><span class="sig-name descname"><span class="pre">rms</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">signal</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ltsm/prompt_reader/stat_prompt/tsfel/feature_extraction/features.html#rms"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.features.rms" title="Link to this definition"></a></dt>
+<dd><p>Computes root mean square of the signal.</p>
+<p>Square root of the arithmetic mean (average) of the squares of the original values.</p>
+<p>Feature computational cost: 1</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>signal</strong> (<em>nd-array</em>) – Input from which root mean square is computed</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Root mean square</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.features.skewness">
+<span class="sig-prename descclassname"><span class="pre">ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.features.</span></span><span class="sig-name descname"><span class="pre">skewness</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">signal</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ltsm/prompt_reader/stat_prompt/tsfel/feature_extraction/features.html#skewness"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.features.skewness" title="Link to this definition"></a></dt>
+<dd><p>Computes skewness of the signal.</p>
+<p>Feature computational cost: 1</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>signal</strong> (<em>nd-array</em>) – Input from which skewness is computed</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Skewness result</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>int</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.features.slope">
+<span class="sig-prename descclassname"><span class="pre">ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.features.</span></span><span class="sig-name descname"><span class="pre">slope</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">signal</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ltsm/prompt_reader/stat_prompt/tsfel/feature_extraction/features.html#slope"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.features.slope" title="Link to this definition"></a></dt>
+<dd><p>Computes the slope of the signal.</p>
+<p>Slope is computed by fitting a linear equation to the observed data.</p>
+<p>Feature computational cost: 1</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>signal</strong> (<em>nd-array</em>) – Input from which linear equation is computed</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Slope</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.features.spectral_centroid">
+<span class="sig-prename descclassname"><span class="pre">ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.features.</span></span><span class="sig-name descname"><span class="pre">spectral_centroid</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">signal</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ltsm/prompt_reader/stat_prompt/tsfel/feature_extraction/features.html#spectral_centroid"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.features.spectral_centroid" title="Link to this definition"></a></dt>
+<dd><p>Barycenter of the spectrum.</p>
+<p>Description and formula in Article:
+The Timbre Toolbox: Extracting audio descriptors from musicalsignals
+Authors Peeters G., Giordano B., Misdariis P., McAdams S.</p>
+<p>Feature computational cost: 2</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>signal</strong> (<em>nd-array</em>) – Signal from which spectral centroid is computed</p></li>
+<li><p><strong>fs</strong> (<em>int</em>) – Sampling frequency</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Centroid</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.features.spectral_decrease">
+<span class="sig-prename descclassname"><span class="pre">ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.features.</span></span><span class="sig-name descname"><span class="pre">spectral_decrease</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">signal</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ltsm/prompt_reader/stat_prompt/tsfel/feature_extraction/features.html#spectral_decrease"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.features.spectral_decrease" title="Link to this definition"></a></dt>
+<dd><p>Represents the amount of decreasing of the spectra amplitude.</p>
+<p>Description and formula in Article:
+The Timbre Toolbox: Extracting audio descriptors from musicalsignals
+Authors Peeters G., Giordano B., Misdariis P., McAdams S.</p>
+<p>Feature computational cost: 1</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>signal</strong> (<em>nd-array</em>) – Signal from which spectral decrease is computed</p></li>
+<li><p><strong>fs</strong> (<em>float</em>) – Sampling frequency</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Spectral decrease</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.features.spectral_distance">
+<span class="sig-prename descclassname"><span class="pre">ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.features.</span></span><span class="sig-name descname"><span class="pre">spectral_distance</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">signal</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ltsm/prompt_reader/stat_prompt/tsfel/feature_extraction/features.html#spectral_distance"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.features.spectral_distance" title="Link to this definition"></a></dt>
+<dd><p>Computes the signal spectral distance.</p>
+<p>Distance of the signal’s cumulative sum of the FFT elements to
+the respective linear regression.</p>
+<p>Feature computational cost: 1</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>signal</strong> (<em>nd-array</em>) – Signal from which spectral distance is computed</p></li>
+<li><p><strong>fs</strong> (<em>float</em>) – Sampling frequency</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>spectral distance</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.features.spectral_entropy">
+<span class="sig-prename descclassname"><span class="pre">ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.features.</span></span><span class="sig-name descname"><span class="pre">spectral_entropy</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">signal</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ltsm/prompt_reader/stat_prompt/tsfel/feature_extraction/features.html#spectral_entropy"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.features.spectral_entropy" title="Link to this definition"></a></dt>
+<dd><p>Computes the spectral entropy of the signal based on Fourier transform.</p>
+<p>Feature computational cost: 1</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>signal</strong> (<em>nd-array</em>) – Input from which spectral entropy is computed</p></li>
+<li><p><strong>fs</strong> (<em>float</em>) – Sampling frequency</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The normalized spectral entropy value</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.features.spectral_kurtosis">
+<span class="sig-prename descclassname"><span class="pre">ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.features.</span></span><span class="sig-name descname"><span class="pre">spectral_kurtosis</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">signal</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ltsm/prompt_reader/stat_prompt/tsfel/feature_extraction/features.html#spectral_kurtosis"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.features.spectral_kurtosis" title="Link to this definition"></a></dt>
+<dd><p>Measures the flatness of a distribution around its mean value.</p>
+<p>Description and formula in Article:
+The Timbre Toolbox: Extracting audio descriptors from musicalsignals
+Authors Peeters G., Giordano B., Misdariis P., McAdams S.</p>
+<p>Feature computational cost: 2</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>signal</strong> (<em>nd-array</em>) – Signal from which spectral kurtosis is computed</p></li>
+<li><p><strong>fs</strong> (<em>float</em>) – Sampling frequency</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Spectral Kurtosis</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.features.spectral_positive_turning">
+<span class="sig-prename descclassname"><span class="pre">ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.features.</span></span><span class="sig-name descname"><span class="pre">spectral_positive_turning</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">signal</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ltsm/prompt_reader/stat_prompt/tsfel/feature_extraction/features.html#spectral_positive_turning"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.features.spectral_positive_turning" title="Link to this definition"></a></dt>
+<dd><p>Computes number of positive turning points of the fft magnitude signal.</p>
+<p>Feature computational cost: 1</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>signal</strong> (<em>nd-array</em>) – Input from which the number of positive turning points of the fft magnitude are computed</p></li>
+<li><p><strong>fs</strong> (<em>float</em>) – Sampling frequency</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Number of positive turning points</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.features.spectral_roll_off">
+<span class="sig-prename descclassname"><span class="pre">ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.features.</span></span><span class="sig-name descname"><span class="pre">spectral_roll_off</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">signal</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ltsm/prompt_reader/stat_prompt/tsfel/feature_extraction/features.html#spectral_roll_off"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.features.spectral_roll_off" title="Link to this definition"></a></dt>
+<dd><p>Computes the spectral roll-off of the signal.</p>
+<p>The spectral roll-off corresponds to the frequency where 95% of the signal magnitude is contained
+below of this value.</p>
+<p>Feature computational cost: 1</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>signal</strong> (<em>nd-array</em>) – Signal from which spectral roll-off is computed</p></li>
+<li><p><strong>fs</strong> (<em>float</em>) – Sampling frequency</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Spectral roll-off</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.features.spectral_roll_on">
+<span class="sig-prename descclassname"><span class="pre">ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.features.</span></span><span class="sig-name descname"><span class="pre">spectral_roll_on</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">signal</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ltsm/prompt_reader/stat_prompt/tsfel/feature_extraction/features.html#spectral_roll_on"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.features.spectral_roll_on" title="Link to this definition"></a></dt>
+<dd><p>Computes the spectral roll-on of the signal.</p>
+<p>The spectral roll-on corresponds to the frequency where 5% of the signal magnitude is contained
+below of this value.</p>
+<p>Feature computational cost: 1</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>signal</strong> (<em>nd-array</em>) – Signal from which spectral roll-on is computed</p></li>
+<li><p><strong>fs</strong> (<em>float</em>) – Sampling frequency</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Spectral roll-on</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.features.spectral_skewness">
+<span class="sig-prename descclassname"><span class="pre">ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.features.</span></span><span class="sig-name descname"><span class="pre">spectral_skewness</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">signal</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ltsm/prompt_reader/stat_prompt/tsfel/feature_extraction/features.html#spectral_skewness"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.features.spectral_skewness" title="Link to this definition"></a></dt>
+<dd><p>Measures the asymmetry of a distribution around its mean value.</p>
+<p>Description and formula in Article:
+The Timbre Toolbox: Extracting audio descriptors from musicalsignals
+Authors Peeters G., Giordano B., Misdariis P., McAdams S.</p>
+<p>Feature computational cost: 2</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>signal</strong> (<em>nd-array</em>) – Signal from which spectral skewness is computed</p></li>
+<li><p><strong>fs</strong> (<em>float</em>) – Sampling frequency</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Spectral Skewness</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.features.spectral_slope">
+<span class="sig-prename descclassname"><span class="pre">ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.features.</span></span><span class="sig-name descname"><span class="pre">spectral_slope</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">signal</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ltsm/prompt_reader/stat_prompt/tsfel/feature_extraction/features.html#spectral_slope"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.features.spectral_slope" title="Link to this definition"></a></dt>
+<dd><p>Computes the spectral slope.</p>
+<p>Spectral slope is computed by finding constants m and b of the function aFFT = mf + b, obtained by linear regression
+of the spectral amplitude.</p>
+<p>Description and formula in Article:
+The Timbre Toolbox: Extracting audio descriptors from musicalsignals
+Authors Peeters G., Giordano B., Misdariis P., McAdams S.</p>
+<p>Feature computational cost: 1</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>signal</strong> (<em>nd-array</em>) – Signal from which spectral slope is computed</p></li>
+<li><p><strong>fs</strong> (<em>float</em>) – Sampling frequency</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Spectral Slope</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.features.spectral_spread">
+<span class="sig-prename descclassname"><span class="pre">ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.features.</span></span><span class="sig-name descname"><span class="pre">spectral_spread</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">signal</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ltsm/prompt_reader/stat_prompt/tsfel/feature_extraction/features.html#spectral_spread"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.features.spectral_spread" title="Link to this definition"></a></dt>
+<dd><p>Measures the spread of the spectrum around its mean value.</p>
+<p>Description and formula in Article:
+The Timbre Toolbox: Extracting audio descriptors from musicalsignals
+Authors Peeters G., Giordano B., Misdariis P., McAdams S.</p>
+<p>Feature computational cost: 2</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>signal</strong> (<em>nd-array</em>) – Signal from which spectral spread is computed.</p></li>
+<li><p><strong>fs</strong> (<em>float</em>) – Sampling frequency</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Spectral Spread</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.features.spectral_variation">
+<span class="sig-prename descclassname"><span class="pre">ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.features.</span></span><span class="sig-name descname"><span class="pre">spectral_variation</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">signal</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ltsm/prompt_reader/stat_prompt/tsfel/feature_extraction/features.html#spectral_variation"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.features.spectral_variation" title="Link to this definition"></a></dt>
+<dd><p>Computes the amount of variation of the spectrum along time.</p>
+<p>Spectral variation is computed from the normalized cross-correlation between two consecutive amplitude spectra.</p>
+<p>Description and formula in Article:
+The Timbre Toolbox: Extracting audio descriptors from musicalsignals
+Authors Peeters G., Giordano B., Misdariis P., McAdams S.</p>
+<p>Feature computational cost: 1</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>signal</strong> (<em>nd-array</em>) – Signal from which spectral variation is computed.</p></li>
+<li><p><strong>fs</strong> (<em>float</em>) – Sampling frequency</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Spectral Variation</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.features.sum_abs_diff">
+<span class="sig-prename descclassname"><span class="pre">ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.features.</span></span><span class="sig-name descname"><span class="pre">sum_abs_diff</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">signal</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ltsm/prompt_reader/stat_prompt/tsfel/feature_extraction/features.html#sum_abs_diff"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.features.sum_abs_diff" title="Link to this definition"></a></dt>
+<dd><p>Computes sum of absolute differences of the signal.</p>
+<p>Feature computational cost: 1</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>signal</strong> (<em>nd-array</em>) – Input from which sum absolute difference is computed</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Sum absolute difference result</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.features.wavelet_abs_mean">
+<span class="sig-prename descclassname"><span class="pre">ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.features.</span></span><span class="sig-name descname"><span class="pre">wavelet_abs_mean</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">signal</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">function=&lt;function</span> <span class="pre">ricker&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">widths=array([1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">3</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">4</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">5</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">6</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">7</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">8</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">9])</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ltsm/prompt_reader/stat_prompt/tsfel/feature_extraction/features.html#wavelet_abs_mean"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.features.wavelet_abs_mean" title="Link to this definition"></a></dt>
+<dd><p>Computes CWT absolute mean value of each wavelet scale.</p>
+<p>Feature computational cost: 2</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>signal</strong> (<em>nd-array</em>) – Input from which CWT is computed</p></li>
+<li><p><strong>function</strong> (<em>wavelet function</em>) – Default: scipy.signal.ricker</p></li>
+<li><p><strong>widths</strong> (<em>nd-array</em>) – Widths to use for transformation
+Default: np.arange(1,10)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>CWT absolute mean value</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>tuple</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.features.wavelet_energy">
+<span class="sig-prename descclassname"><span class="pre">ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.features.</span></span><span class="sig-name descname"><span class="pre">wavelet_energy</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">signal</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">function=&lt;function</span> <span class="pre">ricker&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">widths=array([1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">3</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">4</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">5</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">6</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">7</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">8</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">9])</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ltsm/prompt_reader/stat_prompt/tsfel/feature_extraction/features.html#wavelet_energy"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.features.wavelet_energy" title="Link to this definition"></a></dt>
+<dd><p>Computes CWT energy of each wavelet scale.</p>
+<p>Implementation details:
+<a class="reference external" href="https://stackoverflow.com/questions/37659422/energy-for-1-d-wavelet-in-python">https://stackoverflow.com/questions/37659422/energy-for-1-d-wavelet-in-python</a></p>
+<p>Feature computational cost: 2</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>signal</strong> (<em>nd-array</em>) – Input from which CWT is computed</p></li>
+<li><p><strong>function</strong> (<em>wavelet function</em>) – Default: scipy.signal.ricker</p></li>
+<li><p><strong>widths</strong> (<em>nd-array</em>) – Widths to use for transformation
+Default: np.arange(1,10)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>CWT energy</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>tuple</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.features.wavelet_entropy">
+<span class="sig-prename descclassname"><span class="pre">ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.features.</span></span><span class="sig-name descname"><span class="pre">wavelet_entropy</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">signal</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">function=&lt;function</span> <span class="pre">ricker&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">widths=array([1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">3</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">4</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">5</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">6</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">7</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">8</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">9])</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ltsm/prompt_reader/stat_prompt/tsfel/feature_extraction/features.html#wavelet_entropy"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.features.wavelet_entropy" title="Link to this definition"></a></dt>
+<dd><p>Computes CWT entropy of the signal.</p>
+<p>Implementation details in:
+<a class="reference external" href="https://dsp.stackexchange.com/questions/13055/how-to-calculate-cwt-shannon-entropy">https://dsp.stackexchange.com/questions/13055/how-to-calculate-cwt-shannon-entropy</a>
+B.F. Yan, A. Miyamoto, E. Bruhwiler, Wavelet transform-based modal parameter identification considering uncertainty</p>
+<p>Feature computational cost: 2</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>signal</strong> (<em>nd-array</em>) – Input from which CWT is computed</p></li>
+<li><p><strong>function</strong> (<em>wavelet function</em>) – Default: scipy.signal.ricker</p></li>
+<li><p><strong>widths</strong> (<em>nd-array</em>) – Widths to use for transformation
+Default: np.arange(1,10)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>wavelet entropy</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.features.wavelet_std">
+<span class="sig-prename descclassname"><span class="pre">ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.features.</span></span><span class="sig-name descname"><span class="pre">wavelet_std</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">signal</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">function=&lt;function</span> <span class="pre">ricker&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">widths=array([1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">3</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">4</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">5</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">6</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">7</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">8</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">9])</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ltsm/prompt_reader/stat_prompt/tsfel/feature_extraction/features.html#wavelet_std"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.features.wavelet_std" title="Link to this definition"></a></dt>
+<dd><p>Computes CWT std value of each wavelet scale.</p>
+<p>Feature computational cost: 2</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>signal</strong> (<em>nd-array</em>) – Input from which CWT is computed</p></li>
+<li><p><strong>function</strong> (<em>wavelet function</em>) – Default: scipy.signal.ricker</p></li>
+<li><p><strong>widths</strong> (<em>nd-array</em>) – Widths to use for transformation
+Default: np.arange(1,10)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>CWT std</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>tuple</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.features.wavelet_var">
+<span class="sig-prename descclassname"><span class="pre">ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.features.</span></span><span class="sig-name descname"><span class="pre">wavelet_var</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">signal</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">function=&lt;function</span> <span class="pre">ricker&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">widths=array([1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">3</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">4</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">5</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">6</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">7</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">8</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">9])</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ltsm/prompt_reader/stat_prompt/tsfel/feature_extraction/features.html#wavelet_var"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.features.wavelet_var" title="Link to this definition"></a></dt>
+<dd><p>Computes CWT variance value of each wavelet scale.</p>
+<p>Feature computational cost: 2</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>signal</strong> (<em>nd-array</em>) – Input from which CWT is computed</p></li>
+<li><p><strong>function</strong> (<em>wavelet function</em>) – Default: scipy.signal.ricker</p></li>
+<li><p><strong>widths</strong> (<em>nd-array</em>) – Widths to use for transformation
+Default: np.arange(1,10)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>CWT variance</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>tuple</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.features.zero_cross">
+<span class="sig-prename descclassname"><span class="pre">ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.features.</span></span><span class="sig-name descname"><span class="pre">zero_cross</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">signal</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ltsm/prompt_reader/stat_prompt/tsfel/feature_extraction/features.html#zero_cross"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.features.zero_cross" title="Link to this definition"></a></dt>
+<dd><p>Computes Zero-crossing rate of the signal.</p>
+<p>Corresponds to the total number of times that the signal changes from
+positive to negative or vice versa.</p>
+<p>Feature computational cost: 1</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>signal</strong> (<em>nd-array</em>) – Input from which the zero-crossing rate are computed</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Number of times that signal value cross the zero axis</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>int</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="module-ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.features_settings">
+<span id="ltsm-prompt-reader-stat-prompt-tsfel-feature-extraction-features-settings-module"></span><h2>ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.features_settings module<a class="headerlink" href="#module-ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.features_settings" title="Link to this heading"></a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.features_settings.get_features_by_domain">
+<span class="sig-prename descclassname"><span class="pre">ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.features_settings.</span></span><span class="sig-name descname"><span class="pre">get_features_by_domain</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">domain</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">json_path</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ltsm/prompt_reader/stat_prompt/tsfel/feature_extraction/features_settings.html#get_features_by_domain"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.features_settings.get_features_by_domain" title="Link to this definition"></a></dt>
+<dd><p>Creates a dictionary with the features settings by domain.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>domain</strong> (<em>string</em>) – Available domains: “statistical”; “spectral”; “temporal”
+If domain equals None, then the features settings from all domains are returned.</p></li>
+<li><p><strong>json_path</strong> (<em>string</em>) – Directory of json file. Default: package features.json directory</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Dictionary with the features settings</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.features_settings.get_features_by_tag">
+<span class="sig-prename descclassname"><span class="pre">ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.features_settings.</span></span><span class="sig-name descname"><span class="pre">get_features_by_tag</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tag</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">json_path</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ltsm/prompt_reader/stat_prompt/tsfel/feature_extraction/features_settings.html#get_features_by_tag"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.features_settings.get_features_by_tag" title="Link to this definition"></a></dt>
+<dd><p>Creates a dictionary with the features settings by tag.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>tag</strong> (<em>string</em>) – Available tags: “audio”; “inertial”, “ecg”; “eeg”; “emg”.
+If tag equals None then, all available features are returned.</p></li>
+<li><p><strong>json_path</strong> (<em>string</em>) – Directory of json file. Default: package features.json directory</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Dictionary with the features settings</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.features_settings.get_number_features">
+<span class="sig-prename descclassname"><span class="pre">ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.features_settings.</span></span><span class="sig-name descname"><span class="pre">get_number_features</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dict_features</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ltsm/prompt_reader/stat_prompt/tsfel/feature_extraction/features_settings.html#get_number_features"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.features_settings.get_number_features" title="Link to this definition"></a></dt>
+<dd><p>Count the total number of features based on input parameters of each feature</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>dict_features</strong> (<em>dict</em>) – Dictionary with features settings</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Feature vector size</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>int</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.features_settings.load_json">
+<span class="sig-prename descclassname"><span class="pre">ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.features_settings.</span></span><span class="sig-name descname"><span class="pre">load_json</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">json_path</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ltsm/prompt_reader/stat_prompt/tsfel/feature_extraction/features_settings.html#load_json"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.features_settings.load_json" title="Link to this definition"></a></dt>
+<dd><p>Loads the json file given by filename.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>json_path</strong> (<em>string</em>) – Json path</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Dictionary</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="module-ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.features_utils">
+<span id="ltsm-prompt-reader-stat-prompt-tsfel-feature-extraction-features-utils-module"></span><h2>ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.features_utils module<a class="headerlink" href="#module-ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.features_utils" title="Link to this heading"></a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.features_utils.autocorr_norm">
+<span class="sig-prename descclassname"><span class="pre">ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.features_utils.</span></span><span class="sig-name descname"><span class="pre">autocorr_norm</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">signal</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ltsm/prompt_reader/stat_prompt/tsfel/feature_extraction/features_utils.html#autocorr_norm"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.features_utils.autocorr_norm" title="Link to this definition"></a></dt>
+<dd><p>Computes the autocorrelation.</p>
+<p>Implementation details and description in:
+<a class="reference external" href="https://ccrma.stanford.edu/~orchi/Documents/speaker_recognition_report.pdf">https://ccrma.stanford.edu/~orchi/Documents/speaker_recognition_report.pdf</a></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>signal</strong> (<em>nd-array</em>) – Input from linear prediction coefficients are computed</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Autocorrelation result</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>nd-array</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.features_utils.calc_ecdf">
+<span class="sig-prename descclassname"><span class="pre">ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.features_utils.</span></span><span class="sig-name descname"><span class="pre">calc_ecdf</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">signal</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ltsm/prompt_reader/stat_prompt/tsfel/feature_extraction/features_utils.html#calc_ecdf"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.features_utils.calc_ecdf" title="Link to this definition"></a></dt>
+<dd><p>Computes the ECDF of the signal.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>signal</strong> (<em>nd-array</em>) – Input from which ECDF is computed</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Sorted signal and computed ECDF.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>nd-array</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.features_utils.calc_fft">
+<span class="sig-prename descclassname"><span class="pre">ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.features_utils.</span></span><span class="sig-name descname"><span class="pre">calc_fft</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">signal</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ltsm/prompt_reader/stat_prompt/tsfel/feature_extraction/features_utils.html#calc_fft"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.features_utils.calc_fft" title="Link to this definition"></a></dt>
+<dd><p>This functions computes the fft of a signal.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>signal</strong> (<em>nd-array</em>) – The input signal from which fft is computed</p></li>
+<li><p><strong>fs</strong> (<em>float</em>) – Sampling frequency</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><ul class="simple">
+<li><p><strong>f</strong> (<em>nd-array</em>) – Frequency values (xx axis)</p></li>
+<li><p><strong>fmag</strong> (<em>nd-array</em>) – Amplitude of the frequency values (yy axis)</p></li>
+</ul>
+</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.features_utils.compute_time">
+<span class="sig-prename descclassname"><span class="pre">ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.features_utils.</span></span><span class="sig-name descname"><span class="pre">compute_time</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">signal</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ltsm/prompt_reader/stat_prompt/tsfel/feature_extraction/features_utils.html#compute_time"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.features_utils.compute_time" title="Link to this definition"></a></dt>
+<dd><p>Creates the signal correspondent time array.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>signal</strong> (<em>nd-array</em>) – Input from which the time is computed.</p></li>
+<li><p><strong>fs</strong> (<em>int</em>) – Sampling Frequency</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>time</strong> – Signal time</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>float list</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.features_utils.create_symmetric_matrix">
+<span class="sig-prename descclassname"><span class="pre">ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.features_utils.</span></span><span class="sig-name descname"><span class="pre">create_symmetric_matrix</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">acf</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">order</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">11</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ltsm/prompt_reader/stat_prompt/tsfel/feature_extraction/features_utils.html#create_symmetric_matrix"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.features_utils.create_symmetric_matrix" title="Link to this definition"></a></dt>
+<dd><p>Computes a symmetric matrix.</p>
+<p>Implementation details and description in:
+<a class="reference external" href="https://ccrma.stanford.edu/~orchi/Documents/speaker_recognition_report.pdf">https://ccrma.stanford.edu/~orchi/Documents/speaker_recognition_report.pdf</a></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>acf</strong> (<em>nd-array</em>) – Input from which a symmetric matrix is computed</p></li>
+<li><p><strong>order</strong> (<em>int</em>) – Order</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Symmetric Matrix</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>nd-array</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.features_utils.create_xx">
+<span class="sig-prename descclassname"><span class="pre">ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.features_utils.</span></span><span class="sig-name descname"><span class="pre">create_xx</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">features</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ltsm/prompt_reader/stat_prompt/tsfel/feature_extraction/features_utils.html#create_xx"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.features_utils.create_xx" title="Link to this definition"></a></dt>
+<dd><p>Computes the range of features amplitude for the probability density function calculus.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>features</strong> (<em>nd-array</em>) – Input features</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>range of features amplitude</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>nd-array</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.features_utils.filterbank">
+<span class="sig-prename descclassname"><span class="pre">ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.features_utils.</span></span><span class="sig-name descname"><span class="pre">filterbank</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">signal</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fs</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pre_emphasis</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.97</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nfft</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">512</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nfilt</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">40</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ltsm/prompt_reader/stat_prompt/tsfel/feature_extraction/features_utils.html#filterbank"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.features_utils.filterbank" title="Link to this definition"></a></dt>
+<dd><p>Computes the MEL-spaced filterbank.</p>
+<p>It provides the information about the power in each frequency band.</p>
+<p>Implementation details and description on:
+<a class="reference external" href="https://www.kaggle.com/ilyamich/mfcc-implementation-and-tutorial">https://www.kaggle.com/ilyamich/mfcc-implementation-and-tutorial</a>
+<a class="reference external" href="https://haythamfayek.com/2016/04/21/speech-processing-for-machine-learning.html#fnref:1">https://haythamfayek.com/2016/04/21/speech-processing-for-machine-learning.html#fnref:1</a></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>signal</strong> (<em>nd-array</em>) – Input from which filterbank is computed</p></li>
+<li><p><strong>fs</strong> (<em>float</em>) – Sampling frequency</p></li>
+<li><p><strong>pre_emphasis</strong> (<em>float</em>) – Pre-emphasis coefficient for pre-emphasis filter application</p></li>
+<li><p><strong>nfft</strong> (<em>int</em>) – Number of points of fft</p></li>
+<li><p><strong>nfilt</strong> (<em>int</em>) – Number of filters</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>MEL-spaced filterbank</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>nd-array</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.features_utils.gaussian">
+<span class="sig-prename descclassname"><span class="pre">ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.features_utils.</span></span><span class="sig-name descname"><span class="pre">gaussian</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">features</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ltsm/prompt_reader/stat_prompt/tsfel/feature_extraction/features_utils.html#gaussian"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.features_utils.gaussian" title="Link to this definition"></a></dt>
+<dd><p>Computes the probability density function of the input signal using a Gaussian function</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>features</strong> (<em>nd-array</em>) – Input from which probability density function is computed</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>probability density values</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>nd-array</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.features_utils.kde">
+<span class="sig-prename descclassname"><span class="pre">ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.features_utils.</span></span><span class="sig-name descname"><span class="pre">kde</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">features</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ltsm/prompt_reader/stat_prompt/tsfel/feature_extraction/features_utils.html#kde"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.features_utils.kde" title="Link to this definition"></a></dt>
+<dd><p>Computes the probability density function of the input signal using a Gaussian KDE (Kernel Density Estimate)</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>features</strong> (<em>nd-array</em>) – Input from which probability density function is computed</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>probability density values</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>nd-array</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.features_utils.lpc">
+<span class="sig-prename descclassname"><span class="pre">ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.features_utils.</span></span><span class="sig-name descname"><span class="pre">lpc</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">signal</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_coeff</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">12</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ltsm/prompt_reader/stat_prompt/tsfel/feature_extraction/features_utils.html#lpc"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.features_utils.lpc" title="Link to this definition"></a></dt>
+<dd><p>Computes the linear prediction coefficients.</p>
+<p>Implementation details and description in:
+<a class="reference external" href="https://ccrma.stanford.edu/~orchi/Documents/speaker_recognition_report.pdf">https://ccrma.stanford.edu/~orchi/Documents/speaker_recognition_report.pdf</a></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>signal</strong> (<em>nd-array</em>) – Input from linear prediction coefficients are computed</p></li>
+<li><p><strong>n_coeff</strong> (<em>int</em>) – Number of coefficients</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Linear prediction coefficients</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>nd-array</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.features_utils.set_domain">
+<span class="sig-prename descclassname"><span class="pre">ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.features_utils.</span></span><span class="sig-name descname"><span class="pre">set_domain</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">key</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ltsm/prompt_reader/stat_prompt/tsfel/feature_extraction/features_utils.html#set_domain"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.features_utils.set_domain" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.features_utils.wavelet">
+<span class="sig-prename descclassname"><span class="pre">ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.features_utils.</span></span><span class="sig-name descname"><span class="pre">wavelet</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">signal</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">function=&lt;function</span> <span class="pre">ricker&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">widths=array([1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">3</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">4</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">5</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">6</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">7</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">8</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">9])</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ltsm/prompt_reader/stat_prompt/tsfel/feature_extraction/features_utils.html#wavelet"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.features_utils.wavelet" title="Link to this definition"></a></dt>
+<dd><p>Computes CWT (continuous wavelet transform) of the signal.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>signal</strong> (<em>nd-array</em>) – Input from which CWT is computed</p></li>
+<li><p><strong>function</strong> (<em>wavelet function</em>) – Default: scipy.signal.ricker</p></li>
+<li><p><strong>widths</strong> (<em>nd-array</em>) – Widths to use for transformation
+Default: np.arange(1,10)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The result of the CWT along the time axis
+matrix with size (len(widths),len(signal))</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>nd-array</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="module-ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction" title="Link to this heading"></a></h2>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="ltsm.prompt_reader.stat_prompt.tsfel.html" class="btn btn-neutral float-left" title="ltsm.prompt_reader.stat_prompt.tsfel package" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="ltsm.prompt_reader.stat_prompt.tsfel.utils.html" class="btn btn-neutral float-right" title="ltsm.prompt_reader.stat_prompt.tsfel.utils package" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, DATA Lab@Rice University.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

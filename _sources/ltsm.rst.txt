@@ -1,0 +1,24 @@
+ltsm package
+============
+
+Subpackages
+-----------
+
+.. toctree::
+   :maxdepth: 4
+
+   ltsm.data_pipeline
+   ltsm.data_provider
+   ltsm.data_reader
+   ltsm.models
+   ltsm.prompt_reader
+   ltsm.sk_interface
+   ltsm.utils
+
+Module contents
+---------------
+
+.. automodule:: ltsm
+   :members:
+   :undoc-members:
+   :show-inheritance:

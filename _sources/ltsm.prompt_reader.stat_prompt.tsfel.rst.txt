@@ -1,0 +1,19 @@
+ltsm.prompt\_reader.stat\_prompt.tsfel package
+==============================================
+
+Subpackages
+-----------
+
+.. toctree::
+   :maxdepth: 4
+
+   ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction
+   ltsm.prompt_reader.stat_prompt.tsfel.utils
+
+Module contents
+---------------
+
+.. automodule:: ltsm.prompt_reader.stat_prompt.tsfel
+   :members:
+   :undoc-members:
+   :show-inheritance:

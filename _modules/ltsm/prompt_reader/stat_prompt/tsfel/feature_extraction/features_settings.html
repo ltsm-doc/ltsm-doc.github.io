@@ -1,0 +1,245 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../../../../../">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.features_settings &mdash; LTSM-Package  documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../../../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../../../../../_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="../../../../../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../../../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../../../../../_static/documentation_options.js?v=5929fcd5"></script>
+      <script src="../../../../../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../../../../index.html" class="icon icon-home">
+            LTSM-Package
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../../modules.html">ltsm</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../../../index.html">LTSM-Package</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../../../../index.html">Module code</a></li>
+      <li class="breadcrumb-item active">ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.features_settings</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.features_settings</h1><div class="highlight"><pre>
+<span></span><span class="kn">import</span><span class="w"> </span><span class="nn">json</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">tsfel</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+
+
+<div class="viewcode-block" id="load_json">
+<a class="viewcode-back" href="../../../../../../ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.html#ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.features_settings.load_json">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">load_json</span><span class="p">(</span><span class="n">json_path</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Loads the json file given by filename.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    json_path : string</span>
+<span class="sd">        Json path</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    Dict</span>
+<span class="sd">        Dictionary</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">return</span> <span class="n">json</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="nb">open</span><span class="p">(</span><span class="n">json_path</span><span class="p">))</span></div>
+
+
+
+<div class="viewcode-block" id="get_features_by_domain">
+<a class="viewcode-back" href="../../../../../../ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.html#ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.features_settings.get_features_by_domain">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">get_features_by_domain</span><span class="p">(</span><span class="n">domain</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">json_path</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Creates a dictionary with the features settings by domain.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    domain : string</span>
+<span class="sd">        Available domains: &quot;statistical&quot;; &quot;spectral&quot;; &quot;temporal&quot;</span>
+<span class="sd">        If domain equals None, then the features settings from all domains are returned.</span>
+<span class="sd">    json_path : string</span>
+<span class="sd">        Directory of json file. Default: package features.json directory</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    Dict</span>
+<span class="sd">        Dictionary with the features settings</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">if</span> <span class="n">json_path</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">json_path</span> <span class="o">=</span> <span class="n">tsfel</span><span class="o">.</span><span class="n">__path__</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="s2">&quot;/feature_extraction/features.json&quot;</span>
+
+        <span class="k">if</span> <span class="n">domain</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;statistical&#39;</span><span class="p">,</span> <span class="s1">&#39;temporal&#39;</span><span class="p">,</span> <span class="s1">&#39;spectral&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">]:</span>
+            <span class="k">raise</span> <span class="ne">SystemExit</span><span class="p">(</span>
+                <span class="s1">&#39;No valid domain. Choose: statistical, temporal, spectral or None (for all feature settings).&#39;</span><span class="p">)</span>
+
+    <span class="n">dict_features</span> <span class="o">=</span> <span class="n">load_json</span><span class="p">(</span><span class="n">json_path</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">domain</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">dict_features</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="p">{</span><span class="n">domain</span><span class="p">:</span> <span class="n">dict_features</span><span class="p">[</span><span class="n">domain</span><span class="p">]}</span></div>
+
+
+
+<div class="viewcode-block" id="get_features_by_tag">
+<a class="viewcode-back" href="../../../../../../ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.html#ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.features_settings.get_features_by_tag">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">get_features_by_tag</span><span class="p">(</span><span class="n">tag</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">json_path</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Creates a dictionary with the features settings by tag.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    tag : string</span>
+<span class="sd">        Available tags: &quot;audio&quot;; &quot;inertial&quot;, &quot;ecg&quot;; &quot;eeg&quot;; &quot;emg&quot;.</span>
+<span class="sd">        If tag equals None then, all available features are returned.</span>
+<span class="sd">    json_path : string</span>
+<span class="sd">        Directory of json file. Default: package features.json directory</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    Dict</span>
+<span class="sd">        Dictionary with the features settings</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">json_path</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">json_path</span> <span class="o">=</span> <span class="n">tsfel</span><span class="o">.</span><span class="n">__path__</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="s2">&quot;/feature_extraction/features.json&quot;</span>
+
+        <span class="k">if</span> <span class="n">tag</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;audio&quot;</span><span class="p">,</span> <span class="s2">&quot;inertial&quot;</span><span class="p">,</span> <span class="s2">&quot;ecg&quot;</span><span class="p">,</span> <span class="s2">&quot;eeg&quot;</span><span class="p">,</span> <span class="s2">&quot;emg&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">]:</span>
+            <span class="k">raise</span> <span class="ne">SystemExit</span><span class="p">(</span>
+                <span class="s2">&quot;No valid tag. Choose: audio, inertial, ecg, eeg, emg or None.&quot;</span><span class="p">)</span>
+    <span class="n">features_tag</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="n">dict_features</span> <span class="o">=</span> <span class="n">load_json</span><span class="p">(</span><span class="n">json_path</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">tag</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">dict_features</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">domain</span> <span class="ow">in</span> <span class="n">dict_features</span><span class="p">:</span>
+            <span class="n">features_tag</span><span class="p">[</span><span class="n">domain</span><span class="p">]</span> <span class="o">=</span> <span class="p">{}</span>
+            <span class="k">for</span> <span class="n">feat</span> <span class="ow">in</span> <span class="n">dict_features</span><span class="p">[</span><span class="n">domain</span><span class="p">]:</span>
+                <span class="k">if</span> <span class="n">dict_features</span><span class="p">[</span><span class="n">domain</span><span class="p">][</span><span class="n">feat</span><span class="p">][</span><span class="s2">&quot;use&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;no&quot;</span><span class="p">:</span>
+                    <span class="k">continue</span>
+                <span class="c1"># Check if tag is defined</span>
+                <span class="k">try</span><span class="p">:</span>
+                    <span class="n">js_tag</span> <span class="o">=</span> <span class="n">dict_features</span><span class="p">[</span><span class="n">domain</span><span class="p">][</span><span class="n">feat</span><span class="p">][</span><span class="s2">&quot;tag&quot;</span><span class="p">]</span>
+                    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">js_tag</span><span class="p">,</span> <span class="nb">list</span><span class="p">):</span>
+                        <span class="k">if</span> <span class="nb">any</span><span class="p">([</span><span class="n">tag</span> <span class="ow">in</span> <span class="n">js_t</span> <span class="k">for</span> <span class="n">js_t</span> <span class="ow">in</span> <span class="n">js_tag</span><span class="p">]):</span>
+                            <span class="n">features_tag</span><span class="p">[</span><span class="n">domain</span><span class="p">]</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="n">feat</span><span class="p">:</span> <span class="n">dict_features</span><span class="p">[</span><span class="n">domain</span><span class="p">][</span><span class="n">feat</span><span class="p">]})</span>
+                    <span class="k">elif</span> <span class="n">js_tag</span> <span class="o">==</span> <span class="n">tag</span><span class="p">:</span>
+                        <span class="n">features_tag</span><span class="p">[</span><span class="n">domain</span><span class="p">]</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="n">feat</span><span class="p">:</span> <span class="n">dict_features</span><span class="p">[</span><span class="n">domain</span><span class="p">][</span><span class="n">feat</span><span class="p">]})</span>
+                <span class="k">except</span> <span class="ne">KeyError</span><span class="p">:</span>
+                    <span class="k">continue</span>
+        <span class="c1"># To remove empty dicts</span>
+        <span class="k">return</span> <span class="nb">dict</span><span class="p">([[</span><span class="n">d</span><span class="p">,</span> <span class="n">features_tag</span><span class="p">[</span><span class="n">d</span><span class="p">]]</span> <span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="nb">list</span><span class="p">(</span><span class="n">features_tag</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span> <span class="k">if</span> <span class="nb">bool</span><span class="p">(</span><span class="n">features_tag</span><span class="p">[</span><span class="n">d</span><span class="p">])])</span></div>
+
+
+
+<div class="viewcode-block" id="get_number_features">
+<a class="viewcode-back" href="../../../../../../ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.html#ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.features_settings.get_number_features">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">get_number_features</span><span class="p">(</span><span class="n">dict_features</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Count the total number of features based on input parameters of each feature</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    dict_features : dict</span>
+<span class="sd">        Dictionary with features settings</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    int</span>
+<span class="sd">        Feature vector size</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">number_features</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">for</span> <span class="n">domain</span> <span class="ow">in</span> <span class="n">dict_features</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">feat</span> <span class="ow">in</span> <span class="n">dict_features</span><span class="p">[</span><span class="n">domain</span><span class="p">]:</span>
+            <span class="k">if</span> <span class="n">dict_features</span><span class="p">[</span><span class="n">domain</span><span class="p">][</span><span class="n">feat</span><span class="p">][</span><span class="s2">&quot;use&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;no&quot;</span><span class="p">:</span>
+                <span class="k">continue</span>
+            <span class="n">n_feat</span> <span class="o">=</span> <span class="n">dict_features</span><span class="p">[</span><span class="n">domain</span><span class="p">][</span><span class="n">feat</span><span class="p">][</span><span class="s2">&quot;n_features&quot;</span><span class="p">]</span>
+
+            <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">n_feat</span><span class="p">,</span> <span class="nb">int</span><span class="p">):</span>
+                <span class="n">number_features</span> <span class="o">+=</span> <span class="n">n_feat</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">n_feat_param</span> <span class="o">=</span> <span class="n">dict_features</span><span class="p">[</span><span class="n">domain</span><span class="p">][</span><span class="n">feat</span><span class="p">][</span><span class="s2">&quot;parameters&quot;</span><span class="p">][</span><span class="n">n_feat</span><span class="p">]</span>
+                <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">n_feat_param</span><span class="p">,</span> <span class="nb">int</span><span class="p">):</span>
+                    <span class="n">number_features</span> <span class="o">+=</span> <span class="n">n_feat_param</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">number_features</span> <span class="o">+=</span> <span class="nb">eval</span><span class="p">(</span><span class="s2">&quot;len(&quot;</span> <span class="o">+</span> <span class="n">n_feat_param</span> <span class="o">+</span> <span class="s2">&quot;)&quot;</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">number_features</span></div>
+
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, DATA Lab@Rice University.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

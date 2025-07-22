@@ -1,0 +1,266 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../../../../../">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ltsm.prompt_reader.stat_prompt.tsfel.utils.calculate_complexity &mdash; LTSM-Package  documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../../../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../../../../../_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="../../../../../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../../../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../../../../../_static/documentation_options.js?v=5929fcd5"></script>
+      <script src="../../../../../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../../../../index.html" class="icon icon-home">
+            LTSM-Package
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../../modules.html">ltsm</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../../../index.html">LTSM-Package</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../../../../index.html">Module code</a></li>
+      <li class="breadcrumb-item active">ltsm.prompt_reader.stat_prompt.tsfel.utils.calculate_complexity</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for ltsm.prompt_reader.stat_prompt.tsfel.utils.calculate_complexity</h1><div class="highlight"><pre>
+<span></span><span class="kn">import</span><span class="w"> </span><span class="nn">time</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">json</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">scipy.optimize</span><span class="w"> </span><span class="kn">import</span> <span class="n">curve_fit</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">tsfel.feature_extraction.features_settings</span><span class="w"> </span><span class="kn">import</span> <span class="n">load_json</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">tsfel.feature_extraction.calc_features</span><span class="w"> </span><span class="kn">import</span> <span class="n">calc_window_features</span>
+
+
+<span class="c1"># curves</span>
+<div class="viewcode-block" id="n_squared">
+<a class="viewcode-back" href="../../../../../../ltsm.prompt_reader.stat_prompt.tsfel.utils.html#ltsm.prompt_reader.stat_prompt.tsfel.utils.calculate_complexity.n_squared">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">n_squared</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">no</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;The model function&quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">no</span> <span class="o">*</span> <span class="n">x</span> <span class="o">**</span> <span class="mi">2</span></div>
+
+
+
+<div class="viewcode-block" id="n_nlog">
+<a class="viewcode-back" href="../../../../../../ltsm.prompt_reader.stat_prompt.tsfel.utils.html#ltsm.prompt_reader.stat_prompt.tsfel.utils.calculate_complexity.n_nlog">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">n_nlog</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">no</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;The model function&quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">no</span> <span class="o">*</span> <span class="n">x</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">x</span><span class="p">)</span></div>
+
+
+
+<div class="viewcode-block" id="n_linear">
+<a class="viewcode-back" href="../../../../../../ltsm.prompt_reader.stat_prompt.tsfel.utils.html#ltsm.prompt_reader.stat_prompt.tsfel.utils.calculate_complexity.n_linear">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">n_linear</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">no</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;The model function&quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">no</span> <span class="o">*</span> <span class="n">x</span></div>
+
+
+
+<div class="viewcode-block" id="n_log">
+<a class="viewcode-back" href="../../../../../../ltsm.prompt_reader.stat_prompt.tsfel.utils.html#ltsm.prompt_reader.stat_prompt.tsfel.utils.calculate_complexity.n_log">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">n_log</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">no</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;The model function&quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">no</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">x</span><span class="p">)</span></div>
+
+
+
+<div class="viewcode-block" id="n_constant">
+<a class="viewcode-back" href="../../../../../../ltsm.prompt_reader.stat_prompt.tsfel.utils.html#ltsm.prompt_reader.stat_prompt.tsfel.utils.calculate_complexity.n_constant">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">n_constant</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">no</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;The model function&quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">))</span> <span class="o">+</span> <span class="n">no</span></div>
+
+
+
+<div class="viewcode-block" id="find_best_curve">
+<a class="viewcode-back" href="../../../../../../ltsm.prompt_reader.stat_prompt.tsfel.utils.html#ltsm.prompt_reader.stat_prompt.tsfel.utils.calculate_complexity.find_best_curve">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">find_best_curve</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">signal</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Finds the best curve.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    t : nd-array</span>
+<span class="sd">        Log space</span>
+<span class="sd">    signal : nd-array</span>
+<span class="sd">        Mean execution time array</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    str</span>
+<span class="sd">        Best fit curve name</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">all_chisq</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">list_curves</span> <span class="o">=</span> <span class="p">[</span><span class="n">n_squared</span><span class="p">,</span> <span class="n">n_nlog</span><span class="p">,</span> <span class="n">n_linear</span><span class="p">,</span> <span class="n">n_log</span><span class="p">,</span> <span class="n">n_constant</span><span class="p">]</span>
+    <span class="n">all_curves</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="c1"># Model parameters</span>
+    <span class="n">stdev</span> <span class="o">=</span> <span class="mi">2</span>
+    <span class="n">sig</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">signal</span><span class="p">))</span> <span class="o">+</span> <span class="n">stdev</span>
+
+    <span class="c1"># Fit the curve</span>
+    <span class="k">for</span> <span class="n">curve</span> <span class="ow">in</span> <span class="n">list_curves</span><span class="p">:</span>
+        <span class="n">start</span> <span class="o">=</span> <span class="mi">1</span>
+        <span class="n">popt</span><span class="p">,</span> <span class="n">pcov</span> <span class="o">=</span> <span class="n">curve_fit</span><span class="p">(</span><span class="n">curve</span><span class="p">,</span> <span class="n">t</span><span class="p">,</span> <span class="n">signal</span><span class="p">,</span> <span class="n">sigma</span><span class="o">=</span><span class="n">sig</span><span class="p">,</span> <span class="n">p0</span><span class="o">=</span><span class="n">start</span><span class="p">,</span> <span class="n">absolute_sigma</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+        <span class="c1"># Compute chi square</span>
+        <span class="n">nexp</span> <span class="o">=</span> <span class="n">curve</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="o">*</span><span class="n">popt</span><span class="p">)</span>
+        <span class="n">r</span> <span class="o">=</span> <span class="n">signal</span> <span class="o">-</span> <span class="n">nexp</span>
+        <span class="n">chisq</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">((</span><span class="n">r</span> <span class="o">/</span> <span class="n">stdev</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span>
+        <span class="n">all_chisq</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">chisq</span><span class="p">)</span>
+        <span class="n">all_curves</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">nexp</span><span class="p">)</span>
+
+    <span class="n">idx_best</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argmin</span><span class="p">(</span><span class="n">all_chisq</span><span class="p">)</span>
+
+    <span class="n">curve_name</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">list_curves</span><span class="p">[</span><span class="n">idx_best</span><span class="p">])</span>
+    <span class="n">idx1</span> <span class="o">=</span> <span class="n">curve_name</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s2">&quot;n_&quot;</span><span class="p">)</span>
+    <span class="n">idx2</span> <span class="o">=</span> <span class="n">curve_name</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s2">&quot;at&quot;</span><span class="p">)</span>
+    <span class="n">curve_name</span> <span class="o">=</span> <span class="n">curve_name</span><span class="p">[</span><span class="n">idx1</span> <span class="o">+</span> <span class="mi">2</span><span class="p">:</span><span class="n">idx2</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span>
+
+    <span class="k">return</span> <span class="n">curve_name</span></div>
+
+
+
+<div class="viewcode-block" id="compute_complexity">
+<a class="viewcode-back" href="../../../../../../ltsm.prompt_reader.stat_prompt.tsfel.utils.html#ltsm.prompt_reader.stat_prompt.tsfel.utils.calculate_complexity.compute_complexity">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">compute_complexity</span><span class="p">(</span><span class="n">feature</span><span class="p">,</span> <span class="n">domain</span><span class="p">,</span> <span class="n">json_path</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Computes the feature complexity.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    feature : string</span>
+<span class="sd">        Feature name</span>
+<span class="sd">    domain : string</span>
+<span class="sd">        Feature domain</span>
+<span class="sd">    json_path: json</span>
+<span class="sd">        Features json file</span>
+<span class="sd">    \**kwargs:</span>
+<span class="sd">    See below:</span>
+<span class="sd">        * *features_path* (``string``) --</span>
+<span class="sd">            Directory of script with personal features</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    int</span>
+<span class="sd">        Feature complexity</span>
+
+<span class="sd">    Writes complexity in json file</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">dictionary</span> <span class="o">=</span> <span class="n">load_json</span><span class="p">(</span><span class="n">json_path</span><span class="p">)</span>
+
+    <span class="n">features_path</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;features_path&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+
+    <span class="c1"># The inputs from this function should be replaced by a dictionary</span>
+    <span class="n">one_feat_dict</span> <span class="o">=</span> <span class="p">{</span><span class="n">domain</span><span class="p">:</span> <span class="p">{</span><span class="n">feature</span><span class="p">:</span> <span class="n">dictionary</span><span class="p">[</span><span class="n">domain</span><span class="p">][</span><span class="n">feature</span><span class="p">]}}</span>
+
+    <span class="n">t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">logspace</span><span class="p">(</span><span class="mf">3.0</span><span class="p">,</span> <span class="mf">5.0</span><span class="p">,</span> <span class="mi">6</span><span class="p">)</span>
+    <span class="n">signal</span><span class="p">,</span> <span class="n">s</span> <span class="o">=</span> <span class="p">[],</span> <span class="p">[]</span>
+    <span class="n">f</span> <span class="o">=</span> <span class="mf">0.05</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">t</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="n">fs</span> <span class="o">=</span> <span class="mi">100</span>
+    <span class="n">wave</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">*</span> <span class="n">f</span> <span class="o">*</span> <span class="n">x</span> <span class="o">/</span> <span class="n">fs</span><span class="p">)</span>
+
+    <span class="k">for</span> <span class="n">ti</span> <span class="ow">in</span> <span class="n">t</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">20</span><span class="p">):</span>
+
+            <span class="n">start</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+            <span class="n">calc_window_features</span><span class="p">(</span><span class="n">one_feat_dict</span><span class="p">,</span> <span class="n">wave</span><span class="p">[:</span><span class="nb">int</span><span class="p">(</span><span class="n">ti</span><span class="p">)],</span> <span class="n">fs</span><span class="p">,</span> <span class="n">features_path</span><span class="o">=</span><span class="n">features_path</span><span class="p">)</span>
+            <span class="n">end</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+
+            <span class="n">s</span> <span class="o">+=</span> <span class="p">[</span><span class="n">end</span> <span class="o">-</span> <span class="n">start</span><span class="p">]</span>
+
+        <span class="n">signal</span> <span class="o">+=</span> <span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">s</span><span class="p">)]</span>
+
+    <span class="n">curve_name</span> <span class="o">=</span> <span class="n">find_best_curve</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">signal</span><span class="p">)</span>
+    <span class="n">dictionary</span><span class="p">[</span><span class="n">domain</span><span class="p">][</span><span class="n">feature</span><span class="p">][</span><span class="s1">&#39;complexity&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">curve_name</span>
+
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">json_path</span><span class="p">,</span> <span class="s2">&quot;w&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">write_file</span><span class="p">:</span>
+        <span class="n">json</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="n">dictionary</span><span class="p">,</span> <span class="n">write_file</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">sort_keys</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">curve_name</span> <span class="o">==</span> <span class="s1">&#39;constant&#39;</span> <span class="ow">or</span> <span class="n">curve_name</span> <span class="o">==</span> <span class="s1">&#39;log&#39;</span><span class="p">:</span>
+        <span class="k">return</span> <span class="mi">1</span>
+    <span class="k">elif</span> <span class="n">curve_name</span> <span class="o">==</span> <span class="s1">&#39;linear&#39;</span><span class="p">:</span>
+        <span class="k">return</span> <span class="mi">2</span>
+    <span class="k">elif</span> <span class="n">curve_name</span> <span class="o">==</span> <span class="s1">&#39;nlog&#39;</span> <span class="ow">or</span> <span class="n">curve_name</span> <span class="o">==</span> <span class="s1">&#39;squared&#39;</span><span class="p">:</span>
+        <span class="k">return</span> <span class="mi">3</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="mi">0</span></div>
+
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, DATA Lab@Rice University.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

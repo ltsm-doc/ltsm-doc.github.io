@@ -1,0 +1,442 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ltsm.data_provider.tokenizer package &mdash; LTSM-Package  documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="_static/documentation_options.js?v=5929fcd5"></script>
+      <script src="_static/doctools.js?v=9bcbadda"></script>
+      <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="ltsm.data_reader package" href="ltsm.data_reader.html" />
+    <link rel="prev" title="ltsm.data_provider package" href="ltsm.data_provider.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            LTSM-Package
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="modules.html">ltsm</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="ltsm.html">ltsm package</a><ul class="current">
+<li class="toctree-l3 current"><a class="reference internal" href="ltsm.html#subpackages">Subpackages</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="ltsm.data_pipeline.html">ltsm.data_pipeline package</a></li>
+<li class="toctree-l4 current"><a class="reference internal" href="ltsm.data_provider.html">ltsm.data_provider package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="ltsm.data_reader.html">ltsm.data_reader package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="ltsm.models.html">ltsm.models package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="ltsm.prompt_reader.html">ltsm.prompt_reader package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="ltsm.sk_interface.html">ltsm.sk_interface package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="ltsm.utils.html">ltsm.utils package</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="ltsm.html#module-ltsm">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">LTSM-Package</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="modules.html">ltsm</a></li>
+          <li class="breadcrumb-item"><a href="ltsm.html">ltsm package</a></li>
+          <li class="breadcrumb-item"><a href="ltsm.data_provider.html">ltsm.data_provider package</a></li>
+      <li class="breadcrumb-item active">ltsm.data_provider.tokenizer package</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/ltsm.data_provider.tokenizer.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="ltsm-data-provider-tokenizer-package">
+<h1>ltsm.data_provider.tokenizer package<a class="headerlink" href="#ltsm-data-provider-tokenizer-package" title="Link to this heading"></a></h1>
+<section id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Link to this heading"></a></h2>
+</section>
+<section id="module-ltsm.data_provider.tokenizer.standard_scaler">
+<span id="ltsm-data-provider-tokenizer-standard-scaler-module"></span><h2>ltsm.data_provider.tokenizer.standard_scaler module<a class="headerlink" href="#module-ltsm.data_provider.tokenizer.standard_scaler" title="Link to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="ltsm.data_provider.tokenizer.standard_scaler.StandardScaler">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">ltsm.data_provider.tokenizer.standard_scaler.</span></span><span class="sig-name descname"><span class="pre">StandardScaler</span></span><a class="reference internal" href="_modules/ltsm/data_provider/tokenizer/standard_scaler.html#StandardScaler"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ltsm.data_provider.tokenizer.standard_scaler.StandardScaler" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">BaseProcessor</span></code></p>
+<p>Represents a Standard Scaler object that uses Sklearn’s Standard Scaler for data processing.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="ltsm.data_provider.tokenizer.standard_scaler.StandardScaler.module_id">
+<span class="sig-name descname"><span class="pre">module_id</span></span><a class="headerlink" href="#ltsm.data_provider.tokenizer.standard_scaler.StandardScaler.module_id" title="Link to this definition"></a></dt>
+<dd><p>The identifier for base processor objects.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ltsm.data_provider.tokenizer.standard_scaler.StandardScaler.inverse_process">
+<span class="sig-name descname"><span class="pre">inverse_process</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ltsm/data_provider/tokenizer/standard_scaler.html#StandardScaler.inverse_process"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ltsm.data_provider.tokenizer.standard_scaler.StandardScaler.inverse_process" title="Link to this definition"></a></dt>
+<dd><p>Scales back the data to its original representation.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>data</strong> (<em>np.ndarray</em>) – The data to scale back.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The scaled back data.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>np.ndarray</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ltsm.data_provider.tokenizer.standard_scaler.StandardScaler.load">
+<span class="sig-name descname"><span class="pre">load</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">save_dir</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ltsm/data_provider/tokenizer/standard_scaler.html#StandardScaler.load"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ltsm.data_provider.tokenizer.standard_scaler.StandardScaler.load" title="Link to this definition"></a></dt>
+<dd><p>Loads the scaler saved at the save_dir directory.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>save_dir</strong> (<em>str</em>) – The directory the scaler was saved.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="id0">
+<span class="sig-name descname"><span class="pre">module_id</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'standard_scaler'</span></em><a class="headerlink" href="#id0" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ltsm.data_provider.tokenizer.standard_scaler.StandardScaler.process">
+<span class="sig-name descname"><span class="pre">process</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">raw_data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">train_data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">val_data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">test_data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fit_train_only</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">do_anomaly</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ltsm/data_provider/tokenizer/standard_scaler.html#StandardScaler.process"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ltsm.data_provider.tokenizer.standard_scaler.StandardScaler.process" title="Link to this definition"></a></dt>
+<dd><p>Standardizes the training, validation, and test sets by removing the mean and scaling to unit variance.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>raw_data</strong> (<em>np.ndarray</em>) – The raw data.</p></li>
+<li><p><strong>train_data</strong> (<em>List</em><em>[</em><em>np.ndarray</em><em>]</em>) – The list of training sequences.</p></li>
+<li><p><strong>val_data</strong> (<em>List</em><em>[</em><em>np.ndarray</em><em>]</em>) – The list of validation sequences.</p></li>
+<li><p><strong>test_data</strong> (<em>List</em><em>[</em><em>np.ndarray</em><em>]</em>) – The list of test sequences.</p></li>
+<li><p><strong>fit_train_only</strong> (<em>bool</em>) – Indicates whether the datasets should be scaled based on the training data.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A tuple of three lists containing the processed training, validation, and test data.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Tuple[List[np.ndarray], List[np.ndarray], List[np.ndarray]]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ltsm.data_provider.tokenizer.standard_scaler.StandardScaler.save">
+<span class="sig-name descname"><span class="pre">save</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">save_dir</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ltsm/data_provider/tokenizer/standard_scaler.html#StandardScaler.save"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ltsm.data_provider.tokenizer.standard_scaler.StandardScaler.save" title="Link to this definition"></a></dt>
+<dd><p>Saves the scaler to the save_dir directory as a Pickle file named processor.pkl.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>save_dir</strong> (<em>str</em>) – The directory where to store the scaler.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-ltsm.data_provider.tokenizer.tokenizer_processor">
+<span id="ltsm-data-provider-tokenizer-tokenizer-processor-module"></span><h2>ltsm.data_provider.tokenizer.tokenizer_processor module<a class="headerlink" href="#module-ltsm.data_provider.tokenizer.tokenizer_processor" title="Link to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="ltsm.data_provider.tokenizer.tokenizer_processor.ChronosTokenizer">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">ltsm.data_provider.tokenizer.tokenizer_processor.</span></span><span class="sig-name descname"><span class="pre">ChronosTokenizer</span></span><a class="reference internal" href="_modules/ltsm/data_provider/tokenizer/tokenizer_processor.html#ChronosTokenizer"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ltsm.data_provider.tokenizer.tokenizer_processor.ChronosTokenizer" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>A <code class="docutils literal notranslate"><span class="pre">ChronosTokenizer</span></code> definines how time series are mapped into token IDs
+and back.</p>
+<p>For details, see the <code class="docutils literal notranslate"><span class="pre">input_transform</span></code> and <code class="docutils literal notranslate"><span class="pre">output_transform</span></code> methods,
+which concrete classes must implement.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="ltsm.data_provider.tokenizer.tokenizer_processor.ChronosTokenizer.input_transform">
+<span class="sig-name descname"><span class="pre">input_transform</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">context</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ltsm/data_provider/tokenizer/tokenizer_processor.html#ChronosTokenizer.input_transform"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ltsm.data_provider.tokenizer.tokenizer_processor.ChronosTokenizer.input_transform" title="Link to this definition"></a></dt>
+<dd><p>Turn a batch of time series into token IDs, attention map, and scale.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>context</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">Tensor</span></code></span>) – A tensor shaped (batch_size, time_length), containing the
+timeseries to forecast. Use left-padding with <code class="docutils literal notranslate"><span class="pre">torch.nan</span></code>
+to align time series of different lengths.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-data docutils literal notranslate"><span class="pre">Tuple</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">Tensor</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">Tensor</span></code>, <code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code>]</span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p><ul class="simple">
+<li><p><em>token_ids</em> – A tensor of integers, shaped (batch_size, time_length + 1)
+if <code class="docutils literal notranslate"><span class="pre">config.use_eos_token</span></code> and (batch_size, time_length)
+otherwise, containing token IDs for the input series.</p></li>
+<li><p><em>attention_mask</em> – A boolean tensor, same shape as <code class="docutils literal notranslate"><span class="pre">token_ids</span></code>, indicating
+which input observations are not <code class="docutils literal notranslate"><span class="pre">torch.nan</span></code> (i.e. not
+missing nor padding).</p></li>
+<li><p><em>tokenizer_state</em> – An object that will be passed to <code class="docutils literal notranslate"><span class="pre">output_transform</span></code>.
+Contains the relevant context to decode output samples into
+real values, such as location and scale parameters.</p></li>
+</ul>
+</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ltsm.data_provider.tokenizer.tokenizer_processor.ChronosTokenizer.output_transform">
+<span class="sig-name descname"><span class="pre">output_transform</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">samples</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tokenizer_state</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ltsm/data_provider/tokenizer/tokenizer_processor.html#ChronosTokenizer.output_transform"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ltsm.data_provider.tokenizer.tokenizer_processor.ChronosTokenizer.output_transform" title="Link to this definition"></a></dt>
+<dd><p>Turn a batch of sample token IDs into real values.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>samples</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">Tensor</span></code></span>) – A tensor of integers, shaped (batch_size, num_samples, time_length),
+containing token IDs of sample trajectories.</p></li>
+<li><p><strong>tokenizer_state</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></span>) – An object returned by <code class="docutils literal notranslate"><span class="pre">input_transform</span></code> containing
+relevant context to decode samples, such as location and scale.
+The nature of this depends on the specific tokenizer.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A real tensor, shaped (batch_size, num_samples, time_length),
+containing forecasted sample paths.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>forecasts</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="ltsm.data_provider.tokenizer.tokenizer_processor.MeanScaleUniformBins">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">ltsm.data_provider.tokenizer.tokenizer_processor.</span></span><span class="sig-name descname"><span class="pre">MeanScaleUniformBins</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">low_limit</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">high_limit</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">config</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ltsm/data_provider/tokenizer/tokenizer_processor.html#MeanScaleUniformBins"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ltsm.data_provider.tokenizer.tokenizer_processor.MeanScaleUniformBins" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#ltsm.data_provider.tokenizer.tokenizer_processor.ChronosTokenizer" title="ltsm.data_provider.tokenizer.tokenizer_processor.ChronosTokenizer"><code class="xref py py-class docutils literal notranslate"><span class="pre">ChronosTokenizer</span></code></a></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="ltsm.data_provider.tokenizer.tokenizer_processor.MeanScaleUniformBins.input_transform">
+<span class="sig-name descname"><span class="pre">input_transform</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">context</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ltsm/data_provider/tokenizer/tokenizer_processor.html#MeanScaleUniformBins.input_transform"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ltsm.data_provider.tokenizer.tokenizer_processor.MeanScaleUniformBins.input_transform" title="Link to this definition"></a></dt>
+<dd><p>Turn a batch of time series into token IDs, attention map, and scale.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>context</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">Tensor</span></code></span>) – A tensor shaped (batch_size, time_length), containing the
+timeseries to forecast. Use left-padding with <code class="docutils literal notranslate"><span class="pre">torch.nan</span></code>
+to align time series of different lengths.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-data docutils literal notranslate"><span class="pre">Tuple</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">Tensor</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">Tensor</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">Tensor</span></code>]</span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p><ul class="simple">
+<li><p><em>token_ids</em> – A tensor of integers, shaped (batch_size, time_length + 1)
+if <code class="docutils literal notranslate"><span class="pre">config.use_eos_token</span></code> and (batch_size, time_length)
+otherwise, containing token IDs for the input series.</p></li>
+<li><p><em>attention_mask</em> – A boolean tensor, same shape as <code class="docutils literal notranslate"><span class="pre">token_ids</span></code>, indicating
+which input observations are not <code class="docutils literal notranslate"><span class="pre">torch.nan</span></code> (i.e. not
+missing nor padding).</p></li>
+<li><p><em>tokenizer_state</em> – An object that will be passed to <code class="docutils literal notranslate"><span class="pre">output_transform</span></code>.
+Contains the relevant context to decode output samples into
+real values, such as location and scale parameters.</p></li>
+</ul>
+</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ltsm.data_provider.tokenizer.tokenizer_processor.MeanScaleUniformBins.output_transform">
+<span class="sig-name descname"><span class="pre">output_transform</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">samples</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">scale</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ltsm/data_provider/tokenizer/tokenizer_processor.html#MeanScaleUniformBins.output_transform"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ltsm.data_provider.tokenizer.tokenizer_processor.MeanScaleUniformBins.output_transform" title="Link to this definition"></a></dt>
+<dd><p>Turn a batch of sample token IDs into real values.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>samples</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">Tensor</span></code></span>) – A tensor of integers, shaped (batch_size, num_samples, time_length),
+containing token IDs of sample trajectories.</p></li>
+<li><p><strong>tokenizer_state</strong> – An object returned by <code class="docutils literal notranslate"><span class="pre">input_transform</span></code> containing
+relevant context to decode samples, such as location and scale.
+The nature of this depends on the specific tokenizer.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A real tensor, shaped (batch_size, num_samples, time_length),
+containing forecasted sample paths.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>forecasts</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="ltsm.data_provider.tokenizer.tokenizer_processor.TokenizerConfig">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">ltsm.data_provider.tokenizer.tokenizer_processor.</span></span><span class="sig-name descname"><span class="pre">TokenizerConfig</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tokenizer_class</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tokenizer_kwargs</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_tokens</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_special_tokens</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pad_token_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">eos_token_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">use_eos_token</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">model_type</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">context_length</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">prediction_length</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">num_samples</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">temperature</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">top_k</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">top_p</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ltsm/data_provider/tokenizer/tokenizer_processor.html#TokenizerConfig"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ltsm.data_provider.tokenizer.tokenizer_processor.TokenizerConfig" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>This class holds all the configuration parameters to be used
+by <code class="docutils literal notranslate"><span class="pre">ChronosTokenizer</span></code> and <code class="docutils literal notranslate"><span class="pre">ChronosModel</span></code>.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="ltsm.data_provider.tokenizer.tokenizer_processor.TokenizerConfig.context_length">
+<span class="sig-name descname"><span class="pre">context_length</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></em><a class="headerlink" href="#ltsm.data_provider.tokenizer.tokenizer_processor.TokenizerConfig.context_length" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ltsm.data_provider.tokenizer.tokenizer_processor.TokenizerConfig.create_tokenizer">
+<span class="sig-name descname"><span class="pre">create_tokenizer</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/ltsm/data_provider/tokenizer/tokenizer_processor.html#TokenizerConfig.create_tokenizer"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ltsm.data_provider.tokenizer.tokenizer_processor.TokenizerConfig.create_tokenizer" title="Link to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="#ltsm.data_provider.tokenizer.tokenizer_processor.ChronosTokenizer" title="ltsm.data_provider.tokenizer.tokenizer_processor.ChronosTokenizer"><code class="xref py py-class docutils literal notranslate"><span class="pre">ChronosTokenizer</span></code></a></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="ltsm.data_provider.tokenizer.tokenizer_processor.TokenizerConfig.eos_token_id">
+<span class="sig-name descname"><span class="pre">eos_token_id</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></em><a class="headerlink" href="#ltsm.data_provider.tokenizer.tokenizer_processor.TokenizerConfig.eos_token_id" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="ltsm.data_provider.tokenizer.tokenizer_processor.TokenizerConfig.model_type">
+<span class="sig-name descname"><span class="pre">model_type</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-data docutils literal notranslate"><span class="pre">Literal</span></code><span class="pre">[</span><code class="docutils literal notranslate"><span class="pre">'causal'</span></code><span class="pre">,</span> <code class="docutils literal notranslate"><span class="pre">'seq2seq'</span></code><span class="pre">]</span></em><a class="headerlink" href="#ltsm.data_provider.tokenizer.tokenizer_processor.TokenizerConfig.model_type" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="ltsm.data_provider.tokenizer.tokenizer_processor.TokenizerConfig.n_special_tokens">
+<span class="sig-name descname"><span class="pre">n_special_tokens</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></em><a class="headerlink" href="#ltsm.data_provider.tokenizer.tokenizer_processor.TokenizerConfig.n_special_tokens" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="ltsm.data_provider.tokenizer.tokenizer_processor.TokenizerConfig.n_tokens">
+<span class="sig-name descname"><span class="pre">n_tokens</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></em><a class="headerlink" href="#ltsm.data_provider.tokenizer.tokenizer_processor.TokenizerConfig.n_tokens" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="ltsm.data_provider.tokenizer.tokenizer_processor.TokenizerConfig.num_samples">
+<span class="sig-name descname"><span class="pre">num_samples</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></em><a class="headerlink" href="#ltsm.data_provider.tokenizer.tokenizer_processor.TokenizerConfig.num_samples" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="ltsm.data_provider.tokenizer.tokenizer_processor.TokenizerConfig.pad_token_id">
+<span class="sig-name descname"><span class="pre">pad_token_id</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></em><a class="headerlink" href="#ltsm.data_provider.tokenizer.tokenizer_processor.TokenizerConfig.pad_token_id" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="ltsm.data_provider.tokenizer.tokenizer_processor.TokenizerConfig.prediction_length">
+<span class="sig-name descname"><span class="pre">prediction_length</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></em><a class="headerlink" href="#ltsm.data_provider.tokenizer.tokenizer_processor.TokenizerConfig.prediction_length" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="ltsm.data_provider.tokenizer.tokenizer_processor.TokenizerConfig.temperature">
+<span class="sig-name descname"><span class="pre">temperature</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></em><a class="headerlink" href="#ltsm.data_provider.tokenizer.tokenizer_processor.TokenizerConfig.temperature" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="ltsm.data_provider.tokenizer.tokenizer_processor.TokenizerConfig.tokenizer_class">
+<span class="sig-name descname"><span class="pre">tokenizer_class</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></em><a class="headerlink" href="#ltsm.data_provider.tokenizer.tokenizer_processor.TokenizerConfig.tokenizer_class" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="ltsm.data_provider.tokenizer.tokenizer_processor.TokenizerConfig.tokenizer_kwargs">
+<span class="sig-name descname"><span class="pre">tokenizer_kwargs</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">Dict</span></code><span class="pre">[</span><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code><span class="pre">,</span> <code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code><span class="pre">]</span></em><a class="headerlink" href="#ltsm.data_provider.tokenizer.tokenizer_processor.TokenizerConfig.tokenizer_kwargs" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="ltsm.data_provider.tokenizer.tokenizer_processor.TokenizerConfig.top_k">
+<span class="sig-name descname"><span class="pre">top_k</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></em><a class="headerlink" href="#ltsm.data_provider.tokenizer.tokenizer_processor.TokenizerConfig.top_k" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="ltsm.data_provider.tokenizer.tokenizer_processor.TokenizerConfig.top_p">
+<span class="sig-name descname"><span class="pre">top_p</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></em><a class="headerlink" href="#ltsm.data_provider.tokenizer.tokenizer_processor.TokenizerConfig.top_p" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="ltsm.data_provider.tokenizer.tokenizer_processor.TokenizerConfig.use_eos_token">
+<span class="sig-name descname"><span class="pre">use_eos_token</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></em><a class="headerlink" href="#ltsm.data_provider.tokenizer.tokenizer_processor.TokenizerConfig.use_eos_token" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-ltsm.data_provider.tokenizer">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-ltsm.data_provider.tokenizer" title="Link to this heading"></a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="ltsm.data_provider.tokenizer.register_processor">
+<span class="sig-prename descclassname"><span class="pre">ltsm.data_provider.tokenizer.</span></span><span class="sig-name descname"><span class="pre">register_processor</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">module</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ltsm/data_provider/tokenizer.html#register_processor"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ltsm.data_provider.tokenizer.register_processor" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="ltsm.data_provider.html" class="btn btn-neutral float-left" title="ltsm.data_provider package" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="ltsm.data_reader.html" class="btn btn-neutral float-right" title="ltsm.data_reader package" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, DATA Lab@Rice University.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

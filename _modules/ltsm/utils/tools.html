@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="../../../">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ltsm.utils.tools &#8212; LTSM-Package  documentation</title>
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=5ecbeea2" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/basic.css?v=686e5160" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/alabaster.css?v=27fed22d" />
+    <script src="../../../_static/documentation_options.js?v=5929fcd5"></script>
+    <script src="../../../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+   
+  <link rel="stylesheet" href="../../../_static/custom.css" type="text/css" />
+  
+
+  
+  
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <h1>Source code for ltsm.utils.tools</h1><div class="highlight"><pre>
+<span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">torch</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">torch.nn</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">nn</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">tqdm</span><span class="w"> </span><span class="kn">import</span> <span class="n">tqdm</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">datetime</span><span class="w"> </span><span class="kn">import</span> <span class="n">datetime</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">distutils.util</span><span class="w"> </span><span class="kn">import</span> <span class="n">strtobool</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">ltsm.utils.metrics</span><span class="w"> </span><span class="kn">import</span> <span class="n">metric</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">switch_backend</span><span class="p">(</span><span class="s1">&#39;agg&#39;</span><span class="p">)</span>
+
+
+<div class="viewcode-block" id="dotdict">
+<a class="viewcode-back" href="../../../ltsm.utils.html#ltsm.utils.tools.dotdict">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">dotdict</span><span class="p">(</span><span class="nb">dict</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;dot.notation access to dictionary attributes&quot;&quot;&quot;</span>
+    <span class="fm">__getattr__</span> <span class="o">=</span> <span class="nb">dict</span><span class="o">.</span><span class="n">get</span>
+    <span class="fm">__setattr__</span> <span class="o">=</span> <span class="nb">dict</span><span class="o">.</span><span class="fm">__setitem__</span>
+    <span class="fm">__delattr__</span> <span class="o">=</span> <span class="nb">dict</span><span class="o">.</span><span class="fm">__delitem__</span></div>
+
+
+
+<div class="viewcode-block" id="StandardScaler">
+<a class="viewcode-back" href="../../../ltsm.utils.html#ltsm.utils.tools.StandardScaler">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">StandardScaler</span><span class="p">():</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mean</span><span class="p">,</span> <span class="n">std</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">mean</span> <span class="o">=</span> <span class="n">mean</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">std</span> <span class="o">=</span> <span class="n">std</span>
+
+<div class="viewcode-block" id="StandardScaler.transform">
+<a class="viewcode-back" href="../../../ltsm.utils.html#ltsm.utils.tools.StandardScaler.transform">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">transform</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
+        <span class="k">return</span> <span class="p">(</span><span class="n">data</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">mean</span><span class="p">)</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">std</span></div>
+
+
+<div class="viewcode-block" id="StandardScaler.inverse_transform">
+<a class="viewcode-back" href="../../../ltsm.utils.html#ltsm.utils.tools.StandardScaler.inverse_transform">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">inverse_transform</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
+        <span class="k">return</span> <span class="p">(</span><span class="n">data</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">std</span><span class="p">)</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">mean</span></div>
+</div>
+
+
+
+<div class="viewcode-block" id="visual">
+<a class="viewcode-back" href="../../../ltsm.utils.html#ltsm.utils.tools.visual">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">visual</span><span class="p">(</span><span class="n">true</span><span class="p">,</span> <span class="n">preds</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;./pic/test.pdf&#39;</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Results visualization</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">true</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;GroundTruth&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">preds</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">preds</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Prediction&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">bbox_inches</span><span class="o">=</span><span class="s1">&#39;tight&#39;</span><span class="p">)</span></div>
+
+
+
+<div class="viewcode-block" id="convert_tsf_to_dataframe">
+<a class="viewcode-back" href="../../../ltsm.utils.html#ltsm.utils.tools.convert_tsf_to_dataframe">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">convert_tsf_to_dataframe</span><span class="p">(</span>
+    <span class="n">full_file_path_and_name</span><span class="p">,</span>
+    <span class="n">replace_missing_vals_with</span><span class="o">=</span><span class="s2">&quot;NaN&quot;</span><span class="p">,</span>
+    <span class="n">value_column_name</span><span class="o">=</span><span class="s2">&quot;series_value&quot;</span><span class="p">,</span>
+<span class="p">):</span>
+    <span class="n">col_names</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">col_types</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">all_data</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="n">line_count</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">frequency</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">forecast_horizon</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">contain_missing_values</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">contain_equal_length</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">found_data_tag</span> <span class="o">=</span> <span class="kc">False</span>
+    <span class="n">found_data_section</span> <span class="o">=</span> <span class="kc">False</span>
+    <span class="n">started_reading_data_section</span> <span class="o">=</span> <span class="kc">False</span>
+  
+    <span class="nb">print</span><span class="p">(</span><span class="n">full_file_path_and_name</span><span class="p">)</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">full_file_path_and_name</span><span class="p">,</span> <span class="s2">&quot;r&quot;</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s2">&quot;cp1252&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">file</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">file</span><span class="p">:</span>
+            <span class="c1"># Strip white space from start/end of line</span>
+            <span class="n">line</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+
+            <span class="k">if</span> <span class="n">line</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">line</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">&quot;@&quot;</span><span class="p">):</span>  <span class="c1"># Read meta-data</span>
+                    <span class="k">if</span> <span class="ow">not</span> <span class="n">line</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">&quot;@data&quot;</span><span class="p">):</span>
+                        <span class="n">line_content</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot; &quot;</span><span class="p">)</span>
+                        <span class="k">if</span> <span class="n">line</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">&quot;@attribute&quot;</span><span class="p">):</span>
+                            <span class="k">if</span> <span class="p">(</span>
+                                <span class="nb">len</span><span class="p">(</span><span class="n">line_content</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">3</span>
+                            <span class="p">):</span>  <span class="c1"># Attributes have both name and type</span>
+                                <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s2">&quot;Invalid meta-data specification.&quot;</span><span class="p">)</span>
+
+                            <span class="n">col_names</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">line_content</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+                            <span class="n">col_types</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">line_content</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
+                        <span class="k">else</span><span class="p">:</span>
+                            <span class="k">if</span> <span class="p">(</span>
+                                <span class="nb">len</span><span class="p">(</span><span class="n">line_content</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">2</span>
+                            <span class="p">):</span>  <span class="c1"># Other meta-data have only values</span>
+                                <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s2">&quot;Invalid meta-data specification.&quot;</span><span class="p">)</span>
+
+                            <span class="k">if</span> <span class="n">line</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">&quot;@frequency&quot;</span><span class="p">):</span>
+                                <span class="n">frequency</span> <span class="o">=</span> <span class="n">line_content</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+                            <span class="k">elif</span> <span class="n">line</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">&quot;@horizon&quot;</span><span class="p">):</span>
+                                <span class="n">forecast_horizon</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">line_content</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+                            <span class="k">elif</span> <span class="n">line</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">&quot;@missing&quot;</span><span class="p">):</span>
+                                <span class="n">contain_missing_values</span> <span class="o">=</span> <span class="nb">bool</span><span class="p">(</span>
+                                    <span class="n">strtobool</span><span class="p">(</span><span class="n">line_content</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+                                <span class="p">)</span>
+                            <span class="k">elif</span> <span class="n">line</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">&quot;@equallength&quot;</span><span class="p">):</span>
+                                <span class="n">contain_equal_length</span> <span class="o">=</span> <span class="nb">bool</span><span class="p">(</span><span class="n">strtobool</span><span class="p">(</span><span class="n">line_content</span><span class="p">[</span><span class="mi">1</span><span class="p">]))</span>
+
+                    <span class="k">else</span><span class="p">:</span>
+                        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">col_names</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+                            <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span>
+                                <span class="s2">&quot;Missing attribute section. Attribute section must come before data.&quot;</span>
+                            <span class="p">)</span>
+
+                        <span class="n">found_data_tag</span> <span class="o">=</span> <span class="kc">True</span>
+                <span class="k">elif</span> <span class="ow">not</span> <span class="n">line</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">&quot;#&quot;</span><span class="p">):</span>
+                    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">col_names</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+                        <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span>
+                            <span class="s2">&quot;Missing attribute section. Attribute section must come before data.&quot;</span>
+                        <span class="p">)</span>
+                    <span class="k">elif</span> <span class="ow">not</span> <span class="n">found_data_tag</span><span class="p">:</span>
+                        <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s2">&quot;Missing @data tag.&quot;</span><span class="p">)</span>
+                    <span class="k">else</span><span class="p">:</span>
+                        <span class="k">if</span> <span class="ow">not</span> <span class="n">started_reading_data_section</span><span class="p">:</span>
+                            <span class="n">started_reading_data_section</span> <span class="o">=</span> <span class="kc">True</span>
+                            <span class="n">found_data_section</span> <span class="o">=</span> <span class="kc">True</span>
+                            <span class="n">all_series</span> <span class="o">=</span> <span class="p">[]</span>
+
+                            <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">col_names</span><span class="p">:</span>
+                                <span class="n">all_data</span><span class="p">[</span><span class="n">col</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+
+                        <span class="n">full_info</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;:&quot;</span><span class="p">)</span>
+
+                        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">full_info</span><span class="p">)</span> <span class="o">!=</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">col_names</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">):</span>
+                            <span class="k">continue</span>
+                            <span class="c1">#raise Exception(&quot;Missing attributes/values in series.&quot;)</span>
+
+                        <span class="n">series</span> <span class="o">=</span> <span class="n">full_info</span><span class="p">[</span><span class="nb">len</span><span class="p">(</span><span class="n">full_info</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span>
+                        <span class="n">series</span> <span class="o">=</span> <span class="n">series</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;,&quot;</span><span class="p">)</span>
+
+                        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">series</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+                            <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span>
+                                <span class="s2">&quot;A given series should contains a set of comma separated numeric values. At least one numeric value should be there in a series. Missing values should be indicated with ? symbol&quot;</span>
+                            <span class="p">)</span>
+
+                        <span class="n">numeric_series</span> <span class="o">=</span> <span class="p">[]</span>
+
+                        <span class="k">for</span> <span class="n">val</span> <span class="ow">in</span> <span class="n">series</span><span class="p">:</span>
+                            <span class="k">if</span> <span class="n">val</span> <span class="o">==</span> <span class="s2">&quot;?&quot;</span><span class="p">:</span>
+                                <span class="n">numeric_series</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">replace_missing_vals_with</span><span class="p">)</span>
+                            <span class="k">else</span><span class="p">:</span>
+                                <span class="n">numeric_series</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">val</span><span class="p">))</span>
+
+                        <span class="k">if</span> <span class="n">numeric_series</span><span class="o">.</span><span class="n">count</span><span class="p">(</span><span class="n">replace_missing_vals_with</span><span class="p">)</span> <span class="o">==</span> <span class="nb">len</span><span class="p">(</span>
+                            <span class="n">numeric_series</span>
+                        <span class="p">):</span>
+                            <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span>
+                                <span class="s2">&quot;All series values are missing. A given series should contains a set of comma separated numeric values. At least one numeric value should be there in a series.&quot;</span>
+                            <span class="p">)</span>
+
+                        <span class="n">all_series</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">numeric_series</span><span class="p">)</span><span class="o">.</span><span class="n">array</span><span class="p">)</span>
+
+                        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">col_names</span><span class="p">)):</span>
+                            <span class="n">att_val</span> <span class="o">=</span> <span class="kc">None</span>
+                            <span class="k">if</span> <span class="n">col_types</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;numeric&quot;</span><span class="p">:</span>
+                                <span class="n">att_val</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">full_info</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+                            <span class="k">elif</span> <span class="n">col_types</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;string&quot;</span><span class="p">:</span>
+                                <span class="n">att_val</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">full_info</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+                            <span class="k">elif</span> <span class="n">col_types</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;date&quot;</span><span class="p">:</span>
+                                <span class="n">att_val</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">strptime</span><span class="p">(</span>
+                                    <span class="n">full_info</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="s2">&quot;%Y-%m-</span><span class="si">%d</span><span class="s2"> %H-%M-%S&quot;</span>
+                                <span class="p">)</span>
+                            <span class="k">else</span><span class="p">:</span>
+                                <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span>
+                                    <span class="s2">&quot;Invalid attribute type.&quot;</span>
+                                <span class="p">)</span>  <span class="c1"># Currently, the code supports only numeric, string and date types. Extend this as required.</span>
+
+                            <span class="k">if</span> <span class="n">att_val</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                                <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s2">&quot;Invalid attribute value.&quot;</span><span class="p">)</span>
+                            <span class="k">else</span><span class="p">:</span>
+                                <span class="n">all_data</span><span class="p">[</span><span class="n">col_names</span><span class="p">[</span><span class="n">i</span><span class="p">]]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">att_val</span><span class="p">)</span>
+
+                <span class="n">line_count</span> <span class="o">=</span> <span class="n">line_count</span> <span class="o">+</span> <span class="mi">1</span>
+
+        <span class="k">if</span> <span class="n">line_count</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s2">&quot;Empty file.&quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">col_names</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s2">&quot;Missing attribute section.&quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">found_data_section</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s2">&quot;Missing series information under data section.&quot;</span><span class="p">)</span>
+
+        <span class="n">all_data</span><span class="p">[</span><span class="n">value_column_name</span><span class="p">]</span> <span class="o">=</span> <span class="n">all_series</span>
+        <span class="n">loaded_data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">all_data</span><span class="p">)</span>
+
+        <span class="c1"># ipdb.set_trace()</span>
+
+        <span class="k">return</span> <span class="p">(</span>
+            <span class="n">loaded_data</span><span class="p">,</span>
+            <span class="n">frequency</span><span class="p">,</span>
+            <span class="n">forecast_horizon</span><span class="p">,</span>
+            <span class="n">contain_missing_values</span><span class="p">,</span>
+            <span class="n">contain_equal_length</span><span class="p">,</span>
+        <span class="p">)</span></div>
+
+
+
+<div class="viewcode-block" id="MASE">
+<a class="viewcode-back" href="../../../ltsm.utils.html#ltsm.utils.tools.MASE">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">MASE</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">freq</span><span class="p">,</span> <span class="n">pred</span><span class="p">,</span> <span class="n">true</span><span class="p">):</span>
+    <span class="n">masep</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">x</span><span class="p">[:,</span> <span class="n">freq</span><span class="p">:]</span> <span class="o">-</span> <span class="n">x</span><span class="p">[:,</span> <span class="p">:</span><span class="o">-</span><span class="n">freq</span><span class="p">]))</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">pred</span> <span class="o">-</span> <span class="n">true</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">masep</span> <span class="o">+</span> <span class="mf">1e-8</span><span class="p">))</span></div>
+
+
+</pre></div>
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../../../index.html">LTSM-Package</a></h1>
+
+
+
+
+
+
+
+
+
+<search id="searchbox" style="display: none" role="search">
+    <div class="searchformwrapper">
+    <form class="search" action="../../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" placeholder="Search"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script><h3>Navigation</h3>
+<p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules.html">ltsm</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../../index.html">Documentation overview</a><ul>
+  <li><a href="../../index.html">Module code</a><ul>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &#169;2025, DATA Lab@Rice University.
+      
+      |
+      Powered by <a href="https://www.sphinx-doc.org/">Sphinx 8.1.3</a>
+      &amp; <a href="https://alabaster.readthedocs.io">Alabaster 1.0.0</a>
+      
+    </div>
+
+    
+
+    
+  </body>
+</html>

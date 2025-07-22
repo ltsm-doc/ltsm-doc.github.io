@@ -1,0 +1,344 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../../../">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ltsm.prompt_reader.stat_prompt.prompt_normalization_split &mdash; LTSM-Package  documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="../../../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../../../_static/documentation_options.js?v=5929fcd5"></script>
+      <script src="../../../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../../index.html" class="icon icon-home">
+            LTSM-Package
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../modules.html">ltsm</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">LTSM-Package</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../../index.html">Module code</a></li>
+      <li class="breadcrumb-item active">ltsm.prompt_reader.stat_prompt.prompt_normalization_split</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for ltsm.prompt_reader.stat_prompt.prompt_normalization_split</h1><div class="highlight"><pre>
+<span></span><span class="c1"># from ltsm.data_provider.data_factory import get_data_loader, get_data_loaders, get_dataset</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">argparse</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">ipdb</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="c1">#import tsfel</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="kn">import</span> <span class="n">read_csv</span><span class="p">,</span> <span class="n">read_feather</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">sys</span><span class="o">,</span><span class="w"> </span><span class="nn">os</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">torch</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.preprocessing</span><span class="w"> </span><span class="kn">import</span> <span class="n">StandardScaler</span>
+
+<span class="c1"># def parse_list(arg):</span>
+<span class="c1">#     return arg.split(&#39;,&#39;)</span>
+
+<div class="viewcode-block" id="get_args">
+<a class="viewcode-back" href="../../../../ltsm.prompt_reader.stat_prompt.html#ltsm.prompt_reader.stat_prompt.prompt_normalization_split.get_args">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">get_args</span><span class="p">():</span>
+    <span class="n">parser</span> <span class="o">=</span> <span class="n">argparse</span><span class="o">.</span><span class="n">ArgumentParser</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="s1">&#39;LTSM&#39;</span><span class="p">)</span>
+    <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;--mode&#39;</span><span class="p">,</span> <span class="n">choices</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;fit&quot;</span><span class="p">,</span> <span class="s2">&quot;transform&quot;</span><span class="p">],</span> <span class="n">required</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;--dataset_name&#39;</span><span class="p">,</span> <span class="n">nargs</span><span class="o">=</span><span class="s1">&#39;+&#39;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="p">[],</span> <span class="n">help</span><span class="o">=</span><span class="s1">&#39;The name of the dataset to be processed&#39;</span><span class="p">)</span>
+    <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;--save_format&#39;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">str</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="s1">&#39;pth.tar&#39;</span><span class="p">,</span> <span class="n">choices</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;pth.tar&quot;</span><span class="p">,</span> <span class="s2">&quot;csv&quot;</span><span class="p">,</span> <span class="s2">&quot;npz&quot;</span><span class="p">],</span> <span class="n">help</span><span class="o">=</span><span class="s1">&#39;The format to save the data&#39;</span><span class="p">)</span>
+    <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;--root_path_train&#39;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">str</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="s2">&quot;./prompt_bank/stat-prompt/prompt_data_split/train&quot;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s1">&#39;Root path for training data&#39;</span><span class="p">)</span>
+    <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;--output_path_train&#39;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">str</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="s2">&quot;./prompt_bank/stat-prompt/prompt_data_normalize_split/train&quot;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s1">&#39;Output path for normalized training data&#39;</span><span class="p">)</span>
+    <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;--root_path_val&#39;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">str</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="s2">&quot;./prompt_bank/stat-prompt/prompt_data_split/val&quot;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s1">&#39;Root path for validation data&#39;</span><span class="p">)</span>
+    <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;--output_path_val&#39;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">str</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="s2">&quot;./prompt_bank/stat-prompt/prompt_data_normalize_split/val&quot;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s1">&#39;Output path for normalized validation data&#39;</span><span class="p">)</span>
+    <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;--root_path_test&#39;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">str</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="s2">&quot;./prompt_bank/stat-prompt/prompt_data_split/test&quot;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s1">&#39;Root path for test data&#39;</span><span class="p">)</span>
+    <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;--output_path_test&#39;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">str</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="s2">&quot;./prompt_bank/stat-prompt/prompt_data_normalize_split/test&quot;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s1">&#39;Output path for normalized test data&#39;</span><span class="p">)</span>
+    <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;--dataset_root&#39;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">str</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="s2">&quot;./datasets/&quot;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s1">&#39;Output path for normalized test data&#39;</span><span class="p">)</span>
+
+    <span class="n">args</span> <span class="o">=</span> <span class="n">parser</span><span class="o">.</span><span class="n">parse_args</span><span class="p">()</span>
+
+    <span class="k">return</span> <span class="n">args</span></div>
+
+
+
+<span class="c1"># def prompt_generation(ts):</span>
+<span class="c1">#     cfg = tsfel.get_features_by_domain()</span>
+<span class="c1">#     prompt = tsfel.time_series_features_extractor(cfg, ts)</span>
+<span class="c1">#     return prompt</span>
+
+
+<div class="viewcode-block" id="prompt_prune">
+<a class="viewcode-back" href="../../../../ltsm.prompt_reader.stat_prompt.html#ltsm.prompt_reader.stat_prompt.prompt_normalization_split.prompt_prune">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">prompt_prune</span><span class="p">(</span><span class="n">pt</span><span class="p">):</span>
+    <span class="n">pt_dict</span> <span class="o">=</span> <span class="n">pt</span><span class="o">.</span><span class="n">to_dict</span><span class="p">()</span>
+    <span class="n">pt_keys</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">pt_dict</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
+    <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">pt_keys</span><span class="p">:</span>
+        <span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="n">key</span><span class="p">)</span> <span class="o">==</span> <span class="nb">type</span><span class="p">(</span><span class="s2">&quot;abc&quot;</span><span class="p">)</span> <span class="ow">and</span> <span class="n">key</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">&quot;0_FFT mean coefficient&quot;</span><span class="p">):</span>
+            <span class="k">del</span> <span class="n">pt</span><span class="p">[</span><span class="n">key</span><span class="p">]</span>
+
+    <span class="k">return</span> <span class="n">pt</span></div>
+
+
+<div class="viewcode-block" id="load_data">
+<a class="viewcode-back" href="../../../../ltsm.prompt_reader.stat_prompt.html#ltsm.prompt_reader.stat_prompt.prompt_normalization_split.load_data">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">load_data</span><span class="p">(</span><span class="n">data_path</span><span class="p">,</span> <span class="n">save_format</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;load the prompt data in different format from the input path. This part is tested in tests/prompt_reader/test_prompt_generate_split.py</span>
+<span class="sd">       The data should be pd.Series.</span>
+<span class="sd">    Args:</span>
+<span class="sd">        data_path: str, the input path</span>
+<span class="sd">        save_format: str, the format of the data saved</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">save_format</span> <span class="o">==</span> <span class="s2">&quot;pth.tar&quot;</span><span class="p">:</span>
+            <span class="n">prompt_data</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">data_path</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="n">save_format</span> <span class="o">==</span> <span class="s2">&quot;csv&quot;</span><span class="p">:</span>
+        <span class="n">prompt_data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">data_path</span><span class="p">)</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">prompt_data</span><span class="p">,</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">):</span>
+            <span class="n">prompt_data</span> <span class="o">=</span> <span class="n">prompt_data</span><span class="o">.</span><span class="n">squeeze</span><span class="p">()</span>
+    <span class="k">elif</span> <span class="n">save_format</span> <span class="o">==</span> <span class="s2">&quot;npz&quot;</span><span class="p">:</span>
+        <span class="n">loaded</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">data_path</span><span class="p">)</span>
+        <span class="n">prompt_data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">loaded</span><span class="p">[</span><span class="s2">&quot;data&quot;</span><span class="p">],</span> <span class="n">index</span><span class="o">=</span><span class="n">loaded</span><span class="p">[</span><span class="s2">&quot;index&quot;</span><span class="p">],</span> <span class="n">name</span><span class="o">=</span><span class="n">loaded</span><span class="p">[</span><span class="s2">&quot;name&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">item</span><span class="p">())</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">prompt_data</span><span class="p">,</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">):</span>
+            <span class="n">prompt_data</span> <span class="o">=</span> <span class="n">prompt_data</span><span class="o">.</span><span class="n">squeeze</span><span class="p">()</span>
+    <span class="k">return</span> <span class="n">prompt_data</span></div>
+
+
+<div class="viewcode-block" id="save_data">
+<a class="viewcode-back" href="../../../../ltsm.prompt_reader.stat_prompt.html#ltsm.prompt_reader.stat_prompt.prompt_normalization_split.save_data">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">save_data</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">data_path</span><span class="p">,</span> <span class="n">save_format</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;save the final prompt data to the output path</span>
+<span class="sd">    Args:</span>
+<span class="sd">        data: pd.DataFrame, the final prompt data</span>
+<span class="sd">        data_path: str, the output path</span>
+<span class="sd">        save_format: str, the format to save the data</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">save_format</span> <span class="o">==</span> <span class="s2">&quot;pth.tar&quot;</span><span class="p">:</span>
+        <span class="n">torch</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">data_path</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="n">save_format</span> <span class="o">==</span> <span class="s2">&quot;csv&quot;</span><span class="p">:</span>
+        <span class="n">data</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="n">data_path</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="n">save_format</span> <span class="o">==</span> <span class="s2">&quot;npz&quot;</span><span class="p">:</span>
+        <span class="n">np</span><span class="o">.</span><span class="n">savez</span><span class="p">(</span><span class="n">data_path</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="o">.</span><span class="n">values</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="n">data</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="n">data</span><span class="o">.</span><span class="n">columns</span><span class="p">)</span> </div>
+
+
+<div class="viewcode-block" id="mean_std_export_ds">
+<a class="viewcode-back" href="../../../../ltsm.prompt_reader.stat_prompt.html#ltsm.prompt_reader.stat_prompt.prompt_normalization_split.mean_std_export_ds">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">mean_std_export_ds</span><span class="p">(</span><span class="n">data_path_buf</span><span class="p">,</span> <span class="n">normalize_param_fname</span><span class="p">,</span> <span class="n">save_format</span><span class="o">=</span><span class="s2">&quot;pth.tar&quot;</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Export the mean and std of the prompt data to the output path</span>
+<span class="sd">    Args:</span>
+<span class="sd">        data_path_buf: list, the list of the input path</span>
+<span class="sd">        normalize_param_fname: str, the output path</span>
+<span class="sd">        save_format: str, the format of the saved data</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">prompt_data_buf</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">output_dir_buf</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">output_path_buf</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">index</span><span class="p">,</span> <span class="n">dataset_path</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">data_path_buf</span><span class="p">):</span>
+        <span class="n">prompt_data</span> <span class="o">=</span> <span class="n">load_data</span><span class="p">(</span><span class="n">dataset_path</span><span class="p">,</span> <span class="n">save_format</span><span class="p">)</span>
+        <span class="n">prompt_data</span> <span class="o">=</span> <span class="n">prompt_prune</span><span class="p">(</span><span class="n">prompt_data</span><span class="p">)</span>
+        <span class="n">prompt_data_buf</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">prompt_data</span><span class="p">)</span>
+
+        <span class="n">data_name</span> <span class="o">=</span> <span class="n">dataset_path</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="n">root_path</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;.csv&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">)</span>
+        <span class="n">data_dir</span> <span class="o">=</span> <span class="n">data_name</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="n">data_name</span><span class="o">.</span><span class="n">rfind</span><span class="p">(</span><span class="s2">&quot;/&quot;</span><span class="p">)]</span>
+        <span class="n">prompt_dir</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">output_path</span><span class="p">,</span> <span class="n">data_dir</span><span class="p">)</span>
+        <span class="n">prompt_fname</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">output_path</span><span class="p">,</span> <span class="n">data_name</span><span class="p">)</span>
+        <span class="c1"># print(prompt_fname)</span>
+        <span class="n">output_dir_buf</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">prompt_dir</span><span class="p">)</span>
+        <span class="n">output_path_buf</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">prompt_fname</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Import from </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">dataset_path</span><span class="p">),</span> <span class="n">prompt_data</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="nb">type</span><span class="p">(</span><span class="n">prompt_data</span><span class="p">))</span>
+        <span class="c1"># ipdb.set_trace()</span>
+
+    <span class="n">prompt_data_all</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">(</span><span class="n">prompt_data_buf</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">T</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">prompt_data_all</span><span class="p">)</span>
+
+    <span class="n">scaler</span> <span class="o">=</span> <span class="n">StandardScaler</span><span class="p">()</span>
+    <span class="n">scaler</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">prompt_data_all</span><span class="p">)</span>
+
+    <span class="n">sc_mean</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">scaler</span><span class="o">.</span><span class="n">mean_</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">),</span> <span class="n">columns</span><span class="o">=</span><span class="n">prompt_data_all</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
+    <span class="n">sc_scale</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">scaler</span><span class="o">.</span><span class="n">scale_</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">),</span> <span class="n">columns</span><span class="o">=</span><span class="n">prompt_data_all</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
+
+    <span class="nb">print</span><span class="p">({</span><span class="s2">&quot;mean&quot;</span><span class="p">:</span> <span class="n">sc_mean</span><span class="p">,</span> <span class="s2">&quot;scale&quot;</span><span class="p">:</span> <span class="n">sc_scale</span><span class="p">})</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Save the mean and std to </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">normalize_param_fname</span><span class="p">))</span>
+    <span class="n">torch</span><span class="o">.</span><span class="n">save</span><span class="p">({</span><span class="s2">&quot;mean&quot;</span><span class="p">:</span> <span class="n">sc_mean</span><span class="p">,</span> <span class="s2">&quot;scale&quot;</span><span class="p">:</span> <span class="n">sc_scale</span><span class="p">},</span> <span class="n">normalize_param_fname</span><span class="p">)</span></div>
+
+
+
+<div class="viewcode-block" id="standardscale_export">
+<a class="viewcode-back" href="../../../../ltsm.prompt_reader.stat_prompt.html#ltsm.prompt_reader.stat_prompt.prompt_normalization_split.standardscale_export">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">standardscale_export</span><span class="p">(</span><span class="n">data_path_buf</span><span class="p">,</span> <span class="n">params_fname</span><span class="p">,</span> <span class="n">output_path</span><span class="p">,</span> <span class="n">root_path</span><span class="p">,</span> <span class="n">save_format</span><span class="o">=</span><span class="s2">&quot;pth.tar&quot;</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Export the standardized prompt data to the output path</span>
+<span class="sd">    Args:</span>
+<span class="sd">        data_path_buf: list, the list of the input path</span>
+<span class="sd">        params_fname: str, the output path of the mean and std</span>
+<span class="sd">        output_path: str, the output path of the standardized prompt data</span>
+<span class="sd">        root_path: str, the root path of the input&quot;&quot;&quot;</span>
+    <span class="n">params</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">params_fname</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Load from </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">params_fname</span><span class="p">),</span> <span class="nb">type</span><span class="p">(</span><span class="n">params</span><span class="p">))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">params</span><span class="p">[</span><span class="s2">&quot;mean&quot;</span><span class="p">]),</span> <span class="nb">type</span><span class="p">(</span><span class="n">params</span><span class="p">[</span><span class="s2">&quot;scale&quot;</span><span class="p">]))</span>
+    <span class="n">mean</span><span class="p">,</span> <span class="n">std</span> <span class="o">=</span> <span class="n">params</span><span class="p">[</span><span class="s2">&quot;mean&quot;</span><span class="p">],</span> <span class="n">params</span><span class="p">[</span><span class="s2">&quot;scale&quot;</span><span class="p">]</span>
+    <span class="n">scaler</span> <span class="o">=</span> <span class="n">StandardScaler</span><span class="p">()</span>
+    <span class="n">scaler</span><span class="o">.</span><span class="n">mean_</span> <span class="o">=</span> <span class="n">mean</span>
+    <span class="n">scaler</span><span class="o">.</span><span class="n">scale_</span> <span class="o">=</span> <span class="n">std</span>
+    <span class="c1"># ipdb.set_trace()</span>
+
+    <span class="k">for</span> <span class="n">index</span><span class="p">,</span> <span class="n">dataset_path</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">data_path_buf</span><span class="p">):</span>
+        <span class="n">prompt_data_raw</span> <span class="o">=</span> <span class="n">load_data</span><span class="p">(</span><span class="n">dataset_path</span><span class="p">,</span> <span class="n">save_format</span><span class="p">)</span>
+        <span class="n">prompt_data_raw</span> <span class="o">=</span> <span class="n">prompt_prune</span><span class="p">(</span><span class="n">prompt_data_raw</span><span class="p">)</span>
+
+        <span class="n">prompt_data</span> <span class="o">=</span> <span class="n">scaler</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">prompt_data_raw</span><span class="o">.</span><span class="n">values</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">))</span>
+        <span class="n">prompt_data_array</span> <span class="o">=</span> <span class="n">prompt_data</span>
+        <span class="c1"># print(prompt_data)</span>
+        <span class="n">prompt_data_array</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">isnan</span><span class="p">(</span><span class="n">prompt_data_array</span><span class="p">)]</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="n">prompt_data_transform</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">prompt_data_array</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="n">prompt_data</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
+        <span class="c1"># ipdb.set_trace()</span>
+
+        <span class="n">prompt_fname</span> <span class="o">=</span> <span class="n">dataset_path</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="n">root_path</span><span class="p">,</span> <span class="n">output_path</span><span class="p">)</span>
+        <span class="n">prompt_dir</span> <span class="o">=</span> <span class="n">prompt_fname</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="n">prompt_fname</span><span class="o">.</span><span class="n">rfind</span><span class="p">(</span><span class="s2">&quot;/&quot;</span><span class="p">)]</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">prompt_dir</span><span class="p">):</span>
+            <span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="n">prompt_dir</span><span class="p">)</span>
+        <span class="c1"># prompt_data_tramsform: pd.DataFrame,(1,133), column is RandeIndex</span>
+        <span class="c1"># torch.save(prompt_data_transform, prompt_fname) </span>
+        <span class="n">save_data</span><span class="p">(</span><span class="n">prompt_data_transform</span><span class="p">,</span> <span class="n">prompt_fname</span><span class="p">,</span> <span class="n">save_format</span><span class="p">)</span>
+        
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Save to </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">prompt_fname</span><span class="p">))</span>
+        <span class="k">del</span> <span class="n">prompt_data</span></div>
+
+
+
+<div class="viewcode-block" id="create_data_dir">
+<a class="viewcode-back" href="../../../../ltsm.prompt_reader.stat_prompt.html#ltsm.prompt_reader.stat_prompt.prompt_normalization_split.create_data_dir">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">create_data_dir</span><span class="p">(</span><span class="n">dir_name</span><span class="p">):</span>
+    <span class="c1"># prompt_dir =</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">dir_name</span><span class="p">):</span>
+        <span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="n">dir_name</span><span class="p">)</span></div>
+
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="n">args</span> <span class="o">=</span> <span class="n">get_args</span><span class="p">()</span>
+    
+    <span class="n">ds_size</span> <span class="o">=</span> <span class="mi">50</span>
+    <span class="n">mode</span> <span class="o">=</span> <span class="n">args</span><span class="o">.</span><span class="n">mode</span> <span class="c1"># &quot;transform&quot; # &quot;fit&quot; #</span>
+    <span class="n">dataset_name</span> <span class="o">=</span> <span class="n">args</span><span class="o">.</span><span class="n">dataset_name</span>
+    <span class="n">save_format</span> <span class="o">=</span> <span class="n">args</span><span class="o">.</span><span class="n">save_format</span>
+    <span class="n">root_path_train</span> <span class="o">=</span> <span class="n">args</span><span class="o">.</span><span class="n">root_path_train</span>
+    <span class="n">output_path_train</span> <span class="o">=</span> <span class="n">args</span><span class="o">.</span><span class="n">output_path_train</span>
+    <span class="n">root_path_val</span> <span class="o">=</span> <span class="n">args</span><span class="o">.</span><span class="n">root_path_val</span>
+    <span class="n">output_path_val</span> <span class="o">=</span> <span class="n">args</span><span class="o">.</span><span class="n">output_path_val</span>
+    <span class="n">root_path_test</span> <span class="o">=</span> <span class="n">args</span><span class="o">.</span><span class="n">root_path_test</span>
+    <span class="n">output_path_test</span> <span class="o">=</span> <span class="n">args</span><span class="o">.</span><span class="n">output_path_test</span>
+    <span class="n">dataset_root_path</span> <span class="o">=</span> <span class="n">args</span><span class="o">.</span><span class="n">dataset_root</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="n">dataset_name</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">dataset_name</span><span class="p">:</span>
+        <span class="n">dataset_name</span> <span class="o">=</span> <span class="p">[</span><span class="n">name</span> <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="n">dataset_root_path</span><span class="p">)</span> <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isdir</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">dataset_root_path</span><span class="p">,</span> <span class="n">name</span><span class="p">))]</span>
+
+    <span class="c1"># since the params is a mid-state file, I didn&#39;t extend the file_format to the params file.</span>
+    <span class="n">data_path_buf</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">&quot;train&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;root_path&quot;</span><span class="p">:</span> <span class="n">root_path_train</span><span class="p">,</span> <span class="s2">&quot;output_path&quot;</span><span class="p">:</span> <span class="n">output_path_train</span><span class="p">,</span> <span class="s2">&quot;normalize_param_fname&quot;</span><span class="p">:</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">output_path_train</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;normalization_params.pth.tar&quot;</span><span class="p">)},</span>
+        <span class="s2">&quot;val&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;root_path&quot;</span><span class="p">:</span> <span class="n">root_path_val</span><span class="p">,</span> <span class="s2">&quot;output_path&quot;</span><span class="p">:</span> <span class="n">output_path_val</span><span class="p">,</span> <span class="s2">&quot;normalize_param_fname&quot;</span><span class="p">:</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">output_path_val</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;normalization_params.pth.tar&quot;</span><span class="p">)},</span>
+        <span class="s2">&quot;test&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;root_path&quot;</span><span class="p">:</span> <span class="n">root_path_test</span><span class="p">,</span> <span class="s2">&quot;output_path&quot;</span><span class="p">:</span> <span class="n">output_path_test</span><span class="p">,</span> <span class="s2">&quot;normalize_param_fname&quot;</span><span class="p">:</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">output_path_test</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;normalization_params.pth.tar&quot;</span><span class="p">)},</span>
+    <span class="p">}</span>
+
+    <span class="k">for</span> <span class="n">split_name</span><span class="p">,</span> <span class="n">data_path</span> <span class="ow">in</span> <span class="n">data_path_buf</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+        <span class="n">root_path</span> <span class="o">=</span> <span class="n">data_path_buf</span><span class="p">[</span><span class="n">split_name</span><span class="p">][</span><span class="s2">&quot;root_path&quot;</span><span class="p">]</span>
+        <span class="n">output_path</span> <span class="o">=</span> <span class="n">data_path_buf</span><span class="p">[</span><span class="n">split_name</span><span class="p">][</span><span class="s2">&quot;output_path&quot;</span><span class="p">]</span>
+        <span class="n">normalize_param_fname</span> <span class="o">=</span> <span class="n">data_path_buf</span><span class="p">[</span><span class="n">split_name</span><span class="p">][</span><span class="s2">&quot;normalize_param_fname&quot;</span><span class="p">]</span>
+
+        <span class="n">create_data_dir</span><span class="p">(</span><span class="n">output_path</span><span class="p">)</span>
+
+        <span class="n">dataset_fullname</span> <span class="o">=</span> <span class="p">[</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">root_path</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span> <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">dataset_name</span><span class="p">]</span>
+        <span class="n">data_path_buf_tmp</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">if</span> <span class="n">mode</span> <span class="o">==</span> <span class="s2">&quot;fit&quot;</span><span class="p">:</span>
+
+            <span class="k">for</span> <span class="n">dataset_dir</span> <span class="ow">in</span> <span class="n">dataset_fullname</span><span class="p">:</span>
+                <span class="n">paths</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="n">dataset_dir</span><span class="p">)</span>
+                <span class="n">new_dataset</span> <span class="o">=</span> <span class="p">[</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">dataset_dir</span><span class="p">,</span> <span class="n">path</span><span class="p">)</span> <span class="k">for</span> <span class="n">path</span> <span class="ow">in</span> <span class="n">paths</span><span class="p">]</span>
+                <span class="n">sample_idx</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">permutation</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">new_dataset</span><span class="p">))[:</span><span class="n">ds_size</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">int64</span><span class="p">)</span>
+                <span class="c1"># ipdb.set_trace()</span>
+                <span class="n">new_dataset</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">new_dataset</span><span class="p">)[</span><span class="n">sample_idx</span><span class="p">]</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
+                <span class="n">data_path_buf_tmp</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">new_dataset</span><span class="p">)</span>
+
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">dataset_dir</span> <span class="ow">in</span> <span class="n">dataset_fullname</span><span class="p">:</span>
+                <span class="n">paths</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="n">dataset_dir</span><span class="p">)</span>
+                <span class="n">new_dataset</span> <span class="o">=</span> <span class="p">[</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">dataset_dir</span><span class="p">,</span> <span class="n">path</span><span class="p">)</span> <span class="k">for</span> <span class="n">path</span> <span class="ow">in</span> <span class="n">paths</span><span class="p">]</span>
+                <span class="n">data_path_buf_tmp</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">new_dataset</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">mode</span> <span class="o">==</span> <span class="s2">&quot;fit&quot;</span><span class="p">:</span>
+            <span class="n">mean_std_export_ds</span><span class="p">(</span><span class="n">data_path_buf_tmp</span><span class="p">,</span> <span class="n">normalize_param_fname</span><span class="p">,</span> <span class="n">save_format</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="c1"># ipdb.set_trace()</span>
+            <span class="n">standardscale_export</span><span class="p">(</span><span class="n">data_path_buf_tmp</span><span class="p">,</span> <span class="n">normalize_param_fname</span><span class="p">,</span> <span class="n">output_path</span><span class="p">,</span> <span class="n">root_path</span><span class="p">,</span> <span class="n">save_format</span><span class="p">)</span>
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, DATA Lab@Rice University.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

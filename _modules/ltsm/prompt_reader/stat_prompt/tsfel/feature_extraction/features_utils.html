@@ -1,0 +1,504 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../../../../../">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.features_utils &mdash; LTSM-Package  documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../../../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../../../../../_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="../../../../../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../../../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../../../../../_static/documentation_options.js?v=5929fcd5"></script>
+      <script src="../../../../../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../../../../index.html" class="icon icon-home">
+            LTSM-Package
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../../modules.html">ltsm</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../../../index.html">LTSM-Package</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../../../../index.html">Module code</a></li>
+      <li class="breadcrumb-item active">ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.features_utils</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.features_utils</h1><div class="highlight"><pre>
+<span></span><span class="kn">import</span><span class="w"> </span><span class="nn">scipy</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+
+
+<div class="viewcode-block" id="set_domain">
+<a class="viewcode-back" href="../../../../../../ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.html#ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.features_utils.set_domain">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">set_domain</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">decorate_func</span><span class="p">(</span><span class="n">func</span><span class="p">):</span>
+        <span class="nb">setattr</span><span class="p">(</span><span class="n">func</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">func</span>
+
+    <span class="k">return</span> <span class="n">decorate_func</span></div>
+
+
+
+<div class="viewcode-block" id="compute_time">
+<a class="viewcode-back" href="../../../../../../ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.html#ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.features_utils.compute_time">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">compute_time</span><span class="p">(</span><span class="n">signal</span><span class="p">,</span> <span class="n">fs</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Creates the signal correspondent time array.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    signal: nd-array</span>
+<span class="sd">        Input from which the time is computed.</span>
+<span class="sd">    fs: int</span>
+<span class="sd">        Sampling Frequency</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    time : float list</span>
+<span class="sd">        Signal time</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">signal</span><span class="p">))</span><span class="o">/</span><span class="n">fs</span></div>
+
+
+
+<div class="viewcode-block" id="calc_fft">
+<a class="viewcode-back" href="../../../../../../ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.html#ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.features_utils.calc_fft">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">calc_fft</span><span class="p">(</span><span class="n">signal</span><span class="p">,</span> <span class="n">fs</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot; This functions computes the fft of a signal.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    signal : nd-array</span>
+<span class="sd">        The input signal from which fft is computed</span>
+<span class="sd">    fs : float</span>
+<span class="sd">        Sampling frequency</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    f: nd-array</span>
+<span class="sd">        Frequency values (xx axis)</span>
+<span class="sd">    fmag: nd-array</span>
+<span class="sd">        Amplitude of the frequency values (yy axis)</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">fmag</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">fft</span><span class="o">.</span><span class="n">rfft</span><span class="p">(</span><span class="n">signal</span><span class="p">))</span>
+    <span class="n">f</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">fft</span><span class="o">.</span><span class="n">rfftfreq</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">signal</span><span class="p">),</span> <span class="n">d</span><span class="o">=</span><span class="mi">1</span><span class="o">/</span><span class="n">fs</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">f</span><span class="o">.</span><span class="n">copy</span><span class="p">(),</span> <span class="n">fmag</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span></div>
+
+
+
+<div class="viewcode-block" id="filterbank">
+<a class="viewcode-back" href="../../../../../../ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.html#ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.features_utils.filterbank">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">filterbank</span><span class="p">(</span><span class="n">signal</span><span class="p">,</span> <span class="n">fs</span><span class="p">,</span> <span class="n">pre_emphasis</span><span class="o">=</span><span class="mf">0.97</span><span class="p">,</span> <span class="n">nfft</span><span class="o">=</span><span class="mi">512</span><span class="p">,</span> <span class="n">nfilt</span><span class="o">=</span><span class="mi">40</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Computes the MEL-spaced filterbank.</span>
+
+<span class="sd">    It provides the information about the power in each frequency band.</span>
+
+<span class="sd">    Implementation details and description on:</span>
+<span class="sd">    https://www.kaggle.com/ilyamich/mfcc-implementation-and-tutorial</span>
+<span class="sd">    https://haythamfayek.com/2016/04/21/speech-processing-for-machine-learning.html#fnref:1</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    signal : nd-array</span>
+<span class="sd">        Input from which filterbank is computed</span>
+<span class="sd">    fs : float</span>
+<span class="sd">        Sampling frequency</span>
+<span class="sd">    pre_emphasis : float</span>
+<span class="sd">        Pre-emphasis coefficient for pre-emphasis filter application</span>
+<span class="sd">    nfft : int</span>
+<span class="sd">        Number of points of fft</span>
+<span class="sd">    nfilt : int</span>
+<span class="sd">        Number of filters</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    nd-array</span>
+<span class="sd">        MEL-spaced filterbank</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="c1"># Signal is already a window from the original signal, so no frame is needed.</span>
+    <span class="c1"># According to the references it is needed the application of a window function such as</span>
+    <span class="c1"># hann window. However if the signal windows don&#39;t have overlap, we will lose information,</span>
+    <span class="c1"># as the application of a hann window will overshadow the windows signal edges.</span>
+
+    <span class="c1"># pre-emphasis filter to amplify the high frequencies</span>
+
+    <span class="n">emphasized_signal</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">signal</span><span class="p">)[</span><span class="mi">0</span><span class="p">],</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">signal</span><span class="p">[</span><span class="mi">1</span><span class="p">:])</span> <span class="o">-</span> <span class="n">pre_emphasis</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">signal</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]))</span>
+
+    <span class="c1"># Fourier transform and Power spectrum</span>
+    <span class="n">mag_frames</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">absolute</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">fft</span><span class="o">.</span><span class="n">rfft</span><span class="p">(</span><span class="n">emphasized_signal</span><span class="p">,</span> <span class="n">nfft</span><span class="p">))</span>  <span class="c1"># Magnitude of the FFT</span>
+
+    <span class="n">pow_frames</span> <span class="o">=</span> <span class="p">((</span><span class="mf">1.0</span> <span class="o">/</span> <span class="n">nfft</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="n">mag_frames</span> <span class="o">**</span> <span class="mi">2</span><span class="p">))</span>  <span class="c1"># Power Spectrum</span>
+
+    <span class="n">low_freq_mel</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">high_freq_mel</span> <span class="o">=</span> <span class="p">(</span><span class="mi">2595</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="p">(</span><span class="n">fs</span> <span class="o">/</span> <span class="mi">2</span><span class="p">)</span> <span class="o">/</span> <span class="mi">700</span><span class="p">))</span>  <span class="c1"># Convert Hz to Mel</span>
+    <span class="n">mel_points</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">low_freq_mel</span><span class="p">,</span> <span class="n">high_freq_mel</span><span class="p">,</span> <span class="n">nfilt</span> <span class="o">+</span> <span class="mi">2</span><span class="p">)</span>  <span class="c1"># Equally spaced in Mel scale</span>
+    <span class="n">hz_points</span> <span class="o">=</span> <span class="p">(</span><span class="mi">700</span> <span class="o">*</span> <span class="p">(</span><span class="mi">10</span> <span class="o">**</span> <span class="p">(</span><span class="n">mel_points</span> <span class="o">/</span> <span class="mi">2595</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">))</span>  <span class="c1"># Convert Mel to Hz</span>
+    <span class="n">filter_bin</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">floor</span><span class="p">((</span><span class="n">nfft</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="n">hz_points</span> <span class="o">/</span> <span class="n">fs</span><span class="p">)</span>
+
+    <span class="n">fbank</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">nfilt</span><span class="p">,</span> <span class="nb">int</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">floor</span><span class="p">(</span><span class="n">nfft</span> <span class="o">/</span> <span class="mi">2</span> <span class="o">+</span> <span class="mi">1</span><span class="p">))))</span>
+    <span class="k">for</span> <span class="n">m</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">nfilt</span> <span class="o">+</span> <span class="mi">1</span><span class="p">):</span>
+
+        <span class="n">f_m_minus</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">filter_bin</span><span class="p">[</span><span class="n">m</span> <span class="o">-</span> <span class="mi">1</span><span class="p">])</span>  <span class="c1"># left</span>
+        <span class="n">f_m</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">filter_bin</span><span class="p">[</span><span class="n">m</span><span class="p">])</span>  <span class="c1"># center</span>
+        <span class="n">f_m_plus</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">filter_bin</span><span class="p">[</span><span class="n">m</span> <span class="o">+</span> <span class="mi">1</span><span class="p">])</span>  <span class="c1"># right</span>
+
+        <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">f_m_minus</span><span class="p">,</span> <span class="n">f_m</span><span class="p">):</span>
+            <span class="n">fbank</span><span class="p">[</span><span class="n">m</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">k</span> <span class="o">-</span> <span class="n">filter_bin</span><span class="p">[</span><span class="n">m</span> <span class="o">-</span> <span class="mi">1</span><span class="p">])</span> <span class="o">/</span> <span class="p">(</span><span class="n">filter_bin</span><span class="p">[</span><span class="n">m</span><span class="p">]</span> <span class="o">-</span> <span class="n">filter_bin</span><span class="p">[</span><span class="n">m</span> <span class="o">-</span> <span class="mi">1</span><span class="p">])</span>
+        <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">f_m</span><span class="p">,</span> <span class="n">f_m_plus</span><span class="p">):</span>
+            <span class="n">fbank</span><span class="p">[</span><span class="n">m</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">filter_bin</span><span class="p">[</span><span class="n">m</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">k</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">filter_bin</span><span class="p">[</span><span class="n">m</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">filter_bin</span><span class="p">[</span><span class="n">m</span><span class="p">])</span>
+
+    <span class="c1"># Area Normalization</span>
+    <span class="c1"># If we don&#39;t normalize the noise will increase with frequency because of the filter width.</span>
+    <span class="n">enorm</span> <span class="o">=</span> <span class="mf">2.0</span> <span class="o">/</span> <span class="p">(</span><span class="n">hz_points</span><span class="p">[</span><span class="mi">2</span><span class="p">:</span><span class="n">nfilt</span> <span class="o">+</span> <span class="mi">2</span><span class="p">]</span> <span class="o">-</span> <span class="n">hz_points</span><span class="p">[:</span><span class="n">nfilt</span><span class="p">])</span>
+    <span class="n">fbank</span> <span class="o">*=</span> <span class="n">enorm</span><span class="p">[:,</span> <span class="n">np</span><span class="o">.</span><span class="n">newaxis</span><span class="p">]</span>
+
+    <span class="n">filter_banks</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">pow_frames</span><span class="p">,</span> <span class="n">fbank</span><span class="o">.</span><span class="n">T</span><span class="p">)</span>
+    <span class="n">filter_banks</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">filter_banks</span> <span class="o">==</span> <span class="mi">0</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">finfo</span><span class="p">(</span><span class="nb">float</span><span class="p">)</span><span class="o">.</span><span class="n">eps</span><span class="p">,</span> <span class="n">filter_banks</span><span class="p">)</span>  <span class="c1"># Numerical Stability</span>
+    <span class="n">filter_banks</span> <span class="o">=</span> <span class="mi">20</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="n">filter_banks</span><span class="p">)</span>  <span class="c1"># dB</span>
+
+    <span class="k">return</span> <span class="n">filter_banks</span></div>
+
+
+
+<div class="viewcode-block" id="autocorr_norm">
+<a class="viewcode-back" href="../../../../../../ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.html#ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.features_utils.autocorr_norm">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">autocorr_norm</span><span class="p">(</span><span class="n">signal</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Computes the autocorrelation.</span>
+
+<span class="sd">    Implementation details and description in:</span>
+<span class="sd">    https://ccrma.stanford.edu/~orchi/Documents/speaker_recognition_report.pdf</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    signal : nd-array</span>
+<span class="sd">        Input from linear prediction coefficients are computed</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    nd-array</span>
+<span class="sd">        Autocorrelation result</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">variance</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">var</span><span class="p">(</span><span class="n">signal</span><span class="p">)</span>
+    <span class="n">signal</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">copy</span><span class="p">(</span><span class="n">signal</span> <span class="o">-</span> <span class="n">signal</span><span class="o">.</span><span class="n">mean</span><span class="p">())</span>
+    <span class="n">r</span> <span class="o">=</span> <span class="n">scipy</span><span class="o">.</span><span class="n">signal</span><span class="o">.</span><span class="n">correlate</span><span class="p">(</span><span class="n">signal</span><span class="p">,</span> <span class="n">signal</span><span class="p">)[</span><span class="o">-</span><span class="nb">len</span><span class="p">(</span><span class="n">signal</span><span class="p">):]</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="n">signal</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">all</span><span class="p">():</span>
+        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">signal</span><span class="p">))</span>
+
+    <span class="n">acf</span> <span class="o">=</span> <span class="n">r</span> <span class="o">/</span> <span class="n">variance</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">signal</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">acf</span></div>
+
+
+
+<div class="viewcode-block" id="create_symmetric_matrix">
+<a class="viewcode-back" href="../../../../../../ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.html#ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.features_utils.create_symmetric_matrix">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">create_symmetric_matrix</span><span class="p">(</span><span class="n">acf</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="mi">11</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Computes a symmetric matrix.</span>
+
+<span class="sd">    Implementation details and description in:</span>
+<span class="sd">    https://ccrma.stanford.edu/~orchi/Documents/speaker_recognition_report.pdf</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    acf : nd-array</span>
+<span class="sd">        Input from which a symmetric matrix is computed</span>
+<span class="sd">    order : int</span>
+<span class="sd">        Order</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    nd-array</span>
+<span class="sd">        Symmetric Matrix</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">smatrix</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">((</span><span class="n">order</span><span class="p">,</span> <span class="n">order</span><span class="p">))</span>
+    <span class="n">xx</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">order</span><span class="p">)</span>
+    <span class="n">j</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">tile</span><span class="p">(</span><span class="n">xx</span><span class="p">,</span> <span class="n">order</span><span class="p">)</span>
+    <span class="n">i</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">repeat</span><span class="p">(</span><span class="n">xx</span><span class="p">,</span> <span class="n">order</span><span class="p">)</span>
+    <span class="n">smatrix</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">acf</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">i</span> <span class="o">-</span> <span class="n">j</span><span class="p">)]</span>
+
+    <span class="k">return</span> <span class="n">smatrix</span></div>
+
+
+
+<div class="viewcode-block" id="lpc">
+<a class="viewcode-back" href="../../../../../../ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.html#ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.features_utils.lpc">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">lpc</span><span class="p">(</span><span class="n">signal</span><span class="p">,</span> <span class="n">n_coeff</span><span class="o">=</span><span class="mi">12</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Computes the linear prediction coefficients.</span>
+
+<span class="sd">    Implementation details and description in:</span>
+<span class="sd">    https://ccrma.stanford.edu/~orchi/Documents/speaker_recognition_report.pdf</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    signal : nd-array</span>
+<span class="sd">        Input from linear prediction coefficients are computed</span>
+<span class="sd">    n_coeff : int</span>
+<span class="sd">        Number of coefficients</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    nd-array</span>
+<span class="sd">        Linear prediction coefficients</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">if</span> <span class="n">signal</span><span class="o">.</span><span class="n">ndim</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Only 1 dimensional arrays are valid&quot;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">n_coeff</span> <span class="o">&gt;</span> <span class="n">signal</span><span class="o">.</span><span class="n">size</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Input signal must have a length &gt;= n_coeff&quot;</span><span class="p">)</span>
+
+    <span class="c1"># Calculate the order based on the number of coefficients</span>
+    <span class="n">order</span> <span class="o">=</span> <span class="n">n_coeff</span> <span class="o">-</span> <span class="mi">1</span>
+
+    <span class="c1"># Calculate LPC with Yule-Walker</span>
+    <span class="n">acf</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">correlate</span><span class="p">(</span><span class="n">signal</span><span class="p">,</span> <span class="n">signal</span><span class="p">,</span> <span class="s1">&#39;full&#39;</span><span class="p">)</span>
+
+    <span class="n">r</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">order</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;float32&#39;</span><span class="p">)</span>
+    <span class="c1"># Assuring that works for all type of input lengths</span>
+    <span class="n">nx</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">min</span><span class="p">([</span><span class="n">order</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">signal</span><span class="p">)])</span>
+    <span class="n">r</span><span class="p">[:</span><span class="n">nx</span><span class="p">]</span> <span class="o">=</span> <span class="n">acf</span><span class="p">[</span><span class="nb">len</span><span class="p">(</span><span class="n">signal</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">:</span><span class="nb">len</span><span class="p">(</span><span class="n">signal</span><span class="p">)</span><span class="o">+</span><span class="n">order</span><span class="p">]</span>
+
+    <span class="n">smatrix</span> <span class="o">=</span> <span class="n">create_symmetric_matrix</span><span class="p">(</span><span class="n">r</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">order</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">smatrix</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="k">return</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">order</span><span class="o">+</span><span class="mi">1</span><span class="p">))</span>
+
+    <span class="n">lpc_coeffs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">inv</span><span class="p">(</span><span class="n">smatrix</span><span class="p">),</span> <span class="o">-</span><span class="n">r</span><span class="p">[</span><span class="mi">1</span><span class="p">:])</span>
+
+    <span class="k">return</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">(([</span><span class="mf">1.</span><span class="p">],</span> <span class="n">lpc_coeffs</span><span class="p">)))</span></div>
+
+
+
+<div class="viewcode-block" id="create_xx">
+<a class="viewcode-back" href="../../../../../../ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.html#ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.features_utils.create_xx">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">create_xx</span><span class="p">(</span><span class="n">features</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Computes the range of features amplitude for the probability density function calculus.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    features : nd-array</span>
+<span class="sd">        Input features</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    nd-array</span>
+<span class="sd">        range of features amplitude</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">features_</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">copy</span><span class="p">(</span><span class="n">features</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="nb">max</span><span class="p">(</span><span class="n">features_</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">max_f</span> <span class="o">=</span> <span class="o">-</span> <span class="nb">max</span><span class="p">(</span><span class="n">features_</span><span class="p">)</span>
+        <span class="n">min_f</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">features_</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">min_f</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">features_</span><span class="p">)</span>
+        <span class="n">max_f</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">features_</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="nb">min</span><span class="p">(</span><span class="n">features_</span><span class="p">)</span> <span class="o">==</span> <span class="nb">max</span><span class="p">(</span><span class="n">features_</span><span class="p">):</span>
+        <span class="n">xx</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">min_f</span><span class="p">,</span> <span class="n">min_f</span> <span class="o">+</span> <span class="mi">10</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">features_</span><span class="p">))</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">xx</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">min_f</span><span class="p">,</span> <span class="n">max_f</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">features_</span><span class="p">))</span>
+
+    <span class="k">return</span> <span class="n">xx</span></div>
+
+
+
+<div class="viewcode-block" id="kde">
+<a class="viewcode-back" href="../../../../../../ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.html#ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.features_utils.kde">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">kde</span><span class="p">(</span><span class="n">features</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Computes the probability density function of the input signal using a Gaussian KDE (Kernel Density Estimate)</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    features : nd-array</span>
+<span class="sd">        Input from which probability density function is computed</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    nd-array</span>
+<span class="sd">        probability density values</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">features_</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">copy</span><span class="p">(</span><span class="n">features</span><span class="p">)</span>
+    <span class="n">xx</span> <span class="o">=</span> <span class="n">create_xx</span><span class="p">(</span><span class="n">features_</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="nb">min</span><span class="p">(</span><span class="n">features_</span><span class="p">)</span> <span class="o">==</span> <span class="nb">max</span><span class="p">(</span><span class="n">features_</span><span class="p">):</span>
+        <span class="n">noise</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">features_</span><span class="p">))</span> <span class="o">*</span> <span class="mf">0.0001</span>
+        <span class="n">features_</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">copy</span><span class="p">(</span><span class="n">features_</span> <span class="o">+</span> <span class="n">noise</span><span class="p">)</span>
+
+    <span class="n">kernel</span> <span class="o">=</span> <span class="n">scipy</span><span class="o">.</span><span class="n">stats</span><span class="o">.</span><span class="n">gaussian_kde</span><span class="p">(</span><span class="n">features_</span><span class="p">,</span> <span class="n">bw_method</span><span class="o">=</span><span class="s1">&#39;silverman&#39;</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">kernel</span><span class="p">(</span><span class="n">xx</span><span class="p">)</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">kernel</span><span class="p">(</span><span class="n">xx</span><span class="p">)))</span></div>
+
+
+
+<div class="viewcode-block" id="gaussian">
+<a class="viewcode-back" href="../../../../../../ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.html#ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.features_utils.gaussian">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">gaussian</span><span class="p">(</span><span class="n">features</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Computes the probability density function of the input signal using a Gaussian function</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    features : nd-array</span>
+<span class="sd">        Input from which probability density function is computed</span>
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    nd-array</span>
+<span class="sd">        probability density values</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">features_</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">copy</span><span class="p">(</span><span class="n">features</span><span class="p">)</span>
+
+    <span class="n">xx</span> <span class="o">=</span> <span class="n">create_xx</span><span class="p">(</span><span class="n">features_</span><span class="p">)</span>
+    <span class="n">std_value</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">features_</span><span class="p">)</span>
+    <span class="n">mean_value</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">features_</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">std_value</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="k">return</span> <span class="mf">0.0</span>
+    <span class="n">pdf_gauss</span> <span class="o">=</span> <span class="n">scipy</span><span class="o">.</span><span class="n">stats</span><span class="o">.</span><span class="n">norm</span><span class="o">.</span><span class="n">pdf</span><span class="p">(</span><span class="n">xx</span><span class="p">,</span> <span class="n">mean_value</span><span class="p">,</span> <span class="n">std_value</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">pdf_gauss</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">pdf_gauss</span><span class="p">))</span></div>
+
+
+
+<div class="viewcode-block" id="wavelet">
+<a class="viewcode-back" href="../../../../../../ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.html#ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.features_utils.wavelet">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">wavelet</span><span class="p">(</span><span class="n">signal</span><span class="p">,</span> <span class="n">function</span><span class="o">=</span><span class="n">scipy</span><span class="o">.</span><span class="n">signal</span><span class="o">.</span><span class="n">ricker</span><span class="p">,</span> <span class="n">widths</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">10</span><span class="p">)):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Computes CWT (continuous wavelet transform) of the signal.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    signal : nd-array</span>
+<span class="sd">        Input from which CWT is computed</span>
+<span class="sd">    function :  wavelet function</span>
+<span class="sd">        Default: scipy.signal.ricker</span>
+<span class="sd">    widths :  nd-array</span>
+<span class="sd">        Widths to use for transformation</span>
+<span class="sd">        Default: np.arange(1,10)</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    nd-array</span>
+<span class="sd">        The result of the CWT along the time axis</span>
+<span class="sd">        matrix with size (len(widths),len(signal))</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">function</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+        <span class="n">function</span> <span class="o">=</span> <span class="nb">eval</span><span class="p">(</span><span class="n">function</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">widths</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+        <span class="n">widths</span> <span class="o">=</span> <span class="nb">eval</span><span class="p">(</span><span class="n">widths</span><span class="p">)</span>
+
+    <span class="n">cwt</span> <span class="o">=</span> <span class="n">scipy</span><span class="o">.</span><span class="n">signal</span><span class="o">.</span><span class="n">cwt</span><span class="p">(</span><span class="n">signal</span><span class="p">,</span> <span class="n">function</span><span class="p">,</span> <span class="n">widths</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">cwt</span></div>
+
+
+
+<div class="viewcode-block" id="calc_ecdf">
+<a class="viewcode-back" href="../../../../../../ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.html#ltsm.prompt_reader.stat_prompt.tsfel.feature_extraction.features_utils.calc_ecdf">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">calc_ecdf</span><span class="p">(</span><span class="n">signal</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Computes the ECDF of the signal.</span>
+
+<span class="sd">      Parameters</span>
+<span class="sd">      ----------</span>
+<span class="sd">      signal : nd-array</span>
+<span class="sd">          Input from which ECDF is computed</span>
+<span class="sd">      Returns</span>
+<span class="sd">      -------</span>
+<span class="sd">      nd-array</span>
+<span class="sd">        Sorted signal and computed ECDF.</span>
+
+<span class="sd">      &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="n">signal</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">signal</span><span class="p">)</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">/</span><span class="nb">len</span><span class="p">(</span><span class="n">signal</span><span class="p">)</span></div>
+
+
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, DATA Lab@Rice University.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
